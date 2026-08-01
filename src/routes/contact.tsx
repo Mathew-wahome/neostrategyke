@@ -10,9 +10,10 @@ type StageKey = "audit" | "install" | "partnership";
 
 export const Route = createFileRoute("/contact")({
   validateSearch: (search: Record<string, unknown>): { stage?: StageKey } => {
-    const stage = search["stage"];
+    const stage = search["stage"] as StageKey | undefined;
     return stage === "audit" || stage === "install" || stage === "partnership" ? { stage } : {};
   },
+
   head: () => ({
     meta: [
       { title: "Book a free call — NeoStrategy" },
