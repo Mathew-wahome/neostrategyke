@@ -84,7 +84,7 @@ function Contact() {
           </p>
           {stage && (
             <p className="font-ui text-sm text-primary">
-              Enquiring about: {stageLabels[stage]}
+              Enquiring about: {stageLabels[stage as StageKey]}
             </p>
           )}
         </Reveal>

@@ -58,7 +58,7 @@ function Post() {
       </Reveal>
 
       <div className="mt-12 space-y-7">
-        {post.body.map((p, i) => (
+        {post.body.map((p: string, i: number) => (
           <Reveal key={i} delay={i * 0.04}>
             <p className="text-lg leading-relaxed text-foreground/85">{p}</p>
           </Reveal>

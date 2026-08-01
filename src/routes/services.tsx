@@ -100,7 +100,7 @@ function Services() {
                   <p className="font-ui mt-6 text-sm text-muted-foreground">{stage.timeline}</p>
                   <ActionLink
                     to="/contact"
-                    search={{ stage: stage.slug }}
+                    search={{ stage: stage.slug } as never}
                     variant="outline"
                     className="mt-8"
                   >
