@@ -4,8 +4,9 @@ export const brand = {
   founder: "Mary Njoroge",
   email: "hello@neostrategy.co.ke",
   location: "Nairobi, Kenya",
-  // TODO: replace with NeoStrategy's real WhatsApp Business number (digits only, incl. country code)
-  whatsappNumber: "254700000000",
+  // NeoStrategy WhatsApp Business number (digits only, incl. country code)
+  whatsappNumber: "254721744282",
+
   starterKitPrice: "KES 4,500",
 };
 
