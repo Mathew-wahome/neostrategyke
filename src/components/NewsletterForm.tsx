@@ -72,9 +72,14 @@ export function NewsletterForm({
               : "border-input bg-background text-foreground",
           )}
         />
-        <ActionButton type="submit" variant={tone === "dark" ? "onDark" : "primary"}>
-          Send me the guide
+        <ActionButton
+          type="submit"
+          disabled={pending}
+          variant={tone === "dark" ? "onDark" : "primary"}
+        >
+          {pending ? "Sending…" : "Send me the guide"}
         </ActionButton>
+
       </div>
       <p
         className={cn(
