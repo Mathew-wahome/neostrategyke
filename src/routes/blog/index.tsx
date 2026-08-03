@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { GuideBox } from "@/components/GuideBox";
 import { Reveal } from "@/components/Reveal";
-import { posts } from "@/lib/posts";
+import { fetchPosts } from "@/lib/posts.functions";
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
@@ -20,10 +20,23 @@ export const Route = createFileRoute("/blog/")({
       },
     ],
   }),
+  loader: () => fetchPosts(),
+  errorComponent: () => (
+    <div className="container-read py-32">
+      <h1 className="font-display text-3xl">The journal did not load</h1>
+    </div>
+  ),
+  notFoundComponent: () => (
+    <div className="container-read py-32">
+      <h1 className="font-display text-3xl">Nothing here yet</h1>
+    </div>
+  ),
   component: Blog,
 });
 
 function Blog() {
+  const posts = Route.useLoaderData();
+
   return (
     <>
       <section className="container-page pt-24 pb-12 md:pt-36 md:pb-16">

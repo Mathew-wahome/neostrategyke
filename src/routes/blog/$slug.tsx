@@ -1,11 +1,11 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { GuideBox } from "@/components/GuideBox";
 import { Reveal } from "@/components/Reveal";
-import { findPost } from "@/lib/posts";
+import { fetchPost } from "@/lib/posts.functions";
 
 export const Route = createFileRoute("/blog/$slug")({
-  loader: ({ params }) => {
-    const post = findPost(params.slug);
+  loader: async ({ params }) => {
+    const post = await fetchPost({ data: { slug: params.slug } });
     if (!post) throw notFound();
     return post;
   },
