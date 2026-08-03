@@ -17,7 +17,7 @@ export const Route = createFileRoute("/_authenticated/admin")({
   ),
 });
 
-const nav = [
+const nav: { to: string; label: string; exact?: boolean }[] = [
   { to: "/admin", label: "Overview", exact: true },
   { to: "/admin/leads", label: "Leads" },
   { to: "/admin/bookings", label: "Bookings" },
@@ -26,7 +26,7 @@ const nav = [
   { to: "/admin/clients", label: "Clients" },
   { to: "/admin/journal", label: "Journal" },
   { to: "/admin/settings", label: "Settings" },
-] as const;
+];
 
 function AdminShell() {
   const { data: staff, isLoading } = useStaff();
@@ -78,7 +78,7 @@ function AdminShell() {
             return (
               <Link
                 key={item.to}
-                to={item.to}
+                to={item.to as never}
                 className={cn(
                   "rounded-sm px-3 py-2 transition-colors",
                   active
@@ -111,7 +111,7 @@ function AdminShell() {
           {nav.map((item) => (
             <Link
               key={item.to}
-              to={item.to}
+              to={item.to as never}
               className="font-ui whitespace-nowrap rounded-sm px-3 py-1.5 text-xs text-muted-foreground"
             >
               {item.label}
