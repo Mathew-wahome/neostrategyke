@@ -13,11 +13,11 @@ export async function subscribe(email: string, source: string, name?: string) {
 export async function createLead(input: {
   name: string;
   email: string;
-  phone?: string;
-  business_name?: string;
+  phone?: string | undefined;
+  business_name?: string | undefined;
   source: string;
   services_stage_interest?: string | null;
-  notes?: string;
+  notes?: string | undefined;
 }) {
   const { data, error } = await supabase
     .from("leads")
@@ -39,9 +39,9 @@ export async function createLead(input: {
 export async function createBooking(input: {
   client_name: string;
   email: string;
-  phone?: string;
-  business_name?: string;
-  notes?: string;
+  phone?: string | undefined;
+  business_name?: string | undefined;
+  notes?: string | undefined;
   scheduled_at: string;
   services_stage_interest?: string | null;
 }) {
@@ -71,7 +71,7 @@ export async function createBooking(input: {
 export async function createOrder(input: {
   customer_name: string;
   email: string;
-  business_name?: string;
+  business_name?: string | undefined;
   product_id?: string | null;
 }) {
   const lead_id = await createLead({
