@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { GuideBox } from "@/components/GuideBox";
 import { Reveal } from "@/components/Reveal";
 import { fetchPosts } from "@/lib/posts.functions";
+import type { PublicPost } from "@/lib/posts.server";
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
@@ -56,7 +57,7 @@ function Blog() {
       <section className="border-t border-border/60">
         <div className="container-page py-16 md:py-24">
           <div className="grid gap-x-10 gap-y-16 md:grid-cols-2">
-            {posts.map((post, i) => (
+            {posts.map((post: PublicPost, i: number) => (
               <Reveal key={post.slug} delay={i * 0.08}>
                 <article>
                   <p className="font-ui text-xs uppercase tracking-[0.2em] text-primary">
