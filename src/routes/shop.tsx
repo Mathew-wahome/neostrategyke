@@ -5,6 +5,10 @@ import { ActionAnchor, ActionButton } from "@/components/ActionButton";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { Reveal } from "@/components/Reveal";
 import { brand, whatsappLink } from "@/lib/brand";
+import { createOrder } from "@/lib/site-api";
+import { supabase } from "@/integrations/supabase/client";
+import { useEffect } from "react";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/shop")({
   head: () => ({
@@ -30,6 +34,35 @@ function Shop() {
   const [open, setOpen] = useState(false);
   const [ordered, setOrdered] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", business: "" });
+  const [pending, setPending] = useState(false);
+  const [productId, setProductId] = useState<string | null>(null);
+
+  useEffect(() => {
+    supabase
+      .from("products")
+      .select("id")
+      .eq("slug", "founder-systems-starter-kit")
+      .maybeSingle()
+      .then(({ data }) => setProductId(data?.id ?? null));
+  }, []);
+
+  async function submitOrder(e: React.FormEvent) {
+    e.preventDefault();
+    setPending(true);
+    try {
+      await createOrder({
+        customer_name: form.name,
+        email: form.email,
+        business_name: form.business,
+        product_id: productId,
+      });
+      setOrdered(true);
+    } catch {
+      toast.error("We could not save that order. Please try again in a moment.");
+    } finally {
+      setPending(false);
+    }
+  }
 
   const message = `Hi NeoStrategy, I'd like to get the Service Founder Systems Starter Kit (${brand.starterKitPrice}). My name is ${form.name}.`;
 
@@ -86,10 +119,7 @@ function Shop() {
               </motion.div>
             ) : open ? (
               <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setOrdered(true);
-                }}
+                onSubmit={submitOrder}
                 className="mt-10 space-y-4 border-t border-primary/20 pt-8"
               >
                 {[
@@ -108,7 +138,9 @@ function Shop() {
                     />
                   </label>
                 ))}
-                <ActionButton type="submit">Continue</ActionButton>
+                <ActionButton type="submit" disabled={pending}>
+                  {pending ? "Saving…" : "Continue"}
+                </ActionButton>
               </form>
             ) : (
               <ActionButton className="mt-10" onClick={() => setOpen(true)}>
