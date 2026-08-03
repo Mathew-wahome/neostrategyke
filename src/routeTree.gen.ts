@@ -25,6 +25,7 @@ import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
 import { Route as AuthenticatedAdminBookingsRouteImport } from './routes/_authenticated/admin/bookings'
 import { Route as AuthenticatedAdminClientsRouteImport } from './routes/_authenticated/admin/clients'
+import { Route as AuthenticatedAdminJournalRouteImport } from './routes/_authenticated/admin/journal'
 import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin/leads'
 import { Route as AuthenticatedAdminOrdersRouteImport } from './routes/_authenticated/admin/orders'
 import { Route as AuthenticatedAdminSubscribersRouteImport } from './routes/_authenticated/admin/subscribers'
@@ -110,6 +111,12 @@ const AuthenticatedAdminClientsRoute =
     path: '/clients',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminJournalRoute =
+  AuthenticatedAdminJournalRouteImport.update({
+    id: '/journal',
+    path: '/journal',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminLeadsRoute = AuthenticatedAdminLeadsRouteImport.update({
   id: '/leads',
   path: '/leads',
@@ -143,6 +150,7 @@ export interface FileRoutesByFullPath {
   '/blog/': typeof BlogIndexRoute
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
+  '/admin/journal': typeof AuthenticatedAdminJournalRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/admin/orders': typeof AuthenticatedAdminOrdersRoute
   '/admin/subscribers': typeof AuthenticatedAdminSubscribersRoute
@@ -162,6 +170,7 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogIndexRoute
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
+  '/admin/journal': typeof AuthenticatedAdminJournalRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/admin/orders': typeof AuthenticatedAdminOrdersRoute
   '/admin/subscribers': typeof AuthenticatedAdminSubscribersRoute
@@ -184,6 +193,7 @@ export interface FileRoutesById {
   '/blog/': typeof BlogIndexRoute
   '/_authenticated/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/_authenticated/admin/clients': typeof AuthenticatedAdminClientsRoute
+  '/_authenticated/admin/journal': typeof AuthenticatedAdminJournalRoute
   '/_authenticated/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/_authenticated/admin/orders': typeof AuthenticatedAdminOrdersRoute
   '/_authenticated/admin/subscribers': typeof AuthenticatedAdminSubscribersRoute
@@ -206,6 +216,7 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/admin/bookings'
     | '/admin/clients'
+    | '/admin/journal'
     | '/admin/leads'
     | '/admin/orders'
     | '/admin/subscribers'
@@ -225,6 +236,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/admin/bookings'
     | '/admin/clients'
+    | '/admin/journal'
     | '/admin/leads'
     | '/admin/orders'
     | '/admin/subscribers'
@@ -246,6 +258,7 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/_authenticated/admin/bookings'
     | '/_authenticated/admin/clients'
+    | '/_authenticated/admin/journal'
     | '/_authenticated/admin/leads'
     | '/_authenticated/admin/orders'
     | '/_authenticated/admin/subscribers'
@@ -381,6 +394,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminClientsRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/journal': {
+      id: '/_authenticated/admin/journal'
+      path: '/journal'
+      fullPath: '/admin/journal'
+      preLoaderRoute: typeof AuthenticatedAdminJournalRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/leads': {
       id: '/_authenticated/admin/leads'
       path: '/leads'
@@ -408,6 +428,7 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminBookingsRoute: typeof AuthenticatedAdminBookingsRoute
   AuthenticatedAdminClientsRoute: typeof AuthenticatedAdminClientsRoute
+  AuthenticatedAdminJournalRoute: typeof AuthenticatedAdminJournalRoute
   AuthenticatedAdminLeadsRoute: typeof AuthenticatedAdminLeadsRoute
   AuthenticatedAdminOrdersRoute: typeof AuthenticatedAdminOrdersRoute
   AuthenticatedAdminSubscribersRoute: typeof AuthenticatedAdminSubscribersRoute
@@ -417,6 +438,7 @@ interface AuthenticatedAdminRouteChildren {
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminBookingsRoute: AuthenticatedAdminBookingsRoute,
   AuthenticatedAdminClientsRoute: AuthenticatedAdminClientsRoute,
+  AuthenticatedAdminJournalRoute: AuthenticatedAdminJournalRoute,
   AuthenticatedAdminLeadsRoute: AuthenticatedAdminLeadsRoute,
   AuthenticatedAdminOrdersRoute: AuthenticatedAdminOrdersRoute,
   AuthenticatedAdminSubscribersRoute: AuthenticatedAdminSubscribersRoute,
