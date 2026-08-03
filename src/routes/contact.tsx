@@ -5,6 +5,8 @@ import { ActionAnchor, ActionButton } from "@/components/ActionButton";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { Reveal } from "@/components/Reveal";
 import { whatsappLink } from "@/lib/brand";
+import { createBooking } from "@/lib/site-api";
+import { toast } from "sonner";
 
 type StageKey = "audit" | "install" | "partnership";
 
@@ -147,10 +149,7 @@ function Contact() {
             </motion.div>
           ) : (
             <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                if (date && time) setBooked(true);
-              }}
+              onSubmit={submitBooking}
               className="space-y-12"
             >
               <div>
@@ -230,7 +229,7 @@ function Contact() {
                 </label>
               </div>
 
-              <ActionButton type="submit" size="lg" disabled={!date || !time}>
+              <ActionButton type="submit" size="lg" disabled={!date || !time || pending}>
                 Request this call
               </ActionButton>
             </form>
