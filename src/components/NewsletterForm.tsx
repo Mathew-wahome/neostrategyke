@@ -2,6 +2,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { ActionButton } from "./ActionButton";
 import { cn } from "@/lib/utils";
+import { subscribe } from "@/lib/site-api";
 
 type Tone = "light" | "dark" | "wash";
 
@@ -15,18 +16,26 @@ export function NewsletterForm({
   source?: string;
 }) {
   const [email, setEmail] = useState("");
+  const [pending, setPending] = useState(false);
   const [done, setDone] = useState(false);
+  const [already, setAlready] = useState(false);
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       toast.error("Please enter a valid email address.");
       return;
     }
-    setDone(true);
-    toast.success("Check your inbox — the guide is on its way.", {
-      description: `Signed up from ${source}.`,
-    });
+    setPending(true);
+    try {
+      const result = await subscribe(email.trim().toLowerCase(), source);
+      setAlready(result.alreadySubscribed);
+      setDone(true);
+    } catch {
+      toast.error("Something went wrong. Please try again in a moment.");
+    } finally {
+      setPending(false);
+    }
   }
 
   if (done) {
@@ -38,10 +47,13 @@ export function NewsletterForm({
           className,
         )}
       >
-        Thank you. The guide is on its way to {email}.
+        {already
+          ? `You are already on the list, ${email}. The guide is in your earlier welcome email.`
+          : `Thank you. The guide is on its way to ${email}.`}
       </p>
     );
   }
+
 
   return (
     <form onSubmit={onSubmit} className={cn("w-full", className)}>
@@ -60,9 +72,14 @@ export function NewsletterForm({
               : "border-input bg-background text-foreground",
           )}
         />
-        <ActionButton type="submit" variant={tone === "dark" ? "onDark" : "primary"}>
-          Send me the guide
+        <ActionButton
+          type="submit"
+          disabled={pending}
+          variant={tone === "dark" ? "onDark" : "primary"}
+        >
+          {pending ? "Sending…" : "Send me the guide"}
         </ActionButton>
+
       </div>
       <p
         className={cn(

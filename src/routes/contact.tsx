@@ -5,6 +5,8 @@ import { ActionAnchor, ActionButton } from "@/components/ActionButton";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { Reveal } from "@/components/Reveal";
 import { whatsappLink } from "@/lib/brand";
+import { createBooking } from "@/lib/site-api";
+import { toast } from "sonner";
 
 type StageKey = "audit" | "install" | "partnership";
 
@@ -59,12 +61,39 @@ function Contact() {
   const [time, setTime] = useState<string | null>(null);
   const [form, setForm] = useState({ name: "", email: "", phone: "", business: "", notes: "" });
   const [booked, setBooked] = useState(false);
+  const [pending, setPending] = useState(false);
 
   const dateLabel = date
     ? date.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" })
     : "";
 
   const message = `Hi NeoStrategy, I just booked a free call for ${dateLabel} at ${time}. My name is ${form.name} — looking forward to it!`;
+
+  async function submitBooking(e: React.FormEvent) {
+    e.preventDefault();
+    if (!date || !time) return;
+    const parts = time.split(":");
+    const scheduled = new Date(date);
+    scheduled.setHours(Number(parts[0]), Number(parts[1]), 0, 0);
+    setPending(true);
+    try {
+      await createBooking({
+        client_name: form.name,
+        email: form.email,
+        phone: form.phone,
+        business_name: form.business,
+        notes: form.notes,
+        scheduled_at: scheduled.toISOString(),
+        services_stage_interest: (stage as StageKey | undefined) ?? null,
+      });
+      setBooked(true);
+    } catch {
+      toast.error("We could not save that request. Please try again in a moment.");
+    } finally {
+      setPending(false);
+    }
+  }
+
 
   return (
     <>
@@ -120,10 +149,7 @@ function Contact() {
             </motion.div>
           ) : (
             <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                if (date && time) setBooked(true);
-              }}
+              onSubmit={submitBooking}
               className="space-y-12"
             >
               <div>
@@ -203,7 +229,7 @@ function Contact() {
                 </label>
               </div>
 
-              <ActionButton type="submit" size="lg" disabled={!date || !time}>
+              <ActionButton type="submit" size="lg" disabled={!date || !time || pending}>
                 Request this call
               </ActionButton>
             </form>
