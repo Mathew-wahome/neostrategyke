@@ -13,7 +13,7 @@ export function useStaff() {
       let { data } = await supabase
         .from("staff_users")
         .select("*")
-        .eq("user_id", user.id)
+        .eq("id", user.id)
         .maybeSingle();
       if (!data) {
         // First person in becomes the admin.
@@ -21,11 +21,11 @@ export function useStaff() {
         const retry = await supabase
           .from("staff_users")
           .select("*")
-          .eq("user_id", user.id)
+          .eq("id", user.id)
           .maybeSingle();
         data = retry.data;
       }
-      return data ? { ...data, email: data.email ?? user.email } : null;
+      return data ? { ...data, email: user.email ?? null } : null;
     },
   });
 }
@@ -37,8 +37,7 @@ export function useRows<T = Record<string, unknown>>(
   return useQuery({
     queryKey: ["admin", table],
     queryFn: async () => {
-      const query = supabase
-        .from(table)
+      const query = (supabase.from as (t: string) => any)(table)
         .select(opts?.select ?? "*")
         .order(opts?.orderBy ?? "created_at", { ascending: opts?.ascending ?? false });
       const { data, error } = await query;
