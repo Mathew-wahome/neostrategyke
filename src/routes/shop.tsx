@@ -41,7 +41,7 @@ function Shop() {
     supabase
       .from("products")
       .select("id")
-      .eq("slug", "founder-systems-starter-kit")
+      .eq("slug", "service-founder-systems-starter-kit")
       .maybeSingle()
       .then(({ data }) => setProductId(data?.id ?? null));
   }, []);
