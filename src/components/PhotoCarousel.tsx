@@ -75,10 +75,11 @@ export function PhotoCarousel({
               key={`copy-${index}`}
               initial={reduced ? false : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={reduced ? undefined : { opacity: 0, y: -10 }}
+              exit={reduced ? { opacity: 0 } : { opacity: 0, y: -10 }}
               transition={{ duration: 0.7, ease: [0.22, 0.61, 0.36, 1] }}
               className="max-w-xl"
             >
+
               <p className="font-ui text-[0.65rem] uppercase tracking-[0.28em] text-offwhite/70">
                 {slide.kicker}
               </p>

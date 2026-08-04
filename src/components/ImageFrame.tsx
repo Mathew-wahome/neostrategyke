@@ -34,9 +34,10 @@ export function ImageFrame({
           {...(priority ? {} : { loading: "lazy" as const })}
           width={1600}
           height={1104}
-          style={reduced ? undefined : { y, scale: 1.12 }}
+          style={reduced ? { scale: 1.02 } : { y, scale: 1.12 }}
           className="size-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.16]"
         />
+
         {scrim && <div className="gradient-veil pointer-events-none absolute inset-0" />}
       </div>
       {caption && (
