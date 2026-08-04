@@ -1,8 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { GuideBox } from "@/components/GuideBox";
+import { ImageFrame } from "@/components/ImageFrame";
 import { Reveal } from "@/components/Reveal";
+import { photos } from "@/lib/photos";
 import { fetchPosts } from "@/lib/posts.functions";
 import type { PublicPost } from "@/lib/posts.server";
+
+const covers = [photos.systems, photos.calm, photos.workshop, photos.session, photos.team, photos.texture];
+
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
