@@ -68,23 +68,37 @@ function Shop() {
 
   return (
     <>
-      <section className="container-read pt-24 pb-12 md:pt-36 md:pb-16">
-        <Reveal>
-          <h1 className="font-display text-[2.4rem] leading-[1.1] md:text-6xl">
-            Install it yourself.
-          </h1>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <p className="mt-10 text-lg leading-relaxed text-foreground/85">
-            Not every founder is ready for a full engagement, and not every business needs one yet.
-            These are the tools to start building calm on your own.
-          </p>
-        </Reveal>
+      <section className="gradient-page relative overflow-hidden">
+        <div className="container-page grid items-center gap-12 pt-20 pb-16 md:pt-32 md:pb-20 lg:grid-cols-[1fr_1fr]">
+          <Reveal>
+            <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-primary">Shop</p>
+            <h1 className="font-display mt-6 text-[2.5rem] leading-[1.06] md:text-6xl">
+              Install it <span className="text-gradient-teal">yourself.</span>
+            </h1>
+            <p className="mt-9 max-w-xl text-lg leading-relaxed text-foreground/85">
+              Not every founder is ready for a full engagement, and not every business needs one
+              yet. These are the tools to start building calm on your own.
+            </p>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <ImageFrame
+              src={photos.kit.src}
+              alt={photos.kit.alt}
+              ratio="aspect-[4/3]"
+              priority
+              caption={`The Service Founder Systems Starter Kit · ${brand.starterKitPrice}`}
+            />
+          </Reveal>
+        </div>
       </section>
 
-      <section className="border-t border-border/60">
+      <Marquee
+        items={["SOPs", "Delegation maps", "Client onboarding", "Delivery checklists", "KPI tracker", "Meeting rhythms"]}
+      />
+
+      <section>
         <div className="container-read py-16 md:py-24">
-          <Reveal className="border border-primary/15 bg-teal-wash px-6 py-12 md:px-12 md:py-16">
+          <Reveal className="lift rounded-lg border border-primary/15 bg-teal-wash px-6 py-12 md:px-12 md:py-16">
             <h2 className="font-display text-3xl leading-tight md:text-4xl">
               The Service Founder Systems Starter Kit
             </h2>
@@ -96,6 +110,7 @@ function Shop() {
               free guide names what you need, the kit hands you the tools to build it. The paid,
               done-for-you version, in one place you can actually use.
             </p>
+
 
             {ordered ? (
               <motion.div
