@@ -2,10 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion } from "motion/react";
 import { ActionAnchor, ActionButton } from "@/components/ActionButton";
+import { ImageFrame } from "@/components/ImageFrame";
+import { Marquee } from "@/components/Marquee";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { Reveal } from "@/components/Reveal";
+import { photos } from "@/lib/photos";
 import { brand, whatsappLink } from "@/lib/brand";
 import { createOrder } from "@/lib/site-api";
+
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect } from "react";
 import { toast } from "sonner";

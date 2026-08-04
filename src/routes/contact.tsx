@@ -97,30 +97,44 @@ function Contact() {
 
   return (
     <>
-      <section className="container-read pt-24 pb-12 md:pt-36 md:pb-16">
-        <Reveal>
-          <h1 className="font-display text-[2.4rem] leading-[1.1] md:text-6xl">
-            Let us talk about what you are building.
-          </h1>
-        </Reveal>
-        <Reveal delay={0.1} className="mt-10 space-y-5">
-          <p className="text-lg leading-relaxed text-foreground/85">
-            If delivery is inconsistent, or everything still runs through you, a short conversation
-            is the fastest way to see where the dependency is sitting.
-          </p>
-          <p className="text-lg leading-relaxed text-foreground/85">
-            Book a free call below. Fifteen minutes. No pitch, just clarity.
-          </p>
-          {stage && (
-            <p className="font-ui text-sm text-primary">
-              Enquiring about: {stageLabels[stage as StageKey]}
+      <section className="gradient-page relative overflow-hidden">
+        <div className="container-page grid items-center gap-12 pt-20 pb-16 md:pt-32 md:pb-20 lg:grid-cols-[1.05fr_0.95fr]">
+          <Reveal>
+            <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-primary">
+              Book a call
             </p>
-          )}
-        </Reveal>
+            <h1 className="font-display mt-6 text-[2.5rem] leading-[1.06] md:text-6xl">
+              Let us talk about <span className="text-gradient-teal">what you are building.</span>
+            </h1>
+            <div className="mt-9 max-w-xl space-y-5">
+              <p className="text-lg leading-relaxed text-foreground/85">
+                If delivery is inconsistent, or everything still runs through you, a short
+                conversation is the fastest way to see where the dependency is sitting.
+              </p>
+              <p className="text-lg leading-relaxed text-foreground/85">
+                Book a free call below. Fifteen minutes. No pitch, just clarity.
+              </p>
+              {stage && (
+                <p className="font-ui text-sm text-primary">
+                  Enquiring about: {stageLabels[stage as StageKey]}
+                </p>
+              )}
+            </div>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <ImageFrame
+              src={photos.coaching.src}
+              alt={photos.coaching.alt}
+              ratio="aspect-[4/3]"
+              priority
+            />
+          </Reveal>
+        </div>
       </section>
 
       <section className="border-t border-border/60">
         <div className="container-read py-16 md:py-24">
+
           {booked ? (
             <motion.div
               initial={{ opacity: 0, y: 12 }}
