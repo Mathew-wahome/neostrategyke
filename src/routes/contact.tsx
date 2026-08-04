@@ -2,8 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion } from "motion/react";
 import { ActionAnchor, ActionButton } from "@/components/ActionButton";
+import { ImageFrame } from "@/components/ImageFrame";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { Reveal } from "@/components/Reveal";
+import { photos } from "@/lib/photos";
+
 import { whatsappLink } from "@/lib/brand";
 import { createBooking } from "@/lib/site-api";
 import { toast } from "sonner";
