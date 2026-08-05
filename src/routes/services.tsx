@@ -177,6 +177,30 @@ function Services() {
         items={["Prioritise", "Design", "Build", "Implement", "Train", "Optimise"]}
       />
 
+      {/* Five layers of the operating system — animated stack slider */}
+      <section className="gradient-deep relative overflow-hidden text-offwhite">
+        <img
+          src={photos.texture.src}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="drift pointer-events-none absolute inset-0 size-full object-cover opacity-10"
+        />
+        <div className="container-page section-y relative">
+          <Reveal className="max-w-2xl">
+            <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-primary">
+              Five layers
+            </p>
+            <h2 className="font-display mt-5 text-[2.1rem] leading-[1.08] md:text-5xl">
+              One system, built in layers. Each one holds the next.
+            </h2>
+          </Reveal>
+          <LayerStack layers={layers} className="mt-16 md:mt-20" />
+        </div>
+      </section>
+
+
+
       <section>
         <div className="container-page section-y space-y-24 md:space-y-32">
           {stages.map((stage, i) => (
