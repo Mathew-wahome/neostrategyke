@@ -245,6 +245,17 @@ function Services() {
         </div>
       </section>
 
+      <ProcessLadder
+        heading="How We Get Things Done — Together"
+        sub={[
+          "No jargon. No chaos. A calm, repeatable way to install systems that hold.",
+          "Here is how the work moves, step by step, side by side with your team.",
+        ]}
+        steps={ladder}
+      />
+
+
+
       <section className="gradient-deep relative overflow-hidden text-offwhite">
         <img
           src={photos.texture.src}
