@@ -1,9 +1,84 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ActionLink } from "@/components/ActionButton";
 import { ImageFrame } from "@/components/ImageFrame";
+import { LayerStack } from "@/components/LayerStack";
 import { Marquee } from "@/components/Marquee";
+import { ProcessLadder } from "@/components/ProcessLadder";
 import { Reveal } from "@/components/Reveal";
 import { photos } from "@/lib/photos";
+
+const layers = [
+  {
+    index: "01",
+    title: "Clarity",
+    lede: "Before systems, a straight answer about how the business runs.",
+    body: "We map decisions, delivery and dependencies until the real bottleneck is visible. No frameworks borrowed from someone else's company — just the truth about yours.",
+  },
+  {
+    index: "02",
+    title: "Delegation",
+    lede: "Work leaves the founder's head and stays gone.",
+    body: "Roles, ownership and decision rights written down so the team can move without waiting on you to unlock the next step.",
+  },
+  {
+    index: "03",
+    title: "Delivery",
+    lede: "The same promise, kept the same way, every time.",
+    body: "Client onboarding, delivery rhythms and SOPs that make quality a property of the system rather than a property of whoever showed up that day.",
+  },
+  {
+    index: "04",
+    title: "Visibility",
+    lede: "You see the business without sitting inside it.",
+    body: "KPIs, dashboards and a weekly review rhythm so you can tell whether the week worked in ten minutes, not ten meetings.",
+  },
+  {
+    index: "05",
+    title: "Continuity",
+    lede: "Systems that survive growth, hiring and bad weeks.",
+    body: "Monthly coaching and process reviews so the operating system evolves with the business instead of quietly rotting in a folder.",
+  },
+] as const;
+
+const ladder = [
+  {
+    n: "01",
+    title: "Prioritise",
+    lede: "We decide what actually gets fixed first.",
+    body: "Everything is urgent until it is ranked. We sequence by leverage, not by noise.",
+  },
+  {
+    n: "02",
+    title: "Design",
+    lede: "The system is drawn before it is built.",
+    body: "Simple enough to explain in one page, specific enough for the team to follow on a Monday.",
+  },
+  {
+    n: "03",
+    title: "Build",
+    lede: "SOPs, templates, trackers, rhythms.",
+    body: "Built with your people, in your language, for the way the business actually works.",
+  },
+  {
+    n: "04",
+    title: "Implement",
+    lede: "Live in the business, not in a document.",
+    body: "We roll it into real weeks and real clients, and adjust where reality disagrees.",
+  },
+  {
+    n: "05",
+    title: "Train",
+    lede: "The team owns it, not the consultant.",
+    body: "We walk everyone through it until the system becomes how the business behaves.",
+  },
+  {
+    n: "06",
+    title: "Optimise",
+    lede: "Then we tighten it.",
+    body: "Review, measure, remove friction. A system is only finished when it stops needing you.",
+  },
+] as const;
+
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -102,6 +177,30 @@ function Services() {
         items={["Prioritise", "Design", "Build", "Implement", "Train", "Optimise"]}
       />
 
+      {/* Five layers of the operating system — animated stack slider */}
+      <section className="gradient-deep relative overflow-hidden text-offwhite">
+        <img
+          src={photos.texture.src}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="drift pointer-events-none absolute inset-0 size-full object-cover opacity-10"
+        />
+        <div className="container-page section-y relative">
+          <Reveal className="max-w-2xl">
+            <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-primary">
+              Five layers
+            </p>
+            <h2 className="font-display mt-5 text-[2.1rem] leading-[1.08] md:text-5xl">
+              One system, built in layers. Each one holds the next.
+            </h2>
+          </Reveal>
+          <LayerStack layers={layers} className="mt-16 md:mt-20" />
+        </div>
+      </section>
+
+
+
       <section>
         <div className="container-page section-y space-y-24 md:space-y-32">
           {stages.map((stage, i) => (
@@ -145,6 +244,17 @@ function Services() {
           ))}
         </div>
       </section>
+
+      <ProcessLadder
+        heading="How We Get Things Done — Together"
+        sub={[
+          "No jargon. No chaos. A calm, repeatable way to install systems that hold.",
+          "Here is how the work moves, step by step, side by side with your team.",
+        ]}
+        steps={ladder}
+      />
+
+
 
       <section className="gradient-deep relative overflow-hidden text-offwhite">
         <img
