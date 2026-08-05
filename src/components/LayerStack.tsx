@@ -110,12 +110,11 @@ export function LayerStack({
 
       {/* ---------- stack ---------- */}
       <div className="relative lg:border-l lg:border-offwhite/12 lg:pl-10">
-        <div className="relative mx-auto flex aspect-square w-full max-w-[26rem] flex-col-reverse items-center justify-center gap-1">
+        <div className="relative mx-auto flex aspect-square w-full max-w-[26rem] flex-col items-center justify-center gap-1">
           {layers.map((l, i) => {
-            // bottom of the stack is the last layer
-            const depth = layers.length - 1 - i;
+            // 01 sits at the narrow top of the stack, the last layer is the wide base
             const isActive = i === index;
-            const width = 46 + depth * 13;
+            const width = 46 + i * 13;
             return (
               <motion.button
                 key={l.title}
