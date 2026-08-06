@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { brand } from "@/lib/brand";
 import { ActionLink } from "./ActionButton";
 import { NewsletterForm } from "./NewsletterForm";
+import { ScrollProgress } from "./ScrollProgress";
 import type { ReactNode } from "react";
 
 const nav = [
@@ -38,7 +39,7 @@ function Header() {
             <Link
               key={item.to}
               to={item.to}
-              className="text-muted-foreground transition-colors hover:text-primary [&.active]:text-primary"
+              className="link-sweep text-muted-foreground transition-colors hover:text-primary [&.active]:text-primary"
             >
               {item.label}
             </Link>
@@ -150,6 +151,7 @@ function Footer() {
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col">
+      <ScrollProgress />
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />
