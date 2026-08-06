@@ -111,7 +111,7 @@ export function LayerStack({
 
       {/* ---------- stack ---------- */}
       <div className="relative lg:border-l lg:border-offwhite/12 lg:pl-10">
-        <div className="relative mx-auto flex aspect-square w-full max-w-[26rem] flex-col items-center justify-center gap-1 sm:max-w-[30rem] lg:pr-28">
+        <div className="relative mx-auto flex aspect-square w-full max-w-[26rem] flex-col items-center justify-center gap-1 pr-24 sm:max-w-[30rem] sm:pr-32 lg:pr-36">
           {layers.map((l, i) => {
             // 01 sits at the narrow top of the stack, the last layer is the wide base
             const isActive = i === index;
@@ -145,6 +145,16 @@ export function LayerStack({
                   )}
                 />
 
+                {/* travelling pointer — slides to whichever layer is active */}
+                {isActive && !reduced && (
+                  <motion.span
+                    layoutId="layer-pointer"
+                    aria-hidden
+                    className="pointer-events-none absolute top-1/2 -left-6 hidden size-2 -translate-y-1/2 rotate-45 border-t-2 border-r-2 border-primary sm:block"
+                    transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
+                  />
+                )}
+
                 {/* number sits inside the disc, revealed as it lifts */}
                 <span
                   className={cn(
@@ -160,14 +170,14 @@ export function LayerStack({
                 {/* explainer arrow: hairline draws out to the label */}
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute top-1/2 left-full hidden -translate-y-1/2 items-center lg:flex"
+                  className="pointer-events-none absolute top-1/2 left-full flex -translate-y-1/2 items-center"
                 >
                   <motion.span
                     className={cn(
                       "block h-px origin-left",
                       isActive ? "bg-primary" : "bg-offwhite/25",
                     )}
-                    animate={{ width: isActive ? 40 : 18 }}
+                    animate={{ width: isActive ? 34 : 14 }}
                     transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
                   />
                   <span
@@ -178,7 +188,7 @@ export function LayerStack({
                   />
                   <span
                     className={cn(
-                      "font-ui ml-2 whitespace-nowrap text-[0.72rem] tracking-wide transition-all duration-500",
+                      "font-ui ml-2 whitespace-nowrap text-[0.66rem] tracking-wide transition-all duration-500 md:text-[0.72rem]",
                       isActive
                         ? "translate-x-0 text-primary opacity-100"
                         : "-translate-x-1 text-offwhite/45 opacity-70",
@@ -195,28 +205,11 @@ export function LayerStack({
           <div className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--teal)_35%,transparent),transparent)] blur-2xl" />
         </div>
 
-        <p className="font-ui mt-8 text-center text-[0.68rem] uppercase tracking-[0.26em] text-offwhite/35 lg:pr-28">
+        <p className="font-ui mt-8 text-center text-[0.68rem] uppercase tracking-[0.26em] text-offwhite/35">
           Hover a layer to explore it
         </p>
-
-        {/* compact labels for small screens, where the arrows are hidden */}
-        <div className="mt-5 flex flex-wrap justify-center gap-2 lg:hidden">
-          {layers.map((l, i) => (
-            <button
-              key={`pill-${l.title}`}
-              onClick={() => go(i)}
-              className={cn(
-                "font-ui rounded-md px-3 py-2 text-[0.72rem] tracking-wide transition-all duration-500",
-                i === index
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-offwhite/92 text-charcoal/80",
-              )}
-            >
-              {l.index}. {l.title}
-            </button>
-          ))}
-        </div>
       </div>
+
     </div>
   );
 }
