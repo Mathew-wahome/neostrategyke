@@ -12,8 +12,8 @@ export type Layer = {
 
 /**
  * Split slider: editorial copy on the left, an animated stack of operating-system
- * layers on the right. The active layer lifts out of the stack and its label pill
- * connects back to it with a hairline.
+ * layers on the right. Hovering a layer promotes it — the disc lifts, its hairline
+ * connector draws out to a label, and the copy on the left swaps to match.
  */
 export function LayerStack({
   layers,
@@ -43,7 +43,7 @@ export function LayerStack({
 
   return (
     <div
-      className={cn("grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-8", className)}
+      className={cn("grid gap-16 lg:grid-cols-2 lg:items-center lg:gap-10", className)}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -62,7 +62,7 @@ export function LayerStack({
             initial={reduced ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             exit={reduced ? { opacity: 0 } : { opacity: 0, y: -12 }}
-            transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
+            transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
             className="relative"
           >
             <h3 className="font-display text-4xl leading-[1.05] text-offwhite md:text-6xl">
@@ -98,6 +98,7 @@ export function LayerStack({
                 key={l.title}
                 aria-label={`Show ${l.title}`}
                 onClick={() => go(i)}
+                onMouseEnter={() => go(i)}
                 className={cn(
                   "h-[6px] rounded-full transition-all duration-500",
                   i === index ? "w-8 bg-primary" : "w-[6px] bg-offwhite/25 hover:bg-offwhite/50",
@@ -110,7 +111,7 @@ export function LayerStack({
 
       {/* ---------- stack ---------- */}
       <div className="relative lg:border-l lg:border-offwhite/12 lg:pl-10">
-        <div className="relative mx-auto flex aspect-square w-full max-w-[26rem] flex-col items-center justify-center gap-1">
+        <div className="relative mx-auto flex aspect-square w-full max-w-[26rem] flex-col items-center justify-center gap-1 sm:max-w-[30rem] lg:pr-28">
           {layers.map((l, i) => {
             // 01 sits at the narrow top of the stack, the last layer is the wide base
             const isActive = i === index;
@@ -119,27 +120,73 @@ export function LayerStack({
               <motion.button
                 key={l.title}
                 onClick={() => go(i)}
+                onMouseEnter={() => go(i)}
+                onFocus={() => go(i)}
                 aria-label={`Show ${l.title}`}
                 style={{ width: `${width}%` }}
                 animate={
                   reduced
                     ? {}
                     : {
-                        y: isActive ? -12 : 0,
-                        scale: isActive ? 1.04 : 1,
+                        y: isActive ? -14 : 0,
+                        x: isActive ? -10 : 0,
+                        scale: isActive ? 1.05 : 1,
                       }
                 }
-                transition={{ duration: 0.7, ease: [0.22, 0.61, 0.36, 1] }}
-                className="relative block"
+                transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
+                className="group relative block outline-none"
               >
                 <span
                   className={cn(
                     "block h-9 rounded-[50%] transition-colors duration-500 md:h-11",
                     isActive
                       ? "bg-primary shadow-[0_14px_0_-2px_var(--teal-deep)]"
-                      : "bg-offwhite/92 shadow-[0_12px_0_-2px_rgba(0,0,0,0.28)]",
+                      : "bg-offwhite/92 shadow-[0_12px_0_-2px_rgba(0,0,0,0.28)] group-hover:bg-offwhite",
                   )}
                 />
+
+                {/* number sits inside the disc, revealed as it lifts */}
+                <span
+                  className={cn(
+                    "font-ui absolute inset-y-0 left-4 flex items-center text-[0.68rem] tracking-[0.24em] transition-all duration-500 md:left-6",
+                    isActive
+                      ? "text-primary-foreground/90 opacity-100"
+                      : "text-charcoal/45 opacity-0 group-hover:opacity-100",
+                  )}
+                >
+                  {l.index}
+                </span>
+
+                {/* explainer arrow: hairline draws out to the label */}
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute top-1/2 left-full hidden -translate-y-1/2 items-center lg:flex"
+                >
+                  <motion.span
+                    className={cn(
+                      "block h-px origin-left",
+                      isActive ? "bg-primary" : "bg-offwhite/25",
+                    )}
+                    animate={{ width: isActive ? 40 : 18 }}
+                    transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
+                  />
+                  <span
+                    className={cn(
+                      "-ml-px size-1.5 rotate-45 border-t border-r transition-colors duration-500",
+                      isActive ? "border-primary" : "border-offwhite/30",
+                    )}
+                  />
+                  <span
+                    className={cn(
+                      "font-ui ml-2 whitespace-nowrap text-[0.72rem] tracking-wide transition-all duration-500",
+                      isActive
+                        ? "translate-x-0 text-primary opacity-100"
+                        : "-translate-x-1 text-offwhite/45 opacity-70",
+                    )}
+                  >
+                    {l.title}
+                  </span>
+                </span>
               </motion.button>
             );
           })}
@@ -148,8 +195,12 @@ export function LayerStack({
           <div className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--teal)_35%,transparent),transparent)] blur-2xl" />
         </div>
 
-        {/* label pills */}
-        <div className="mt-8 flex flex-wrap justify-center gap-2">
+        <p className="font-ui mt-8 text-center text-[0.68rem] uppercase tracking-[0.26em] text-offwhite/35 lg:pr-28">
+          Hover a layer to explore it
+        </p>
+
+        {/* compact labels for small screens, where the arrows are hidden */}
+        <div className="mt-5 flex flex-wrap justify-center gap-2 lg:hidden">
           {layers.map((l, i) => (
             <button
               key={`pill-${l.title}`}
@@ -158,7 +209,7 @@ export function LayerStack({
                 "font-ui rounded-md px-3 py-2 text-[0.72rem] tracking-wide transition-all duration-500",
                 i === index
                   ? "bg-primary text-primary-foreground"
-                  : "bg-offwhite/92 text-charcoal/80 hover:bg-offwhite",
+                  : "bg-offwhite/92 text-charcoal/80",
               )}
             >
               {l.index}. {l.title}
