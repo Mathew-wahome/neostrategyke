@@ -81,21 +81,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "NeoStrategy — Operations consultancy for founder-led businesses" },
+      { title: "NeoStrategy — Clarity attracts. Systems scale. Freedom lasts." },
       {
         name: "description",
         content:
           "NeoStrategy helps founder-led service businesses move from founder dependency to calm execution, so the business runs on systems, not on its founder.",
       },
       { name: "author", content: "NeoStrategy" },
-      { property: "og:title", content: "NeoStrategy — Clarity attracts. Systems scale." },
+      { property: "og:title", content: "NeoStrategy — Clarity attracts. Systems scale. Freedom lasts." },
       {
         property: "og:description",
         content:
-          "Operations systems that let founder-led service businesses run without their founder in the middle of everything.",
+          "NeoStrategy helps founder-led service businesses move from founder dependency to calm execution, so the business runs on systems, not on its founder.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "NeoStrategy — Clarity attracts. Systems scale. Freedom lasts." },
+      { name: "twitter:description", content: "NeoStrategy helps founder-led service businesses move from founder dependency to calm execution, so the business runs on systems, not on its founder." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/6776c50d-5e71-45b2-86d6-18f9908047d0" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/6776c50d-5e71-45b2-86d6-18f9908047d0" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

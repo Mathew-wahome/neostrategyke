@@ -21,11 +21,11 @@ export const Route = createFileRoute("/")({
         content:
           "NeoStrategy helps founder-led service businesses move from founder dependency to calm execution, so the business runs on systems, not on its founder.",
       },
-      { property: "og:title", content: "NeoStrategy — Clarity attracts. Systems scale." },
+      { property: "og:title", content: "NeoStrategy — Clarity attracts. Systems scale. Freedom lasts." },
       {
         property: "og:description",
         content:
-          "Operations systems that let founder-led service businesses run without their founder in the middle of everything.",
+          "NeoStrategy helps founder-led service businesses move from founder dependency to calm execution, so the business runs on systems, not on its founder.",
       },
     ],
   }),
