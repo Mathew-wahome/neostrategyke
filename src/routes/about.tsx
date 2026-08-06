@@ -112,7 +112,7 @@ function FounderPortrait() {
           alt="Mary Njoroge, founder of NeoStrategy"
           width={1200}
           height={1200}
-          style={reduced ? undefined : { y }}
+          style={reduced ? {} : { y }}
           className="aspect-[4/5] w-full scale-110 object-cover object-top"
         />
         <div className="gradient-scrim pointer-events-none absolute inset-0" />
