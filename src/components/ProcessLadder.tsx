@@ -65,7 +65,7 @@ export function ProcessLadder({
                   <p className="mt-2 text-offwhite/80">{step.lede}</p>
 
                   {/* revealed detail — hidden behind the title until hover */}
-                  <div className="grid grid-rows-[0fr] opacity-0 transition-all duration-600 ease-out group-hover:grid-rows-[1fr] group-hover:opacity-100 group-focus-visible:grid-rows-[1fr] group-focus-visible:opacity-100">
+                  <div className="grid grid-rows-[0fr] opacity-0 transition-all duration-500 ease-out group-hover:grid-rows-[1fr] group-hover:opacity-100 group-focus-visible:grid-rows-[1fr] group-focus-visible:opacity-100">
                     <div className="overflow-hidden">
                       <p className="mt-3 max-w-xl border-l border-primary/50 pl-4 text-offwhite/60">
                         {step.body}
