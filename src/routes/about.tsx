@@ -9,7 +9,7 @@ import { Reveal } from "@/components/Reveal";
 import { SplitHeading } from "@/components/SplitHeading";
 import { StatStrip } from "@/components/StatStrip";
 import { brand } from "@/lib/brand";
-import { founderPhoto, photos } from "@/lib/photos";
+import { photos } from "@/lib/photos";
 import portraitAsset from "@/assets/mary-njoroge-portrait.png.asset.json";
 
 export const Route = createFileRoute("/about")({
@@ -206,8 +206,8 @@ function About() {
               <div className="pointer-events-none absolute -inset-6 -z-10 rounded-lg bg-[radial-gradient(60%_60%_at_50%_20%,color-mix(in_oklab,var(--teal)_20%,transparent),transparent_70%)]" />
               <div className="overflow-hidden rounded-lg shadow-[0_50px_90px_-55px_rgba(10,90,97,0.6)]">
                 <img
-                  src={founderPhoto}
-                  alt="Mary Njoroge working with a founder in Nairobi"
+                  src={photos.session.src}
+                  alt={photos.session.alt}
                   loading="lazy"
                   width={1200}
                   height={1200}
