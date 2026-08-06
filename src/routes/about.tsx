@@ -113,9 +113,9 @@ function FounderPortrait() {
           width={1200}
           height={1200}
           style={reduced ? {} : { y }}
-          className="aspect-[4/5] w-full scale-110 object-cover object-top"
+          className="aspect-[4/5] w-full scale-105 object-cover object-top"
         />
-        <div className="gradient-scrim pointer-events-none absolute inset-0" />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,color-mix(in_oklab,var(--charcoal)_78%,transparent)_0%,transparent_45%)]" />
         <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
           <p className="font-display text-2xl text-offwhite md:text-3xl">{brand.founder}</p>
           <p className="font-ui mt-1 text-[0.62rem] uppercase tracking-[0.3em] text-offwhite/75">
@@ -129,7 +129,7 @@ function FounderPortrait() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        className="glass-card float-slow absolute -bottom-10 -left-4 max-w-[15rem] rounded-2xl px-5 py-4 md:-left-12"
+        className="glass-card float-slow absolute -bottom-12 left-2 hidden max-w-[15rem] rounded-2xl px-5 py-4 md:block lg:-left-14"
       >
         <p className="font-display text-lg leading-snug">Nairobi, Kenya</p>
         <p className="mt-2 text-sm leading-relaxed text-foreground/75">
