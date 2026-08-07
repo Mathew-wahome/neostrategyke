@@ -168,17 +168,18 @@ function Contact() {
                 {dateLabel} at {time}
               </h2>
               <p className="mt-5 text-foreground/80">
-                Thank you, {form.name}. Confirm on WhatsApp and we will lock the time in. A
-                confirmation email is on its way as a backup record.
+                Thank you, {form.name}. Your request is logged and WhatsApp should have opened
+                automatically — send the message and we will lock the time in.
               </p>
               <ActionAnchor
-                href={whatsappLink(message)}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-8"
               >
-                Confirm on WhatsApp
+                Open WhatsApp again
               </ActionAnchor>
+
             </motion.div>
           ) : (
             <form
