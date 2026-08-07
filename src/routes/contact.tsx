@@ -7,9 +7,15 @@ import { NewsletterForm } from "@/components/NewsletterForm";
 import { Reveal } from "@/components/Reveal";
 import { photos } from "@/lib/photos";
 
-import { whatsappLink } from "@/lib/brand";
 import { createBooking } from "@/lib/site-api";
+import {
+  openWhatsAppWindow,
+  sendToWhatsApp,
+  useSiteSettings,
+  waLink,
+} from "@/lib/site-settings";
 import { toast } from "sonner";
+
 
 type StageKey = "audit" | "install" | "partnership";
 
