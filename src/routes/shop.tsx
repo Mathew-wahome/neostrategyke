@@ -47,6 +47,8 @@ function Shop() {
   const [form, setForm] = useState({ name: "", email: "", business: "" });
   const [pending, setPending] = useState(false);
   const [productId, setProductId] = useState<string | null>(null);
+  const settings = useSiteSettings();
+  const price = formatKes(settings.starter_kit_price);
 
   useEffect(() => {
     supabase
@@ -57,8 +59,14 @@ function Shop() {
       .then(({ data }) => setProductId(data?.id ?? null));
   }, []);
 
+  const message = `Hi NeoStrategy, I'd like to get the Service Founder Systems Starter Kit (${price}). My name is ${form.name}${
+    form.business ? ` from ${form.business}` : ""
+  }.`;
+  const whatsappUrl = waLink(settings.whatsapp_number, message);
+
   async function submitOrder(e: React.FormEvent) {
     e.preventDefault();
+    const win = openWhatsAppWindow();
     setPending(true);
     try {
       await createOrder({
@@ -68,14 +76,15 @@ function Shop() {
         product_id: productId,
       });
       setOrdered(true);
+      sendToWhatsApp(win, whatsappUrl);
     } catch {
+      win?.close();
       toast.error("We could not save that order. Please try again in a moment.");
     } finally {
       setPending(false);
     }
   }
 
-  const message = `Hi NeoStrategy, I'd like to get the Service Founder Systems Starter Kit (${brand.starterKitPrice}). My name is ${form.name}.`;
 
   return (
     <>
