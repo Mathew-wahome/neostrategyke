@@ -394,6 +394,7 @@ export type Database = {
           id: boolean
           instagram_url: string | null
           linkedin_url: string | null
+          starter_kit_price: number
           updated_at: string
           welcome_email_body: string
           whatsapp_number: string
@@ -405,6 +406,7 @@ export type Database = {
           id?: boolean
           instagram_url?: string | null
           linkedin_url?: string | null
+          starter_kit_price?: number
           updated_at?: string
           welcome_email_body?: string
           whatsapp_number?: string
@@ -416,6 +418,7 @@ export type Database = {
           id?: boolean
           instagram_url?: string | null
           linkedin_url?: string | null
+          starter_kit_price?: number
           updated_at?: string
           welcome_email_body?: string
           whatsapp_number?: string
