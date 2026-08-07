@@ -106,7 +106,7 @@ function Shop() {
               alt={photos.kit.alt}
               ratio="aspect-[4/3]"
               priority
-              caption={`The Service Founder Systems Starter Kit · ${brand.starterKitPrice}`}
+              caption={`The Service Founder Systems Starter Kit · ${price}`}
             />
           </Reveal>
         </div>
@@ -123,7 +123,7 @@ function Shop() {
               The Service Founder Systems Starter Kit
             </h2>
             <p className="font-ui mt-4 text-sm uppercase tracking-[0.2em] text-primary">
-              {brand.starterKitPrice}
+              {price}
             </p>
             <p className="mt-8 text-lg leading-relaxed text-foreground/80">
               The templates to build the core systems every service-based founder needs. Where the
@@ -144,7 +144,7 @@ function Shop() {
                   payment, and the kit will be sent to {form.email} once payment is received.
                 </p>
                 <ActionAnchor
-                  href={whatsappLink(message)}
+                  href={whatsappUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="mt-6"
