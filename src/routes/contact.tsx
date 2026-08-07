@@ -7,9 +7,15 @@ import { NewsletterForm } from "@/components/NewsletterForm";
 import { Reveal } from "@/components/Reveal";
 import { photos } from "@/lib/photos";
 
-import { whatsappLink } from "@/lib/brand";
 import { createBooking } from "@/lib/site-api";
+import {
+  openWhatsAppWindow,
+  sendToWhatsApp,
+  useSiteSettings,
+  waLink,
+} from "@/lib/site-settings";
 import { toast } from "sonner";
+
 
 type StageKey = "audit" | "install" | "partnership";
 
@@ -59,6 +65,7 @@ const times = ["09:00", "10:30", "12:00", "14:00", "15:30", "17:00"];
 function Contact() {
   const { stage } = Route.useSearch();
   const days = nextDays(10);
+  const settings = useSiteSettings();
 
   const [date, setDate] = useState<Date | null>(null);
   const [time, setTime] = useState<string | null>(null);
@@ -70,7 +77,11 @@ function Contact() {
     ? date.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" })
     : "";
 
-  const message = `Hi NeoStrategy, I just booked a free call for ${dateLabel} at ${time}. My name is ${form.name} — looking forward to it!`;
+  const message = `Hi NeoStrategy, I just booked a free call for ${dateLabel} at ${time}. My name is ${form.name}${
+    form.business ? ` from ${form.business}` : ""
+  }${stage ? ` — interested in ${stageLabels[stage as StageKey]}` : ""}. Looking forward to it!`;
+
+  const whatsappUrl = waLink(settings.whatsapp_number, message);
 
   async function submitBooking(e: React.FormEvent) {
     e.preventDefault();
@@ -78,6 +89,8 @@ function Contact() {
     const parts = time.split(":");
     const scheduled = new Date(date);
     scheduled.setHours(Number(parts[0]), Number(parts[1]), 0, 0);
+    // Opened synchronously so the browser treats it as a user gesture.
+    const win = openWhatsAppWindow();
     setPending(true);
     try {
       await createBooking({
@@ -90,12 +103,15 @@ function Contact() {
         services_stage_interest: (stage as StageKey | undefined) ?? null,
       });
       setBooked(true);
+      sendToWhatsApp(win, whatsappUrl);
     } catch {
+      win?.close();
       toast.error("We could not save that request. Please try again in a moment.");
     } finally {
       setPending(false);
     }
   }
+
 
 
   return (
@@ -152,17 +168,18 @@ function Contact() {
                 {dateLabel} at {time}
               </h2>
               <p className="mt-5 text-foreground/80">
-                Thank you, {form.name}. Confirm on WhatsApp and we will lock the time in. A
-                confirmation email is on its way as a backup record.
+                Thank you, {form.name}. Your request is logged and WhatsApp should have opened
+                automatically — send the message and we will lock the time in.
               </p>
               <ActionAnchor
-                href={whatsappLink(message)}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-8"
               >
-                Confirm on WhatsApp
+                Open WhatsApp again
               </ActionAnchor>
+
             </motion.div>
           ) : (
             <form

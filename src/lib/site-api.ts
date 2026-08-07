@@ -19,22 +19,22 @@ export async function createLead(input: {
   services_stage_interest?: string | null;
   notes?: string | undefined;
 }) {
-  const { data, error } = await supabase
-    .from("leads")
-    .insert({
-      name: input.name,
-      email: input.email,
-      phone: input.phone || null,
-      business_name: input.business_name || null,
-      source: input.source,
-      services_stage_interest: input.services_stage_interest || null,
-      notes: input.notes || null,
-    })
-    .select("id")
-    .single();
+  // The id is generated here because anonymous visitors can write leads but not read them back.
+  const id = crypto.randomUUID();
+  const { error } = await supabase.from("leads").insert({
+    id,
+    name: input.name,
+    email: input.email,
+    phone: input.phone || null,
+    business_name: input.business_name || null,
+    source: input.source,
+    services_stage_interest: input.services_stage_interest || null,
+    notes: input.notes || null,
+  });
   if (error) return null;
-  return data?.id ?? null;
+  return id;
 }
+
 
 export async function createBooking(input: {
   client_name: string;

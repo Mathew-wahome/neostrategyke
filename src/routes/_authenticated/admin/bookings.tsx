@@ -17,7 +17,14 @@ export const Route = createFileRoute("/_authenticated/admin/bookings")({
   component: Bookings,
 });
 
-const statuses = ["requested", "confirmed", "completed", "cancelled", "no_show"] as const;
+const statuses = [
+  "pending_whatsapp",
+  "confirmed",
+  "completed",
+  "cancelled",
+  "no_show",
+] as const;
+
 
 type Booking = {
   id: string;

@@ -7,12 +7,19 @@ import { Marquee } from "@/components/Marquee";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { Reveal } from "@/components/Reveal";
 import { photos } from "@/lib/photos";
-import { brand, whatsappLink } from "@/lib/brand";
 import { createOrder } from "@/lib/site-api";
+import {
+  formatKes,
+  openWhatsAppWindow,
+  sendToWhatsApp,
+  useSiteSettings,
+  waLink,
+} from "@/lib/site-settings";
 
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect } from "react";
 import { toast } from "sonner";
+
 
 export const Route = createFileRoute("/shop")({
   head: () => ({
@@ -40,6 +47,8 @@ function Shop() {
   const [form, setForm] = useState({ name: "", email: "", business: "" });
   const [pending, setPending] = useState(false);
   const [productId, setProductId] = useState<string | null>(null);
+  const settings = useSiteSettings();
+  const price = formatKes(settings.starter_kit_price);
 
   useEffect(() => {
     supabase
@@ -50,8 +59,14 @@ function Shop() {
       .then(({ data }) => setProductId(data?.id ?? null));
   }, []);
 
+  const message = `Hi NeoStrategy, I'd like to get the Service Founder Systems Starter Kit (${price}). My name is ${form.name}${
+    form.business ? ` from ${form.business}` : ""
+  }.`;
+  const whatsappUrl = waLink(settings.whatsapp_number, message);
+
   async function submitOrder(e: React.FormEvent) {
     e.preventDefault();
+    const win = openWhatsAppWindow();
     setPending(true);
     try {
       await createOrder({
@@ -61,14 +76,15 @@ function Shop() {
         product_id: productId,
       });
       setOrdered(true);
+      sendToWhatsApp(win, whatsappUrl);
     } catch {
+      win?.close();
       toast.error("We could not save that order. Please try again in a moment.");
     } finally {
       setPending(false);
     }
   }
 
-  const message = `Hi NeoStrategy, I'd like to get the Service Founder Systems Starter Kit (${brand.starterKitPrice}). My name is ${form.name}.`;
 
   return (
     <>
@@ -90,7 +106,7 @@ function Shop() {
               alt={photos.kit.alt}
               ratio="aspect-[4/3]"
               priority
-              caption={`The Service Founder Systems Starter Kit · ${brand.starterKitPrice}`}
+              caption={`The Service Founder Systems Starter Kit · ${price}`}
             />
           </Reveal>
         </div>
@@ -107,7 +123,7 @@ function Shop() {
               The Service Founder Systems Starter Kit
             </h2>
             <p className="font-ui mt-4 text-sm uppercase tracking-[0.2em] text-primary">
-              {brand.starterKitPrice}
+              {price}
             </p>
             <p className="mt-8 text-lg leading-relaxed text-foreground/80">
               The templates to build the core systems every service-based founder needs. Where the
@@ -128,7 +144,7 @@ function Shop() {
                   payment, and the kit will be sent to {form.email} once payment is received.
                 </p>
                 <ActionAnchor
-                  href={whatsappLink(message)}
+                  href={whatsappUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="mt-6"
