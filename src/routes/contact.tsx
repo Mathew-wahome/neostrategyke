@@ -65,6 +65,7 @@ const times = ["09:00", "10:30", "12:00", "14:00", "15:30", "17:00"];
 function Contact() {
   const { stage } = Route.useSearch();
   const days = nextDays(10);
+  const settings = useSiteSettings();
 
   const [date, setDate] = useState<Date | null>(null);
   const [time, setTime] = useState<string | null>(null);
@@ -76,7 +77,11 @@ function Contact() {
     ? date.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" })
     : "";
 
-  const message = `Hi NeoStrategy, I just booked a free call for ${dateLabel} at ${time}. My name is ${form.name} — looking forward to it!`;
+  const message = `Hi NeoStrategy, I just booked a free call for ${dateLabel} at ${time}. My name is ${form.name}${
+    form.business ? ` from ${form.business}` : ""
+  }${stage ? ` — interested in ${stageLabels[stage as StageKey]}` : ""}. Looking forward to it!`;
+
+  const whatsappUrl = waLink(settings.whatsapp_number, message);
 
   async function submitBooking(e: React.FormEvent) {
     e.preventDefault();
@@ -84,6 +89,8 @@ function Contact() {
     const parts = time.split(":");
     const scheduled = new Date(date);
     scheduled.setHours(Number(parts[0]), Number(parts[1]), 0, 0);
+    // Opened synchronously so the browser treats it as a user gesture.
+    const win = openWhatsAppWindow();
     setPending(true);
     try {
       await createBooking({
@@ -96,12 +103,15 @@ function Contact() {
         services_stage_interest: (stage as StageKey | undefined) ?? null,
       });
       setBooked(true);
+      sendToWhatsApp(win, whatsappUrl);
     } catch {
+      win?.close();
       toast.error("We could not save that request. Please try again in a moment.");
     } finally {
       setPending(false);
     }
   }
+
 
 
   return (
