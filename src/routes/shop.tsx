@@ -7,12 +7,19 @@ import { Marquee } from "@/components/Marquee";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { Reveal } from "@/components/Reveal";
 import { photos } from "@/lib/photos";
-import { brand, whatsappLink } from "@/lib/brand";
 import { createOrder } from "@/lib/site-api";
+import {
+  formatKes,
+  openWhatsAppWindow,
+  sendToWhatsApp,
+  useSiteSettings,
+  waLink,
+} from "@/lib/site-settings";
 
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect } from "react";
 import { toast } from "sonner";
+
 
 export const Route = createFileRoute("/shop")({
   head: () => ({
