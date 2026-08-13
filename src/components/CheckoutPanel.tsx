@@ -103,7 +103,7 @@ export function CheckoutPanel({
           slug: product.slug,
           name: form.name,
           email: form.email,
-          phone: form.phone,
+          phone: form.phone ? normaliseKePhone(form.phone) : "",
           business: form.business,
           method,
           origin: window.location.origin,
