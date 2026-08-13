@@ -1,4 +1,4 @@
-import mark from "@/assets/ns-mark.png.asset.json";
+import mark from "@/assets/ns-mark.png";
 import { brand } from "@/lib/brand";
 import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
@@ -75,7 +75,7 @@ function AdminShell() {
         <div className="flex h-24 items-center px-5">
           <Link to="/" aria-label="NeoStrategy home" className="group flex flex-col gap-1.5">
             <img
-              src={mark.url}
+              src={mark}
               alt="NeoStrategy monogram"
               width={512}
               height={524}
