@@ -16,7 +16,7 @@ export const Route = createFileRoute("/_authenticated/admin/orders")({
   component: Orders,
 });
 
-const orderStatuses = ["pending", "fulfilled", "cancelled"] as const;
+const orderStatuses = ["pending_payment", "pending_whatsapp", "fulfilled", "cancelled"] as const;
 const paymentStatuses = ["unpaid", "paid", "refunded"] as const;
 
 type Order = {
@@ -27,6 +27,10 @@ type Order = {
   status: string;
   payment_status: string;
   payment_note: string | null;
+  amount: number | null;
+  currency: string | null;
+  provider: string | null;
+  provider_reference: string | null;
   created_at: string;
 };
 
@@ -59,7 +63,7 @@ function Orders() {
         ) : (rows ?? []).length === 0 ? (
           <Empty label="No orders yet." />
         ) : (
-          <Table head={["Customer", "Email", "Placed", "Fulfilment", "Payment"]}>
+          <Table head={["Customer", "Email", "Amount", "Placed", "Fulfilment", "Payment"]}>
             {(rows ?? []).map((o) => (
               <tr key={o.id} className="align-top">
                 <td className="px-4 py-4">
@@ -69,6 +73,13 @@ function Orders() {
                   )}
                 </td>
                 <td className="px-4 py-4 text-muted-foreground">{o.email}</td>
+                <td className="px-4 py-4 text-muted-foreground">
+                  <p>{`${o.currency ?? "KES"} ${Number(o.amount ?? 0).toLocaleString("en-KE")}`}</p>
+                  <p className="text-xs capitalize">
+                    {o.provider ?? "whatsapp"}
+                    {o.provider_reference ? ` · ${o.provider_reference}` : ""}
+                  </p>
+                </td>
                 <td className="px-4 py-4 text-muted-foreground">{formatDate(o.created_at)}</td>
                 <td className="px-4 py-4">
                   <Select
