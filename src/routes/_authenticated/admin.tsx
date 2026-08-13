@@ -72,9 +72,23 @@ function AdminShell() {
   return (
     <div className="flex min-h-screen bg-wash/50">
       <aside className="hidden w-60 shrink-0 border-r border-border/70 bg-background md:block">
-        <div className="flex h-20 items-center px-6">
-          <Link to="/" aria-label="NeoStrategy home" className="inline-flex">
-            <img src={mark.url} alt="NeoStrategy monogram" width={512} height={524} className="h-10 w-auto" />
+        <div className="flex h-24 items-center px-5">
+          <Link to="/" aria-label="NeoStrategy home" className="group flex flex-col gap-1.5">
+            <img
+              src={mark.url}
+              alt="NeoStrategy monogram"
+              width={512}
+              height={524}
+              className="h-9 w-auto transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+            />
+            <div className="flex flex-col">
+              <span className="font-display text-base leading-none tracking-tight text-foreground">
+                {brand.name}
+              </span>
+              <span className="font-ui mt-0.5 text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
+                Founder Operating System
+              </span>
+            </div>
           </Link>
         </div>
         <nav className="font-ui flex flex-col gap-1 px-3 pb-6 text-sm">
