@@ -57,18 +57,31 @@ export function paystackSecret() {
   return process.env["PAYSTACK_SECRET_KEY"] ?? "";
 }
 
+export type PaymentMethod = "card" | "mpesa" | "airtel";
+
 export type CheckoutInput = {
   slug: string;
   name: string;
   email: string;
   phone?: string | undefined;
   business?: string | undefined;
+  method: PaymentMethod;
   origin: string;
 };
 
 export type CheckoutResult =
-  | { mode: "paystack"; authorization_url: string; reference: string }
+  | { mode: "card"; access_code: string; authorization_url: string; reference: string }
+  | { mode: "mobile_money"; reference: string; display_text: string }
   | { mode: "manual"; reference: string; reason: string };
+
+/** Normalises a Kenyan number to the 2547XXXXXXXX form Paystack expects. */
+export function normalisePhone(raw: string) {
+  const digits = (raw || "").replace(/\D/g, "");
+  if (digits.startsWith("254")) return digits;
+  if (digits.startsWith("0")) return `254${digits.slice(1)}`;
+  if (digits.length === 9) return `254${digits}`;
+  return digits;
+}
 
 export async function startCheckout(input: CheckoutInput): Promise<CheckoutResult> {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
@@ -76,6 +89,7 @@ export async function startCheckout(input: CheckoutInput): Promise<CheckoutResul
   if (!product) throw new Error("That product is no longer available.");
 
   const reference = `neo_${crypto.randomUUID().replace(/-/g, "").slice(0, 18)}`;
+  const amount = Math.round(Number(product.price) * 100);
 
   const { data: lead } = await supabaseAdmin
     .from("leads")
@@ -111,36 +125,91 @@ export async function startCheckout(input: CheckoutInput): Promise<CheckoutResul
 
   const secret = paystackSecret();
   if (!secret) {
-    return { mode: "manual", reference, reason: "Paystack is not configured yet." };
+    return { mode: "manual", reference, reason: "Card and mobile money are not switched on yet." };
   }
 
+  const headers = {
+    Authorization: `Bearer ${secret}`,
+    "Content-Type": "application/json",
+  };
+  const metadata = {
+    order_id: order?.id ?? null,
+    product: product.name,
+    customer_name: input.name,
+    method: input.method,
+  };
+
+  /* ---- Mobile money: STK prompt straight to the buyer's handset ---- */
+  if (input.method === "mpesa" || input.method === "airtel") {
+    const phone = normalisePhone(input.phone ?? "");
+    if (!/^254\d{9}$/.test(phone)) {
+      return {
+        mode: "manual",
+        reference,
+        reason: "That phone number does not look like a Kenyan mobile number.",
+      };
+    }
+
+    const res = await fetch("https://api.paystack.co/charge", {
+      method: "POST",
+      headers,
+      body: JSON.stringify({
+        email: input.email,
+        amount,
+        currency: product.currency,
+        reference,
+        metadata,
+        mobile_money: {
+          phone,
+          provider: input.method === "mpesa" ? "mpesa" : "airtel",
+        },
+      }),
+    });
+    const body = (await res.json()) as {
+      status?: boolean;
+      message?: string;
+      data?: { status?: string; display_text?: string; reference?: string };
+    };
+
+    if (!res.ok || !body.status) {
+      return {
+        mode: "manual",
+        reference,
+        reason: body.message ?? "We could not send the payment prompt.",
+      };
+    }
+
+    return {
+      mode: "mobile_money",
+      reference,
+      display_text:
+        body.data?.display_text ??
+        "Check your phone and enter your PIN to approve the payment.",
+    };
+  }
+
+  /* ---- Card: initialise and finish in an on-page Paystack popup ---- */
   const res = await fetch("https://api.paystack.co/transaction/initialize", {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${secret}`,
-      "Content-Type": "application/json",
-    },
+    headers,
     body: JSON.stringify({
       email: input.email,
-      amount: Math.round(Number(product.price) * 100),
+      amount,
       currency: product.currency,
       reference,
+      channels: ["card"],
       callback_url: `${input.origin}/shop/success`,
-      metadata: {
-        order_id: order?.id ?? null,
-        product: product.name,
-        customer_name: input.name,
-      },
+      metadata,
     }),
   });
 
   const body = (await res.json()) as {
     status?: boolean;
     message?: string;
-    data?: { authorization_url?: string };
+    data?: { authorization_url?: string; access_code?: string };
   };
 
-  if (!res.ok || !body.status || !body.data?.authorization_url) {
+  if (!res.ok || !body.status || !body.data?.access_code || !body.data.authorization_url) {
     return {
       mode: "manual",
       reference,
@@ -148,7 +217,12 @@ export async function startCheckout(input: CheckoutInput): Promise<CheckoutResul
     };
   }
 
-  return { mode: "paystack", authorization_url: body.data.authorization_url, reference };
+  return {
+    mode: "card",
+    access_code: body.data.access_code,
+    authorization_url: body.data.authorization_url,
+    reference,
+  };
 }
 
 export type OrderReceipt = {

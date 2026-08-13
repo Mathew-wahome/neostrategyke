@@ -1,11 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
-import { motion } from "motion/react";
-import { toast } from "sonner";
 import { ActionAnchor, ActionButton } from "@/components/ActionButton";
 import { ImageFrame } from "@/components/ImageFrame";
 import { Reveal } from "@/components/Reveal";
-import { beginCheckout, fetchProduct, fetchProducts } from "@/lib/shop.functions";
+import { fetchProduct, fetchProducts } from "@/lib/shop.functions";
+import { CheckoutPanel } from "@/components/CheckoutPanel";
 import { money, productCover, typeLabels, type StoreProduct } from "@/lib/shop";
 import { useSiteSettings, waLink } from "@/lib/site-settings";
 
@@ -63,40 +62,11 @@ function ProductPage() {
   const cover = productCover(product);
   const settings = useSiteSettings();
   const [open, setOpen] = useState(false);
-  const [pending, setPending] = useState(false);
-  const [manual, setManual] = useState<string | null>(null);
-  const [form, setForm] = useState({ name: "", email: "", phone: "", business: "" });
 
   const whatsappUrl = waLink(
     settings.whatsapp_number,
     `Hi NeoStrategy, I'd like to buy ${product.name} (${money(product.price, product.currency)}).`,
   );
-
-  async function checkout(e: React.FormEvent) {
-    e.preventDefault();
-    setPending(true);
-    try {
-      const result = await beginCheckout({
-        data: {
-          slug: product.slug,
-          name: form.name,
-          email: form.email,
-          phone: form.phone,
-          business: form.business,
-          origin: window.location.origin,
-        },
-      });
-      if (result.mode === "paystack") {
-        window.location.href = result.authorization_url;
-        return;
-      }
-      setManual(result.reference);
-    } catch {
-      toast.error("We could not start that checkout. Please try again in a moment.");
-    } finally {
-      setPending(false);
-    }
-  }
 
   return (
     <>
@@ -149,46 +119,8 @@ function ProductPage() {
               ) : null}
             </div>
 
-            {manual ? (
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-10 rounded-lg border border-primary/20 bg-teal-wash p-6"
-              >
-                <p className="text-foreground/85">
-                  Your order is saved (ref {manual}). Card payment is not switched on for this
-                  resource yet — confirm on WhatsApp and we will send it straight to {form.email}.
-                </p>
-                <ActionAnchor href={whatsappUrl} target="_blank" rel="noreferrer" className="mt-5">
-                  Confirm on WhatsApp
-                </ActionAnchor>
-              </motion.div>
-            ) : open ? (
-              <form onSubmit={checkout} className="mt-10 space-y-4 border-t border-border/60 pt-8">
-                {[
-                  { key: "name", label: "Name", type: "text", required: true },
-                  { key: "email", label: "Email (where we send it)", type: "email", required: true },
-                  { key: "phone", label: "Phone (for M-Pesa)", type: "tel", required: false },
-                  { key: "business", label: "Business name", type: "text", required: false },
-                ].map((f) => (
-                  <label key={f.key} className="font-ui block text-sm">
-                    <span className="text-muted-foreground">{f.label}</span>
-                    <input
-                      type={f.type}
-                      required={f.required}
-                      value={form[f.key as keyof typeof form]}
-                      onChange={(e) => setForm({ ...form, [f.key]: e.target.value })}
-                      className="mt-2 h-11 w-full rounded-sm border border-input bg-background px-4 text-sm outline-none transition-colors focus:border-primary"
-                    />
-                  </label>
-                ))}
-                <ActionButton type="submit" size="lg" disabled={pending}>
-                  {pending ? "Opening secure checkout…" : "Pay securely"}
-                </ActionButton>
-                <p className="font-ui text-xs text-muted-foreground">
-                  Card and M-Pesa, processed by Paystack. Delivery is instant.
-                </p>
-              </form>
+            {open ? (
+              <CheckoutPanel product={product} whatsappUrl={whatsappUrl} />
             ) : (
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <ActionButton size="lg" onClick={() => setOpen(true)}>
