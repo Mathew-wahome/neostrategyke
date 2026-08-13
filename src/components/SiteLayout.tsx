@@ -18,11 +18,14 @@ const nav = [
 
 function Wordmark({ dark = false }: { dark?: boolean }) {
   return (
-    <Link
-      to="/"
-      className={`font-display text-xl tracking-tight ${dark ? "text-offwhite" : "text-foreground"}`}
-    >
-      Neo<span className="text-primary">Strategy</span>
+    <Link to="/" aria-label={`${brand.name} home`} className="group inline-flex items-center">
+      <img
+        src={dark ? markLight.url : mark.url}
+        alt={`${brand.name} monogram`}
+        width={512}
+        height={524}
+        className="h-11 w-auto transition-transform duration-500 ease-out group-hover:scale-[1.04] md:h-12"
+      />
     </Link>
   );
 }
