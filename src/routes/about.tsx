@@ -10,7 +10,7 @@ import { SplitHeading } from "@/components/SplitHeading";
 import { StatStrip } from "@/components/StatStrip";
 import { brand } from "@/lib/brand";
 import { photos } from "@/lib/photos";
-import portraitAsset from "@/assets/mary-njoroge-portrait.png.asset.json";
+import portraitPhoto from "@/assets/mary-njoroge-portrait.png";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -108,7 +108,7 @@ function FounderPortrait() {
         className="sheen relative overflow-hidden rounded-[1.75rem] border border-primary/15 shadow-[0_70px_120px_-60px_rgba(10,90,97,0.75)]"
       >
         <motion.img
-          src={portraitAsset.url}
+          src={portraitPhoto}
           alt="Mary Njoroge, founder of NeoStrategy"
           width={1200}
           height={1200}
