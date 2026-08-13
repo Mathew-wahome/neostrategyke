@@ -6,9 +6,9 @@ import workshop from "@/assets/photo-workshop.jpg";
 import kit from "@/assets/photo-kit.jpg";
 import coaching from "@/assets/photo-coaching.jpg";
 import texture from "@/assets/photo-texture.jpg";
-import founderAsset from "@/assets/mary-njoroge.png.asset.json";
+import founder from "@/assets/mary-njoroge.png";
 
-export const founderPhoto = founderAsset.url;
+export const founderPhoto = founder;
 
 export const photos = {
   session: {
