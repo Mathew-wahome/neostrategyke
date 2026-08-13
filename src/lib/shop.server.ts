@@ -174,7 +174,9 @@ export async function startCheckout(input: CheckoutInput): Promise<CheckoutResul
         reference,
         metadata,
         mobile_money: {
-          phone,
+          // Paystack only accepts E.164 (leading +) for Kenyan mobile money.
+          phone: `+${phone}`,
+
           provider: input.method === "mpesa" ? "mpesa" : "airtel",
         },
       }),
