@@ -110,15 +110,25 @@ function Footer() {
   return (
     <footer className="bg-teal-deep text-offwhite">
       <div className="container-page py-20 md:py-28">
-        <div className="flex flex-col gap-8 md:flex-row md:items-center md:gap-12">
-          <img
-            src={markLight.url}
-            alt={`${brand.name} monogram`}
-            width={512}
-            height={524}
-            className="h-20 w-auto shrink-0 opacity-90 md:h-24"
-          />
-          <p className="font-display max-w-2xl text-3xl leading-tight md:text-4xl">{brand.tagline}</p>
+        <div className="flex flex-col gap-10 md:flex-row md:items-end md:gap-16">
+          <Link to="/" aria-label={`${brand.name} home`} className="group flex flex-col items-start gap-3">
+            <img
+              src={markLight.url}
+              alt={`${brand.name} monogram`}
+              width={512}
+              height={524}
+              className="h-20 w-auto opacity-90 transition-transform duration-500 ease-out group-hover:scale-[1.04] md:h-24"
+            />
+            <div className="flex flex-col">
+              <span className="font-display text-2xl leading-none tracking-tight text-offwhite md:text-3xl">
+                {brand.name}
+              </span>
+              <span className="font-ui mt-1 text-[10px] uppercase tracking-[0.22em] text-offwhite/70">
+                Founder Operating System
+              </span>
+            </div>
+          </Link>
+          <p className="font-display max-w-2xl text-2xl leading-tight md:text-3xl">{brand.tagline}</p>
         </div>
 
         <div className="mt-16 grid gap-12 md:grid-cols-[1.2fr_1fr_1fr]">
