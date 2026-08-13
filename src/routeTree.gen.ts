@@ -17,7 +17,6 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as NewsletterRouteImport } from './routes/newsletter'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ServicesRouteImport } from './routes/services'
-import { Route as ShopRouteImport } from './routes/shop'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
@@ -69,11 +68,6 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ShopRoute = ShopRouteImport.update({
-  id: '/shop',
-  path: '/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermsRoute = TermsRouteImport.update({
@@ -157,7 +151,6 @@ export interface FileRoutesByFullPath {
   '/newsletter': typeof NewsletterRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
-  '/shop': typeof ShopRoute
   '/terms': typeof TermsRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
@@ -180,7 +173,6 @@ export interface FileRoutesByTo {
   '/newsletter': typeof NewsletterRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
-  '/shop': typeof ShopRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog': typeof BlogIndexRoute
@@ -204,7 +196,6 @@ export interface FileRoutesById {
   '/newsletter': typeof NewsletterRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
-  '/shop': typeof ShopRoute
   '/terms': typeof TermsRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
@@ -229,7 +220,6 @@ export interface FileRouteTypes {
     | '/newsletter'
     | '/privacy'
     | '/services'
-    | '/shop'
     | '/terms'
     | '/admin'
     | '/blog/$slug'
@@ -252,7 +242,6 @@ export interface FileRouteTypes {
     | '/newsletter'
     | '/privacy'
     | '/services'
-    | '/shop'
     | '/terms'
     | '/blog/$slug'
     | '/blog'
@@ -275,7 +264,6 @@ export interface FileRouteTypes {
     | '/newsletter'
     | '/privacy'
     | '/services'
-    | '/shop'
     | '/terms'
     | '/_authenticated/admin'
     | '/blog/$slug'
@@ -300,7 +288,6 @@ export interface RootRouteChildren {
   NewsletterRoute: typeof NewsletterRoute
   PrivacyRoute: typeof PrivacyRoute
   ServicesRoute: typeof ServicesRoute
-  ShopRoute: typeof ShopRoute
   TermsRoute: typeof TermsRoute
   BlogSlugRoute: typeof BlogSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -362,13 +349,6 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/shop': {
-      id: '/shop'
-      path: '/shop'
-      fullPath: '/shop'
-      preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms': {
@@ -512,7 +492,6 @@ const rootRouteChildren: RootRouteChildren = {
   NewsletterRoute: NewsletterRoute,
   PrivacyRoute: PrivacyRoute,
   ServicesRoute: ServicesRoute,
-  ShopRoute: ShopRoute,
   TermsRoute: TermsRoute,
   BlogSlugRoute: BlogSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
