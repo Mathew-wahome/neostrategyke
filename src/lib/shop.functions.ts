@@ -20,6 +20,7 @@ export const beginCheckout = createServerFn({ method: "POST" })
       email: string;
       phone?: string;
       business?: string;
+      method?: string;
       origin: string;
     }) => ({
       slug: String(data.slug),
@@ -27,6 +28,9 @@ export const beginCheckout = createServerFn({ method: "POST" })
       email: String(data.email).slice(0, 200),
       phone: data.phone ? String(data.phone).slice(0, 40) : undefined,
       business: data.business ? String(data.business).slice(0, 160) : undefined,
+      method: (["card", "mpesa", "airtel"].includes(String(data.method))
+        ? String(data.method)
+        : "card") as "card" | "mpesa" | "airtel",
       origin: String(data.origin).slice(0, 200),
     }),
   )
