@@ -1,3 +1,4 @@
+import mark from "@/assets/ns-mark.png.asset.json";
 import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { useStaff } from "@/components/admin/AdminUI";
