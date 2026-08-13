@@ -23,6 +23,7 @@ import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as ShopIndexRouteImport } from './routes/shop/index'
 import { Route as ShopSlugRouteImport } from './routes/shop/$slug'
+import { Route as ShopSuccessRouteImport } from './routes/shop/success'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
 import { Route as AuthenticatedAdminBookingsRouteImport } from './routes/_authenticated/admin/bookings'
 import { Route as AuthenticatedAdminClientsRouteImport } from './routes/_authenticated/admin/clients'
@@ -102,6 +103,11 @@ const ShopSlugRoute = ShopSlugRouteImport.update({
   path: '/shop/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShopSuccessRoute = ShopSuccessRouteImport.update({
+  id: '/shop/success',
+  path: '/shop/success',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -167,6 +173,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
   '/shop/$slug': typeof ShopSlugRoute
+  '/shop/success': typeof ShopSuccessRoute
   '/blog/': typeof BlogIndexRoute
   '/shop/': typeof ShopIndexRoute
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
@@ -190,6 +197,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/shop/$slug': typeof ShopSlugRoute
+  '/shop/success': typeof ShopSuccessRoute
   '/blog': typeof BlogIndexRoute
   '/shop': typeof ShopIndexRoute
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
@@ -216,6 +224,7 @@ export interface FileRoutesById {
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
   '/shop/$slug': typeof ShopSlugRoute
+  '/shop/success': typeof ShopSuccessRoute
   '/blog/': typeof BlogIndexRoute
   '/shop/': typeof ShopIndexRoute
   '/_authenticated/admin/bookings': typeof AuthenticatedAdminBookingsRoute
@@ -242,6 +251,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/blog/$slug'
     | '/shop/$slug'
+    | '/shop/success'
     | '/blog/'
     | '/shop/'
     | '/admin/bookings'
@@ -265,6 +275,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/blog/$slug'
     | '/shop/$slug'
+    | '/shop/success'
     | '/blog'
     | '/shop'
     | '/admin/bookings'
@@ -290,6 +301,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin'
     | '/blog/$slug'
     | '/shop/$slug'
+    | '/shop/success'
     | '/blog/'
     | '/shop/'
     | '/_authenticated/admin/bookings'
@@ -315,6 +327,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   BlogSlugRoute: typeof BlogSlugRoute
   ShopSlugRoute: typeof ShopSlugRoute
+  ShopSuccessRoute: typeof ShopSuccessRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ShopIndexRoute: typeof ShopIndexRoute
 }
@@ -417,6 +430,13 @@ declare module '@tanstack/react-router' {
       path: '/shop/$slug'
       fullPath: '/shop/$slug'
       preLoaderRoute: typeof ShopSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop/success': {
+      id: '/shop/success'
+      path: '/shop/success'
+      fullPath: '/shop/success'
+      preLoaderRoute: typeof ShopSuccessRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin/': {
@@ -535,6 +555,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   BlogSlugRoute: BlogSlugRoute,
   ShopSlugRoute: ShopSlugRoute,
+  ShopSuccessRoute: ShopSuccessRoute,
   BlogIndexRoute: BlogIndexRoute,
   ShopIndexRoute: ShopIndexRoute,
 }

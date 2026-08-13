@@ -5,7 +5,7 @@ import { Reveal } from "@/components/Reveal";
 import { confirmOrder } from "@/lib/shop.functions";
 import { money } from "@/lib/shop";
 
-type Search = { reference?: string; trxref?: string };
+type Search = { reference?: string | undefined; trxref?: string | undefined };
 
 export const Route = createFileRoute("/shop/success")({
   validateSearch: (search: Record<string, unknown>): Search => ({
