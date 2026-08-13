@@ -16,7 +16,7 @@ export const Route = createFileRoute("/_authenticated/admin/orders")({
   component: Orders,
 });
 
-const orderStatuses = ["pending", "fulfilled", "cancelled"] as const;
+const orderStatuses = ["pending_payment", "pending_whatsapp", "fulfilled", "cancelled"] as const;
 const paymentStatuses = ["unpaid", "paid", "refunded"] as const;
 
 type Order = {
@@ -27,6 +27,10 @@ type Order = {
   status: string;
   payment_status: string;
   payment_note: string | null;
+  amount: number | null;
+  currency: string | null;
+  provider: string | null;
+  provider_reference: string | null;
   created_at: string;
 };
 
