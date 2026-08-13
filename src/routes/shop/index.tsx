@@ -146,7 +146,7 @@ function Store() {
               Start with the free guide, 10 Systems Every Founder Needs, and the weekly letter on
               building a business that runs without you.
             </p>
-            <NewsletterForm className="mt-9 max-w-lg" source="shop" onDark />
+            <NewsletterForm className="mt-9 max-w-lg" source="shop" tone="dark" />
           </Reveal>
         </div>
       </section>
