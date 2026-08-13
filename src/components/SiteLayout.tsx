@@ -90,7 +90,17 @@ function Footer() {
   return (
     <footer className="bg-teal-deep text-offwhite">
       <div className="container-page py-20 md:py-28">
-        <p className="font-display max-w-2xl text-3xl leading-tight md:text-4xl">{brand.tagline}</p>
+        <div className="flex flex-col gap-8 md:flex-row md:items-center md:gap-12">
+          <img
+            src={markLight.url}
+            alt={`${brand.name} monogram`}
+            width={512}
+            height={524}
+            loading="lazy"
+            className="h-20 w-auto shrink-0 opacity-90 md:h-24"
+          />
+          <p className="font-display max-w-2xl text-3xl leading-tight md:text-4xl">{brand.tagline}</p>
+        </div>
 
         <div className="mt-16 grid gap-12 md:grid-cols-[1.2fr_1fr_1fr]">
           <div>
