@@ -2,6 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { brand } from "@/lib/brand";
+import mark from "@/assets/ns-mark.png.asset.json";
+import markLight from "@/assets/ns-mark-light.png.asset.json";
 import { ActionLink } from "./ActionButton";
 import { NewsletterForm } from "./NewsletterForm";
 import { ScrollProgress } from "./ScrollProgress";
