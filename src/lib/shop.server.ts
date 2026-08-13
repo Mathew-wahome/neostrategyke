@@ -14,13 +14,12 @@ export type StoreProduct = {
   category: string | null;
   cover_image: string | null;
   preview_url: string | null;
-  video_url: string | null;
   featured: boolean;
   sort_order: number;
 };
 
 const COLUMNS =
-  "id,name,slug,short_description,description,price,compare_at_price,currency,product_type,category,cover_image,preview_url,video_url,featured,sort_order";
+  "id,name,slug,short_description,description,price,compare_at_price,currency,product_type,category,cover_image,preview_url,featured,sort_order";
 
 function publicClient() {
   return createClient<Database>(
