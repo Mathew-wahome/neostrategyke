@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { toast } from "sonner";
 import { ActionAnchor, ActionButton } from "@/components/ActionButton";
 import { beginCheckout, confirmOrder } from "@/lib/shop.functions";
-import { money, type StoreProduct } from "@/lib/shop";
+import { isKePhone, money, normaliseKePhone, type StoreProduct } from "@/lib/shop";
 
 type Method = "mpesa" | "airtel" | "card";
 
