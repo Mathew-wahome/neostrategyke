@@ -292,44 +292,68 @@ export type Database = {
       }
       orders: {
         Row: {
+          amount: number
           business_name: string | null
           created_at: string
+          currency: string
           customer_name: string
+          delivered: boolean
+          download_token: string
           email: string
           id: string
           lead_id: string | null
+          paid_at: string | null
           payment_note: string | null
           payment_status: string
           phone: string | null
           product_id: string | null
+          provider: string
+          provider_reference: string | null
+          quantity: number
           status: string
           updated_at: string
         }
         Insert: {
+          amount?: number
           business_name?: string | null
           created_at?: string
+          currency?: string
           customer_name: string
+          delivered?: boolean
+          download_token?: string
           email: string
           id?: string
           lead_id?: string | null
+          paid_at?: string | null
           payment_note?: string | null
           payment_status?: string
           phone?: string | null
           product_id?: string | null
+          provider?: string
+          provider_reference?: string | null
+          quantity?: number
           status?: string
           updated_at?: string
         }
         Update: {
+          amount?: number
           business_name?: string | null
           created_at?: string
+          currency?: string
           customer_name?: string
+          delivered?: boolean
+          download_token?: string
           email?: string
           id?: string
           lead_id?: string | null
+          paid_at?: string | null
           payment_note?: string | null
           payment_status?: string
           phone?: string | null
           product_id?: string | null
+          provider?: string
+          provider_reference?: string | null
+          quantity?: number
           status?: string
           updated_at?: string
         }
@@ -352,37 +376,67 @@ export type Database = {
       }
       products: {
         Row: {
+          category: string | null
+          compare_at_price: number | null
+          cover_image: string | null
           created_at: string
           currency: string
           description: string | null
+          featured: boolean
           file_url: string | null
           id: string
           is_active: boolean
           name: string
+          preview_url: string | null
           price: number
+          product_type: string
+          short_description: string | null
           slug: string
+          sort_order: number
+          updated_at: string
+          video_url: string | null
         }
         Insert: {
+          category?: string | null
+          compare_at_price?: number | null
+          cover_image?: string | null
           created_at?: string
           currency?: string
           description?: string | null
+          featured?: boolean
           file_url?: string | null
           id?: string
           is_active?: boolean
           name: string
+          preview_url?: string | null
           price?: number
+          product_type?: string
+          short_description?: string | null
           slug: string
+          sort_order?: number
+          updated_at?: string
+          video_url?: string | null
         }
         Update: {
+          category?: string | null
+          compare_at_price?: number | null
+          cover_image?: string | null
           created_at?: string
           currency?: string
           description?: string | null
+          featured?: boolean
           file_url?: string | null
           id?: string
           is_active?: boolean
           name?: string
+          preview_url?: string | null
           price?: number
+          product_type?: string
+          short_description?: string | null
           slug?: string
+          sort_order?: number
+          updated_at?: string
+          video_url?: string | null
         }
         Relationships: []
       }
