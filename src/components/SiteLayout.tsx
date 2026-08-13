@@ -20,14 +20,34 @@ const nav = [
 
 function Wordmark({ dark = false }: { dark?: boolean }) {
   return (
-    <Link to="/" aria-label={`${brand.name} home`} className="group inline-flex items-center">
+    <Link
+      to="/"
+      aria-label={`${brand.name} home`}
+      className="group flex items-center gap-3"
+    >
       <img
         src={dark ? markLight.url : mark.url}
         alt={`${brand.name} monogram`}
         width={512}
         height={524}
-        className="h-11 w-auto transition-transform duration-500 ease-out group-hover:scale-[1.04] md:h-12"
+        className="h-10 w-auto transition-transform duration-500 ease-out group-hover:scale-[1.04] md:h-11"
       />
+      <div className="flex flex-col">
+        <span
+          className={`font-display text-lg leading-none tracking-tight transition-colors md:text-xl ${
+            dark ? "text-offwhite" : "text-foreground"
+          }`}
+        >
+          {brand.name}
+        </span>
+        <span
+          className={`font-ui mt-0.5 text-[10px] uppercase tracking-[0.22em] transition-colors ${
+            dark ? "text-offwhite/70" : "text-muted-foreground"
+          }`}
+        >
+          Founder Operating System
+        </span>
+      </div>
     </Link>
   );
 }
