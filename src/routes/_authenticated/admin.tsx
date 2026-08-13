@@ -24,6 +24,7 @@ const nav: { to: string; label: string; exact?: boolean }[] = [
   { to: "/admin/messages", label: "Messages" },
   { to: "/admin/subscribers", label: "Subscribers" },
 
+  { to: "/admin/products", label: "Products" },
   { to: "/admin/orders", label: "Shop orders" },
   { to: "/admin/clients", label: "Clients" },
   { to: "/admin/journal", label: "Journal" },
