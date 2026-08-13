@@ -1,3 +1,4 @@
+import mark from "@/assets/ns-mark.png.asset.json";
 import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { useStaff } from "@/components/admin/AdminUI";
@@ -71,8 +72,8 @@ function AdminShell() {
     <div className="flex min-h-screen bg-wash/50">
       <aside className="hidden w-60 shrink-0 border-r border-border/70 bg-background md:block">
         <div className="flex h-20 items-center px-6">
-          <Link to="/" className="font-display text-lg tracking-tight">
-            Neo<span className="text-primary">Strategy</span>
+          <Link to="/" aria-label="NeoStrategy home" className="inline-flex">
+            <img src={mark.url} alt="NeoStrategy monogram" width={512} height={524} className="h-10 w-auto" />
           </Link>
         </div>
         <nav className="font-ui flex flex-col gap-1 px-3 pb-6 text-sm">

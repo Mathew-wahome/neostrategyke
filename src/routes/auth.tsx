@@ -1,3 +1,4 @@
+import mark from "@/assets/ns-mark.png.asset.json";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -70,8 +71,8 @@ function AuthPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-wash px-6 py-20">
       <div className="w-full max-w-md rounded-sm border border-border/70 bg-background p-10">
-        <Link to="/" className="font-display text-xl tracking-tight">
-          Neo<span className="text-primary">Strategy</span>
+        <Link to="/" aria-label="NeoStrategy home" className="inline-flex">
+          <img src={mark.url} alt="NeoStrategy monogram" width={512} height={524} className="h-12 w-auto" />
         </Link>
         <h1 className="font-display mt-8 text-3xl leading-tight">
           {mode === "signin" ? "Sign in to the dashboard" : "Create your staff account"}

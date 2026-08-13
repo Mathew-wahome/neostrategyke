@@ -2,6 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { brand } from "@/lib/brand";
+import mark from "@/assets/ns-mark.png.asset.json";
+import markLight from "@/assets/ns-mark-light.png.asset.json";
 import { ActionLink } from "./ActionButton";
 import { NewsletterForm } from "./NewsletterForm";
 import { ScrollProgress } from "./ScrollProgress";
@@ -18,11 +20,14 @@ const nav = [
 
 function Wordmark({ dark = false }: { dark?: boolean }) {
   return (
-    <Link
-      to="/"
-      className={`font-display text-xl tracking-tight ${dark ? "text-offwhite" : "text-foreground"}`}
-    >
-      Neo<span className="text-primary">Strategy</span>
+    <Link to="/" aria-label={`${brand.name} home`} className="group inline-flex items-center">
+      <img
+        src={dark ? markLight.url : mark.url}
+        alt={`${brand.name} monogram`}
+        width={512}
+        height={524}
+        className="h-11 w-auto transition-transform duration-500 ease-out group-hover:scale-[1.04] md:h-12"
+      />
     </Link>
   );
 }
@@ -85,7 +90,16 @@ function Footer() {
   return (
     <footer className="bg-teal-deep text-offwhite">
       <div className="container-page py-20 md:py-28">
-        <p className="font-display max-w-2xl text-3xl leading-tight md:text-4xl">{brand.tagline}</p>
+        <div className="flex flex-col gap-8 md:flex-row md:items-center md:gap-12">
+          <img
+            src={markLight.url}
+            alt={`${brand.name} monogram`}
+            width={512}
+            height={524}
+            className="h-20 w-auto shrink-0 opacity-90 md:h-24"
+          />
+          <p className="font-display max-w-2xl text-3xl leading-tight md:text-4xl">{brand.tagline}</p>
+        </div>
 
         <div className="mt-16 grid gap-12 md:grid-cols-[1.2fr_1fr_1fr]">
           <div>
