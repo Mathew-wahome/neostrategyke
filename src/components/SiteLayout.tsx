@@ -96,7 +96,6 @@ function Footer() {
             alt={`${brand.name} monogram`}
             width={512}
             height={524}
-            loading="lazy"
             className="h-20 w-auto shrink-0 opacity-90 md:h-24"
           />
           <p className="font-display max-w-2xl text-3xl leading-tight md:text-4xl">{brand.tagline}</p>
