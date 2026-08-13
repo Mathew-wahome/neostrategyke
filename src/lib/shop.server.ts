@@ -154,13 +154,15 @@ export async function startCheckout(input: CheckoutInput): Promise<CheckoutResul
   /* ---- Mobile money: STK prompt straight to the buyer's handset ---- */
   if (input.method === "mpesa" || input.method === "airtel") {
     const phone = normalisePhone(input.phone ?? "");
-    if (!/^254\d{9}$/.test(phone)) {
+    if (!isKenyanMobile(phone)) {
       return {
         mode: "manual",
         reference,
-        reason: "That phone number does not look like a Kenyan mobile number.",
+        reason:
+          "That phone number does not look like a Kenyan mobile number. Use 07XX XXX XXX, 01XX XXX XXX or +2547XX XXX XXX.",
       };
     }
+
 
     const res = await fetch("https://api.paystack.co/charge", {
       method: "POST",
