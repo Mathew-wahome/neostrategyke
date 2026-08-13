@@ -88,10 +88,13 @@ export function CheckoutPanel({
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (method !== "card" && form.phone.replace(/\D/g, "").length < 9) {
-      toast.error("Add the phone number that should receive the payment prompt.");
+    if (method !== "card" && !isKePhone(form.phone)) {
+      toast.error(
+        "Enter a valid Kenyan mobile number — 07XX XXX XXX, 01XX XXX XXX or +2547XX XXX XXX.",
+      );
       return;
     }
+
     setPending(true);
     setManual(null);
     try {
