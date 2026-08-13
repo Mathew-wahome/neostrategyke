@@ -1,4 +1,5 @@
 import mark from "@/assets/ns-mark.png.asset.json";
+import { brand } from "@/lib/brand";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
