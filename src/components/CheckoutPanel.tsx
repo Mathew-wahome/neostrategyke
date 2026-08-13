@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { toast } from "sonner";
 import { ActionAnchor, ActionButton } from "@/components/ActionButton";
 import { beginCheckout, confirmOrder } from "@/lib/shop.functions";
-import { money, type StoreProduct } from "@/lib/shop";
+import { isKePhone, money, normaliseKePhone, type StoreProduct } from "@/lib/shop";
 
 type Method = "mpesa" | "airtel" | "card";
 
@@ -88,10 +88,13 @@ export function CheckoutPanel({
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (method !== "card" && form.phone.replace(/\D/g, "").length < 9) {
-      toast.error("Add the phone number that should receive the payment prompt.");
+    if (method !== "card" && !isKePhone(form.phone)) {
+      toast.error(
+        "Enter a valid Kenyan mobile number — 07XX XXX XXX, 01XX XXX XXX or +2547XX XXX XXX.",
+      );
       return;
     }
+
     setPending(true);
     setManual(null);
     try {
@@ -100,7 +103,7 @@ export function CheckoutPanel({
           slug: product.slug,
           name: form.name,
           email: form.email,
-          phone: form.phone,
+          phone: form.phone ? normaliseKePhone(form.phone) : "",
           business: form.business,
           method,
           origin: window.location.origin,
