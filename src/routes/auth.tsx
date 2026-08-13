@@ -71,8 +71,22 @@ function AuthPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-wash px-6 py-20">
       <div className="w-full max-w-md rounded-sm border border-border/70 bg-background p-10">
-        <Link to="/" aria-label="NeoStrategy home" className="inline-flex">
-          <img src={mark.url} alt="NeoStrategy monogram" width={512} height={524} className="h-12 w-auto" />
+        <Link to="/" aria-label="NeoStrategy home" className="group flex flex-col items-start gap-2">
+          <img
+            src={mark.url}
+            alt="NeoStrategy monogram"
+            width={512}
+            height={524}
+            className="h-11 w-auto transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+          />
+          <div className="flex flex-col">
+            <span className="font-display text-lg leading-none tracking-tight text-foreground">
+              {brand.name}
+            </span>
+            <span className="font-ui mt-0.5 text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+              Founder Operating System
+            </span>
+          </div>
         </Link>
         <h1 className="font-display mt-8 text-3xl leading-tight">
           {mode === "signin" ? "Sign in to the dashboard" : "Create your staff account"}
