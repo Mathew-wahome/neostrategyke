@@ -98,8 +98,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "NeoStrategy — Clarity attracts. Systems scale. Freedom lasts." },
       { name: "twitter:description", content: "NeoStrategy helps founder-led service businesses move from founder dependency to calm execution, so the business runs on systems, not on its founder." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/6776c50d-5e71-45b2-86d6-18f9908047d0" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/6776c50d-5e71-45b2-86d6-18f9908047d0" },
+      { property: "og:image", content: "https://neostrategyke.lovable.app/og-image.png" },
+      { name: "twitter:image", content: "https://neostrategyke.lovable.app/og-image.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
