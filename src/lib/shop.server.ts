@@ -74,14 +74,26 @@ export type CheckoutResult =
   | { mode: "mobile_money"; reference: string; display_text: string }
   | { mode: "manual"; reference: string; reason: string };
 
-/** Normalises a Kenyan number to the 2547XXXXXXXX form Paystack expects. */
+/**
+ * Normalises any Kenyan mobile number to the 2547XXXXXXXX / 2541XXXXXXXX form
+ * Paystack expects. Accepts +254…, 00254…, 254…, 07…, 01…, 7…, 1… with any
+ * spaces, dashes, brackets or dots in between.
+ */
 export function normalisePhone(raw: string) {
-  const digits = (raw || "").replace(/\D/g, "");
-  if (digits.startsWith("254")) return digits;
-  if (digits.startsWith("0")) return `254${digits.slice(1)}`;
-  if (digits.length === 9) return `254${digits}`;
-  return digits;
+  let digits = (raw || "").replace(/\D/g, "");
+  if (digits.startsWith("00")) digits = digits.slice(2);
+  if (digits.startsWith("254")) digits = digits.slice(3);
+  else if (digits.startsWith("0")) digits = digits.replace(/^0+/, "");
+  // At this point we should hold the 9-digit national number (7XXXXXXXX / 1XXXXXXXX).
+  if (digits.length > 9) digits = digits.slice(-9);
+  return `254${digits}`;
 }
+
+/** Kenyan mobile numbers are 254 followed by 9 digits starting with 7 or 1. */
+export function isKenyanMobile(msisdn: string) {
+  return /^254[71]\d{8}$/.test(msisdn);
+}
+
 
 export async function startCheckout(input: CheckoutInput): Promise<CheckoutResult> {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
