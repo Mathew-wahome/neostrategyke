@@ -18,7 +18,7 @@ export function useStaff() {
         .maybeSingle();
       if (!data) {
         // First person in becomes the admin.
-        await supabase.rpc("claim_first_admin");
+        await claimFirstAdmin();
         const retry = await supabase
           .from("staff_users")
           .select("*")
