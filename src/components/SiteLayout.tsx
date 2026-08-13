@@ -2,8 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { brand } from "@/lib/brand";
-import mark from "@/assets/ns-mark.png.asset.json";
-import markLight from "@/assets/ns-mark-light.png.asset.json";
+import mark from "@/assets/ns-mark.png";
+import markLight from "@/assets/ns-mark-light.png";
 import { ActionLink } from "./ActionButton";
 import { NewsletterForm } from "./NewsletterForm";
 import { ScrollProgress } from "./ScrollProgress";
@@ -26,7 +26,7 @@ function Wordmark({ dark = false }: { dark?: boolean }) {
       className="group flex items-center gap-3"
     >
       <img
-        src={dark ? markLight.url : mark.url}
+        src={dark ? markLight : mark}
         alt={`${brand.name} monogram`}
         width={512}
         height={524}
@@ -113,7 +113,7 @@ function Footer() {
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:gap-16">
           <Link to="/" aria-label={`${brand.name} home`} className="group flex flex-col items-start gap-3">
             <img
-              src={markLight.url}
+              src={markLight}
               alt={`${brand.name} monogram`}
               width={512}
               height={524}

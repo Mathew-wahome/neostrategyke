@@ -1,4 +1,4 @@
-import mark from "@/assets/ns-mark.png.asset.json";
+import mark from "@/assets/ns-mark.png";
 import { brand } from "@/lib/brand";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
@@ -74,7 +74,7 @@ function AuthPage() {
       <div className="w-full max-w-md rounded-sm border border-border/70 bg-background p-10">
         <Link to="/" aria-label="NeoStrategy home" className="group flex flex-col items-start gap-2">
           <img
-            src={mark.url}
+            src={mark}
             alt="NeoStrategy monogram"
             width={512}
             height={524}
