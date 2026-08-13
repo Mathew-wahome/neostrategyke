@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { claimFirstAdmin } from "@/lib/admin-claim.functions";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
@@ -17,7 +18,7 @@ export function useStaff() {
         .maybeSingle();
       if (!data) {
         // First person in becomes the admin.
-        await supabase.rpc("claim_first_admin");
+        await claimFirstAdmin();
         const retry = await supabase
           .from("staff_users")
           .select("*")
