@@ -1,0 +1,2 @@
+update public.products set file_url='https://theneostrategy.com/tmp-test-asset.pdf' where slug='clarity-attracts-book';
+update public.orders set payment_status='paid', status='fulfilled', paid_at=now() where provider_reference='neo_c6298529993c4bdd8f';
