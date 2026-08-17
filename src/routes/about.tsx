@@ -2,12 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { ActionLink } from "@/components/ActionButton";
+import { ClosingCTA } from "@/components/ClosingCTA";
 import { ImageFrame } from "@/components/ImageFrame";
 import { Journey } from "@/components/Journey";
 import { Marquee } from "@/components/Marquee";
 import { Reveal } from "@/components/Reveal";
 import { SplitHeading } from "@/components/SplitHeading";
-import { StatStrip } from "@/components/StatStrip";
 import { brand } from "@/lib/brand";
 import { photos } from "@/lib/photos";
 import portraitPhoto from "@/assets/mary-njoroge-portrait.png";
@@ -15,17 +15,17 @@ import portraitPhoto from "@/assets/mary-njoroge-portrait.png";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Neostrategy — Businesses that do not depend on founders" },
+      { title: "About Neostrategy — We build businesses that do not depend on their founders" },
       {
         name: "description",
         content:
-          "Neostrategy is a Nairobi operations consultancy founded by Mary Njoroge, installing the systems that free founder-led service businesses from dependency.",
+          "An operations practice for founder-led service businesses across East Africa, led by Nduta Njoroge. We build the systems that let you step back.",
       },
       { property: "og:title", content: "About Neostrategy" },
       {
         property: "og:description",
         content:
-          "We build businesses that do not depend on their founders. Not advice. Not a strategy deck. The actual install.",
+          "We build businesses that do not depend on their founders. Not advice. Not a strategy deck. We build the thing.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -35,28 +35,39 @@ export const Route = createFileRoute("/about")({
 });
 
 const paragraphs = [
-  "Most founders do not have a business problem. They have a dependency problem. The business runs on them, their memory, their decisions, their presence, and it cannot move without them.",
-  "Neostrategy exists to change that.",
-  "We believe a business should support a founder's life, not consume it. That the answer to founder overwhelm is not more hustle, but better design. And that the difference between a business that traps its founder and one that frees them is not effort. It is systems.",
-  "A hustler pushes activity. A founder builds something that keeps working beyond their mood, their memory, and their daily intensity. Our entire practice is built to help founders become the second kind.",
-  "We work with founder-led service businesses, coaches, consultants, agencies, and professional service firms, to install the operating systems that let them step back: systems the team can stand on, delivery that stays consistent, and operations that hold on the hardest days.",
-  "Not advice. Not a strategy deck. The actual install.",
+  "You probably do not have a business problem. You have a dependency problem. The business runs on you. Your memory, your decisions, your presence. It cannot move without you.",
+  "We think a business should hold up your life, not eat it.",
+  "We think the answer to being overwhelmed is not working harder. It is a better design.",
+  "And we think the difference between a business that traps its founder and one that frees them is not effort. It is a system.",
+  "Anyone can push harder. Building something that keeps working when you are tired, distracted or away is a different skill. That is the one we teach.",
+  "We work with founder-led service businesses. Coaches, consultants, agencies, professional firms. We build the systems that let you step back. Systems your team can stand on. Delivery that stays the same whoever does it. Operations that hold on the hard days.",
+  "Not advice. Not a strategy deck. We build the thing.",
+];
+
+const note = [
+  "For years I was the person holding everything together.",
+  "Not in theory. In practice, in other people's businesses and in my own. Doing the work that keeps a business standing while nobody notices it is happening.",
+  "That is why this practice exists.",
+  "It is also why I am careful about how many businesses I take on. Doing this properly means being inside a business, not advising it from a distance. That takes real attention. Four at a time is what I can give it.",
+  "Here is what I have learned. Being overwhelmed is almost never about discipline. It is about design. And design can be changed.",
+  "Every business produces exactly what it is built to produce. If you do not like what yours is producing, the design is the place to look.",
+  "If you are the person your business cannot run without, I would like to talk to you.",
 ];
 
 const beliefs = [
   {
-    title: "Clarity attracts",
-    body: "When the offer, the promise and the process are clear, the right clients recognise themselves in it.",
+    title: "Clarity attracts.",
+    body: "When your offer, your promise and your process are clear, the right clients recognise themselves in it.",
     detail: "We start every engagement by making the business legible — to the team, then to the market.",
   },
   {
-    title: "Systems scale",
-    body: "Effort has a ceiling. Design does not. A documented system compounds every week it stays alive.",
+    title: "Systems scale.",
+    body: "Effort has a ceiling. Design does not. A system that stays alive compounds every week.",
     detail: "One well-built delivery rhythm outperforms a year of heroics, every quarter.",
   },
   {
-    title: "Freedom lasts",
-    body: "The point is not a tidier business. The point is a founder who can step away and return to something still standing.",
+    title: "Freedom lasts.",
+    body: "The point is not a tidier business. It is being able to step away and come back to something still standing.",
     detail: "We measure our work by what keeps running on the weeks you are not in the room.",
   },
 ];
@@ -64,32 +75,25 @@ const beliefs = [
 const journey = [
   {
     year: "The pattern",
-    title: "Every business ran on one exhausted person",
-    body: "Across dozens of Nairobi service firms the same shape kept appearing: brilliant founders, capable teams, and a business that stalled the moment the founder stepped out of the room.",
+    title: "Every business ran on one person",
+    body: "The same shape kept appearing: capable founders, willing teams, and a business that stalled the moment the founder stepped out of the room.",
   },
   {
     year: "The practice",
-    title: "Neostrategy was built as an install, not advice",
+    title: "Built as an install, not advice",
     body: "Strategy decks do not change a Monday. So the work became operational: sit inside the business, map how it actually runs, and build the system with the people who will run it.",
   },
   {
     year: "The method",
     title: "The Founder Operating System",
-    body: "Audit, install, partnership. Five layers — clarity, delegation, delivery, visibility, continuity — sequenced so each one holds the next.",
+    body: "Clarity, delivery, delegation, visibility. Four layers, built in order, because each one holds up the next.",
   },
   {
     year: "Today",
-    title: "Calm execution as the standard",
-    body: "Founders who take a real holiday. Teams who know what good looks like without asking. Businesses that keep their promises on the hardest weeks.",
+    title: "Four businesses at a time",
+    body: "Founders who can take a real holiday. Teams who know what good looks like without asking. Businesses that keep their promises on the hardest weeks.",
   },
 ] as const;
-
-const stats = [
-  { value: 40, suffix: "+", label: "Founder-led businesses guided" },
-  { value: 6, suffix: " weeks", label: "From audit to installed system" },
-  { value: 5, label: "Layers in the operating system" },
-  { value: 12, suffix: " yrs", label: "Operations practice" },
-];
 
 function FounderPortrait() {
   const ref = useRef<HTMLDivElement>(null);
@@ -109,7 +113,7 @@ function FounderPortrait() {
       >
         <motion.img
           src={portraitPhoto}
-          alt="Mary Njoroge, founder of Neostrategy"
+          alt={`${brand.founder}, founder of ${brand.name}`}
           width={1200}
           height={1200}
           style={reduced ? {} : { y }}
@@ -133,7 +137,7 @@ function FounderPortrait() {
       >
         <p className="font-display text-lg leading-snug">Nairobi, Kenya</p>
         <p className="mt-2 text-sm leading-relaxed text-foreground/75">
-          Working with founders across East Africa and beyond.
+          Working with founders across East Africa.
         </p>
       </motion.div>
     </div>
@@ -151,7 +155,7 @@ function About() {
           <div>
             <Reveal>
               <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-primary">
-                About Neostrategy
+                About {brand.name}
               </p>
             </Reveal>
             <SplitHeading
@@ -162,8 +166,7 @@ function About() {
             />
             <Reveal delay={0.5}>
               <p className="mt-8 max-w-lg text-lg leading-relaxed text-foreground/80">
-                A Nairobi operations consultancy for founder-led service businesses — installing the
-                systems that turn intensity into calm, repeatable execution.
+                An operations practice for founder-led service businesses across East Africa.
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <ActionLink to="/contact" size="lg">
@@ -180,19 +183,24 @@ function About() {
         </div>
       </section>
 
-      <Marquee
-        items={["Clarity attracts", "Systems scale", "Freedom lasts", "Nairobi, Kenya"]}
-      />
+      <Marquee items={["Clarity attracts", "Systems scale", "Freedom lasts", "Nairobi, Kenya"]} />
 
-      {/* Story */}
+      {/* What we believe */}
       <section>
         <div className="container-page section-y grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
-          <div className="space-y-7">
-            {paragraphs.map((text, i) => (
-              <Reveal key={i} delay={0.04 * i}>
-                <p className="text-lg leading-relaxed text-foreground/85">{text}</p>
-              </Reveal>
-            ))}
+          <div>
+            <Reveal>
+              <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-primary">
+                What we believe
+              </p>
+            </Reveal>
+            <div className="mt-8 space-y-7">
+              {paragraphs.map((text, i) => (
+                <Reveal key={i} delay={0.04 * i}>
+                  <p className="text-lg leading-relaxed text-foreground/85">{text}</p>
+                </Reveal>
+              ))}
+            </div>
           </div>
 
           <div className="lg:sticky lg:top-28 lg:self-start">
@@ -220,9 +228,9 @@ function About() {
                   In the business, not above it
                 </p>
                 <p className="mt-4 text-sm leading-relaxed text-foreground/75">
-                  Mary works with founders across Nairobi and beyond to build calm, systems-led
-                  businesses that keep their promises without their founder in the middle of
-                  everything.
+                  We work with founder-led service businesses across East Africa to build calm,
+                  systems-led operations that keep their promises without the founder in the middle
+                  of everything.
                 </p>
               </div>
             </motion.div>
@@ -230,10 +238,46 @@ function About() {
         </div>
       </section>
 
-      {/* Stats */}
+      {/* A note from Nduta */}
       <section className="gradient-wash border-y border-border/50">
-        <div className="container-page py-20 md:py-28">
-          <StatStrip stats={stats} />
+        <div className="container-page section-y grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+          <Reveal>
+            <div className="sheen overflow-hidden rounded-2xl border border-primary/12 shadow-[0_60px_110px_-70px_rgba(10,90,97,0.8)] lg:sticky lg:top-28">
+              <img
+                src={portraitPhoto}
+                alt={`${brand.founder}, founder of ${brand.name}`}
+                loading="lazy"
+                className="aspect-[4/5] w-full object-cover object-top"
+              />
+            </div>
+          </Reveal>
+          <div>
+            <Reveal>
+              <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-primary">
+                A note from Nduta
+              </p>
+            </Reveal>
+            <div className="mt-8 space-y-6">
+              {note.map((text, i) => (
+                <Reveal key={i} delay={0.04 * i}>
+                  <p
+                    className={
+                      i === 0
+                        ? "font-display text-2xl leading-snug md:text-[2rem]"
+                        : "text-lg leading-relaxed text-foreground/85"
+                    }
+                  >
+                    {text}
+                  </p>
+                </Reveal>
+              ))}
+            </div>
+            <Reveal delay={0.3}>
+              <p className="font-ui mt-8 text-sm uppercase tracking-[0.22em] text-primary">
+                {brand.founder} · Founder
+              </p>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -262,12 +306,12 @@ function About() {
         </div>
       </section>
 
-      {/* Beliefs — hover reveals the detail behind the title */}
+      {/* Three beliefs */}
       <section>
         <div className="container-page section-y">
           <Reveal>
             <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-primary">
-              What we believe
+              Three beliefs
             </p>
           </Reveal>
           <div className="mt-12 grid gap-8 md:grid-cols-3">
@@ -303,23 +347,7 @@ function About() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="gradient-deep grain relative overflow-hidden text-offwhite">
-        <div className="container-page section-y relative">
-          <SplitHeading
-            text="If the business stops when you do, that is the thing to fix first."
-            className="font-display max-w-3xl text-3xl leading-tight md:text-5xl"
-          />
-          <Reveal delay={0.3} className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <ActionLink to="/contact" variant="onDark" size="lg">
-              Book a call
-            </ActionLink>
-            <ActionLink to="/newsletter" variant="outline" size="lg" className="border-offwhite/40 text-offwhite hover:bg-offwhite/10">
-              Send me the guide
-            </ActionLink>
-          </Reveal>
-        </div>
-      </section>
+      <ClosingCTA />
     </>
   );
 }
