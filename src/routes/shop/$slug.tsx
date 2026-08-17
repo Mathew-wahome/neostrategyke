@@ -18,7 +18,7 @@ export const Route = createFileRoute("/shop/$slug")({
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.product.name} — Neostrategy Store` },
+          { title: `${loaderData.product.name} — Neostrategy Products` },
           {
             name: "description",
             content:
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/shop/$slug")({
     <div className="container-read py-32 text-center">
       <h1 className="font-display text-3xl">This resource did not load</h1>
       <Link to="/shop" className="font-ui mt-6 inline-block text-primary underline">
-        Back to the store
+        Back to the tools
       </Link>
     </div>
   ),
@@ -47,7 +47,7 @@ export const Route = createFileRoute("/shop/$slug")({
     <div className="container-read py-32 text-center">
       <h1 className="font-display text-3xl">We could not find that resource</h1>
       <Link to="/shop" className="font-ui mt-6 inline-block text-primary underline">
-        Back to the store
+        Back to the tools
       </Link>
     </div>
   ),
@@ -174,7 +174,7 @@ function ProductPage() {
         <section className="border-t border-border/60">
           <div className="container-page py-16 md:py-20">
             <Reveal>
-              <h2 className="font-display text-2xl md:text-3xl">Also in the store</h2>
+              <h2 className="font-display text-2xl md:text-3xl">Also in the tools</h2>
             </Reveal>
             <div className="mt-10 grid gap-8 sm:grid-cols-3">
               {related.map((p) => {
