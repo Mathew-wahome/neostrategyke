@@ -310,7 +310,7 @@ function Products() {
         ) : (rows ?? []).length === 0 ? (
           <Empty label="No products yet." />
         ) : (
-          <Table head={["Product", "Type", "Price", "State", ""]}>
+          <Table head={["Product", "Type", "Price", "Delivery", "State", ""]}>
             {(rows ?? []).map((p) => (
               <tr key={p.id} className="align-top">
                 <td className="px-4 py-4">
@@ -322,6 +322,19 @@ function Products() {
                   {p.category ? ` · ${p.category}` : ""}
                 </td>
                 <td className="px-4 py-4 text-muted-foreground">{money(p.price, p.currency)}</td>
+                <td className="px-4 py-4">
+                  {p.file_url || p.video_url ? (
+                    <span className="font-ui text-xs text-primary">
+                      {p.file_url
+                        ? isStoredFile(p.file_url)
+                          ? storedFileName(p.file_url)
+                          : "External link"
+                        : "Video only"}
+                    </span>
+                  ) : (
+                    <span className="font-ui text-xs text-destructive">No file — add one</span>
+                  )}
+                </td>
                 <td className="px-4 py-4">
                   <div className="font-ui flex flex-col gap-1 text-xs">
                     <button
