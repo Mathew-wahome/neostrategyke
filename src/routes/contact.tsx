@@ -28,16 +28,16 @@ export const Route = createFileRoute("/contact")({
 
   head: () => ({
     meta: [
-      { title: "Book a free call — NeoStrategy" },
+      { title: "Book a free call — Neostrategy" },
       {
         name: "description",
         content:
-          "Fifteen minutes, no pitch, just clarity. Book a free call with NeoStrategy to see where founder dependency is sitting in your business.",
+          "Fifteen minutes, no pitch, just clarity. Book a free call with Neostrategy to see where founder dependency is sitting in your business.",
       },
       { property: "og:title", content: "Let us talk about what you are building" },
       {
         property: "og:description",
-        content: "Book a free fifteen-minute call with NeoStrategy. No pitch, just clarity.",
+        content: "Book a free fifteen-minute call with Neostrategy. No pitch, just clarity.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -156,7 +156,7 @@ function Contact() {
     .map((s) => `${s.eyebrow}: ${answers[s.key] ?? "—"}`)
     .join(" · ");
 
-  const message = `Hi NeoStrategy, I just booked a free call for ${dateLabel} at ${time} (EAT). My name is ${form.name}${
+  const message = `Hi Neostrategy, I just booked a free call for ${dateLabel} at ${time} (EAT). My name is ${form.name}${
     form.business ? ` from ${form.business}` : ""
   }${stage ? ` — interested in ${stageLabels[stage as StageKey]}` : ""}.
 

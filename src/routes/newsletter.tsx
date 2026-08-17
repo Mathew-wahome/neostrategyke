@@ -7,7 +7,7 @@ import { photos } from "@/lib/photos";
 export const Route = createFileRoute("/newsletter")({
   head: () => ({
     meta: [
-      { title: "10 Systems Every Founder Needs — Free guide | NeoStrategy" },
+      { title: "10 Systems Every Founder Needs — Free guide | Neostrategy" },
       {
         name: "description",
         content:

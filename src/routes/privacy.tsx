@@ -4,10 +4,10 @@ import { brand } from "@/lib/brand";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — NeoStrategy" },
-      { name: "description", content: "How NeoStrategy collects, uses, and protects the personal information you share with us." },
-      { property: "og:title", content: "Privacy Policy — NeoStrategy" },
-      { property: "og:description", content: "How NeoStrategy handles the personal information you share with us." },
+      { title: "Privacy Policy — Neostrategy" },
+      { name: "description", content: "How Neostrategy collects, uses, and protects the personal information you share with us." },
+      { property: "og:title", content: "Privacy Policy — Neostrategy" },
+      { property: "og:description", content: "How Neostrategy handles the personal information you share with us." },
     ],
   }),
   component: Privacy,

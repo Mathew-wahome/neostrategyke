@@ -13,13 +13,13 @@ export const Route = createFileRoute("/shop/")({
   loader: async () => fetchProducts(),
   head: () => ({
     meta: [
-      { title: "The Store — Books, modules and systems | NeoStrategy" },
+      { title: "The Store — Books, modules and systems | Neostrategy" },
       {
         name: "description",
         content:
           "Books, video modules and template packs from Mary Njoroge. The systems we install with clients, built so a service founder can install them alone.",
       },
-      { property: "og:title", content: "The NeoStrategy Store" },
+      { property: "og:title", content: "The Neostrategy Store" },
       {
         property: "og:description",
         content: "Books, video modules and template packs for service founders who want calm.",

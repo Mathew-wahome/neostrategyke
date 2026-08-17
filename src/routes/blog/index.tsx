@@ -12,7 +12,7 @@ const covers = [photos.systems, photos.calm, photos.workshop, photos.session, ph
 export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
-      { title: "The thinking behind calm execution — NeoStrategy Journal" },
+      { title: "The thinking behind calm execution — Neostrategy Journal" },
       {
         name: "description",
         content:

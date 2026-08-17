@@ -1,10 +1,10 @@
 export const brand = {
-  name: "NeoStrategy",
+  name: "Neostrategy",
   tagline: "Clarity attracts. Systems scale. Freedom lasts.",
   founder: "Mary Njoroge",
   email: "hello@neostrategy.co.ke",
   location: "Nairobi, Kenya",
-  // NeoStrategy WhatsApp Business number (digits only, incl. country code)
+  // Neostrategy WhatsApp Business number (digits only, incl. country code)
   whatsappNumber: "254721744282",
 
   starterKitPrice: "KES 4,500",

@@ -101,7 +101,7 @@ function Bookings() {
                 <td className="px-4 py-4">
                   <a
                     href={whatsappLink(
-                      `Hi ${b.client_name}, this is ${brand.founder} from NeoStrategy confirming our call.`,
+                      `Hi ${b.client_name}, this is ${brand.founder} from Neostrategy confirming our call.`,
                     )}
                     target="_blank"
                     rel="noreferrer"

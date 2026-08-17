@@ -15,13 +15,13 @@ import portraitPhoto from "@/assets/mary-njoroge-portrait.png";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About NeoStrategy — Businesses that do not depend on founders" },
+      { title: "About Neostrategy — Businesses that do not depend on founders" },
       {
         name: "description",
         content:
-          "NeoStrategy is a Nairobi operations consultancy founded by Mary Njoroge, installing the systems that free founder-led service businesses from dependency.",
+          "Neostrategy is a Nairobi operations consultancy founded by Mary Njoroge, installing the systems that free founder-led service businesses from dependency.",
       },
-      { property: "og:title", content: "About NeoStrategy" },
+      { property: "og:title", content: "About Neostrategy" },
       {
         property: "og:description",
         content:
@@ -36,7 +36,7 @@ export const Route = createFileRoute("/about")({
 
 const paragraphs = [
   "Most founders do not have a business problem. They have a dependency problem. The business runs on them, their memory, their decisions, their presence, and it cannot move without them.",
-  "NeoStrategy exists to change that.",
+  "Neostrategy exists to change that.",
   "We believe a business should support a founder's life, not consume it. That the answer to founder overwhelm is not more hustle, but better design. And that the difference between a business that traps its founder and one that frees them is not effort. It is systems.",
   "A hustler pushes activity. A founder builds something that keeps working beyond their mood, their memory, and their daily intensity. Our entire practice is built to help founders become the second kind.",
   "We work with founder-led service businesses, coaches, consultants, agencies, and professional service firms, to install the operating systems that let them step back: systems the team can stand on, delivery that stays consistent, and operations that hold on the hardest days.",
@@ -69,7 +69,7 @@ const journey = [
   },
   {
     year: "The practice",
-    title: "NeoStrategy was built as an install, not advice",
+    title: "Neostrategy was built as an install, not advice",
     body: "Strategy decks do not change a Monday. So the work became operational: sit inside the business, map how it actually runs, and build the system with the people who will run it.",
   },
   {
@@ -109,7 +109,7 @@ function FounderPortrait() {
       >
         <motion.img
           src={portraitPhoto}
-          alt="Mary Njoroge, founder of NeoStrategy"
+          alt="Mary Njoroge, founder of Neostrategy"
           width={1200}
           height={1200}
           style={reduced ? {} : { y }}
@@ -151,7 +151,7 @@ function About() {
           <div>
             <Reveal>
               <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-primary">
-                About NeoStrategy
+                About Neostrategy
               </p>
             </Reveal>
             <SplitHeading

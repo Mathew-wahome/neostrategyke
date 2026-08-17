@@ -18,17 +18,17 @@ export const Route = createFileRoute("/shop/$slug")({
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.product.name} — NeoStrategy Store` },
+          { title: `${loaderData.product.name} — Neostrategy Store` },
           {
             name: "description",
             content:
               loaderData.product.short_description ??
-              `${loaderData.product.name} from NeoStrategy — instant digital delivery.`,
+              `${loaderData.product.name} from Neostrategy — instant digital delivery.`,
           },
           { property: "og:title", content: loaderData.product.name },
           {
             property: "og:description",
-            content: loaderData.product.short_description ?? "A NeoStrategy resource.",
+            content: loaderData.product.short_description ?? "A Neostrategy resource.",
           },
           { property: "og:type", content: "product" },
           { name: "twitter:card", content: "summary_large_image" },
@@ -65,7 +65,7 @@ function ProductPage() {
 
   const whatsappUrl = waLink(
     settings.whatsapp_number,
-    `Hi NeoStrategy, I'd like to buy ${product.name} (${money(product.price, product.currency)}).`,
+    `Hi Neostrategy, I'd like to buy ${product.name} (${money(product.price, product.currency)}).`,
   );
 
   return (

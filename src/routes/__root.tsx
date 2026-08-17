@@ -81,23 +81,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "NeoStrategy — Clarity attracts. Systems scale. Freedom lasts." },
+      { title: "Neostrategy — Clarity attracts. Systems scale. Freedom lasts." },
       {
         name: "description",
         content:
-          "NeoStrategy helps founder-led service businesses move from founder dependency to calm execution, so the business runs on systems, not on its founder.",
+          "Neostrategy helps founder-led service businesses move from founder dependency to calm execution, so the business runs on systems, not on its founder.",
       },
-      { name: "author", content: "NeoStrategy" },
-      { property: "og:title", content: "NeoStrategy — Clarity attracts. Systems scale. Freedom lasts." },
+      { name: "author", content: "Neostrategy" },
+      { property: "og:title", content: "Neostrategy — Clarity attracts. Systems scale. Freedom lasts." },
       {
         property: "og:description",
         content:
-          "NeoStrategy helps founder-led service businesses move from founder dependency to calm execution, so the business runs on systems, not on its founder.",
+          "Neostrategy helps founder-led service businesses move from founder dependency to calm execution, so the business runs on systems, not on its founder.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "NeoStrategy — Clarity attracts. Systems scale. Freedom lasts." },
-      { name: "twitter:description", content: "NeoStrategy helps founder-led service businesses move from founder dependency to calm execution, so the business runs on systems, not on its founder." },
+      { name: "twitter:title", content: "Neostrategy — Clarity attracts. Systems scale. Freedom lasts." },
+      { name: "twitter:description", content: "Neostrategy helps founder-led service businesses move from founder dependency to calm execution, so the business runs on systems, not on its founder." },
       { property: "og:image", content: "https://neostrategyke.lovable.app/og-image.png" },
       { name: "twitter:image", content: "https://neostrategyke.lovable.app/og-image.png" },
     ],

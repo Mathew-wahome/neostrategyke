@@ -83,7 +83,7 @@ const ladder = [
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "The Founder Operating System — NeoStrategy Services" },
+      { title: "The Founder Operating System — Neostrategy Services" },
       {
         name: "description",
         content:

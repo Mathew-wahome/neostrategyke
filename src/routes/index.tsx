@@ -15,17 +15,17 @@ import { carouselSlides, photos } from "@/lib/photos";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "NeoStrategy — Clarity attracts. Systems scale. Freedom lasts." },
+      { title: "Neostrategy — Clarity attracts. Systems scale. Freedom lasts." },
       {
         name: "description",
         content:
-          "NeoStrategy helps founder-led service businesses move from founder dependency to calm execution, so the business runs on systems, not on its founder.",
+          "Neostrategy helps founder-led service businesses move from founder dependency to calm execution, so the business runs on systems, not on its founder.",
       },
-      { property: "og:title", content: "NeoStrategy — Clarity attracts. Systems scale. Freedom lasts." },
+      { property: "og:title", content: "Neostrategy — Clarity attracts. Systems scale. Freedom lasts." },
       {
         property: "og:description",
         content:
-          "NeoStrategy helps founder-led service businesses move from founder dependency to calm execution, so the business runs on systems, not on its founder.",
+          "Neostrategy helps founder-led service businesses move from founder dependency to calm execution, so the business runs on systems, not on its founder.",
       },
     ],
   }),
@@ -90,7 +90,7 @@ function Hero() {
 
           <Reveal delay={0.45} className="mt-9 max-w-xl">
             <p className="text-lg leading-relaxed text-foreground/80 md:text-xl">
-              NeoStrategy helps founder-led service businesses move from founder dependency to calm
+              Neostrategy helps founder-led service businesses move from founder dependency to calm
               execution, so the business runs on systems, not on its founder.
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
