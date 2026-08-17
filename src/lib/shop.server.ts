@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
+import { PRODUCT_BUCKET, STORAGE_PREFIX } from "@/lib/product-files";
 
 export type StoreProduct = {
   id: string;
