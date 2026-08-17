@@ -236,10 +236,13 @@ function Products() {
               value={form.cover_image}
               onChange={(v) => setForm((f) => ({ ...f, cover_image: v }))}
             />
-            <Field
-              label="Download / file URL (delivered after payment)"
+            <FileField
+              label="Download file (delivered after payment)"
+              slug={form.slug || slugify(form.name)}
               value={form.file_url}
               onChange={(v) => setForm((f) => ({ ...f, file_url: v }))}
+              accept=".pdf,.zip,.docx,.xlsx,.pptx,.epub,.csv"
+              className="md:col-span-2"
             />
             <Field
               label="Video URL (for modules)"
