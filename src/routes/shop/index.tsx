@@ -52,12 +52,54 @@ function findStarterKit(products: StoreProduct[]) {
   );
 }
 
+type SortKey = "popular" | "price-asc" | "price-desc" | "newest";
+
+const sortLabels: Record<SortKey, string> = {
+  popular: "Most popular",
+  "price-asc": "Price: low to high",
+  "price-desc": "Price: high to low",
+  newest: "Curated order",
+};
+
 function Products() {
   const products = Route.useLoaderData() as StoreProduct[];
   const categories = useMemo(() => categoriesOf(products), [products]);
   const [active, setActive] = useState("All");
+  const [query, setQuery] = useState("");
+  const [sort, setSort] = useState<SortKey>("popular");
 
-  const shown = active === "All" ? products : products.filter((p) => p.category === active);
+  const priceCeiling = useMemo(
+    () => Math.max(1000, ...products.map((p) => Math.ceil(Number(p.price) / 500) * 500)),
+    [products],
+  );
+  const [maxPrice, setMaxPrice] = useState<number | null>(null);
+  const cap = maxPrice ?? priceCeiling;
+
+  const shown = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    const list = products.filter((p) => {
+      if (active !== "All" && p.category !== active) return false;
+      if (Number(p.price) > cap) return false;
+      if (!q) return true;
+      return [p.name, p.short_description, p.description, p.category, typeLabels[p.product_type]]
+        .filter(Boolean)
+        .some((field) => String(field).toLowerCase().includes(q));
+    });
+
+    const sorted = [...list];
+    if (sort === "price-asc") sorted.sort((a, b) => Number(a.price) - Number(b.price));
+    else if (sort === "price-desc") sorted.sort((a, b) => Number(b.price) - Number(a.price));
+    else if (sort === "popular")
+      sorted.sort(
+        (a, b) =>
+          (b.purchases ?? 0) - (a.purchases ?? 0) ||
+          Number(b.featured) - Number(a.featured) ||
+          a.sort_order - b.sort_order,
+      );
+    return sorted;
+  }, [products, active, cap, query, sort]);
+
+  const filtersOn = active !== "All" || query.trim() !== "" || maxPrice !== null;
   const starterKit = useMemo(() => findStarterKit(products), [products]);
 
   return (
