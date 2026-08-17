@@ -1,0 +1,2 @@
+delete from public.orders where provider_reference='neo_delivery_test_1';
+update public.products set file_url=null where slug='clarity-attracts-book' and file_url='sb://product-files/clarity-attracts-book/test-deliverable.pdf';
