@@ -1,0 +1,1 @@
+update public.products set file_url='sb://product-files/clarity-attracts-book/neo-test-deliverable.pdf' where slug='clarity-attracts-book';
