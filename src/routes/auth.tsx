@@ -10,10 +10,10 @@ import { ActionButton } from "@/components/ActionButton";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Staff sign in — NeoStrategy" },
-      { name: "description", content: "Private sign in for the NeoStrategy operations dashboard." },
-      { property: "og:title", content: "Staff sign in — NeoStrategy" },
-      { property: "og:description", content: "Private sign in for the NeoStrategy dashboard." },
+      { title: "Staff sign in — Neostrategy" },
+      { name: "description", content: "Private sign in for the Neostrategy operations dashboard." },
+      { property: "og:title", content: "Staff sign in — Neostrategy" },
+      { property: "og:description", content: "Private sign in for the Neostrategy dashboard." },
       { property: "og:type", content: "website" },
       { name: "robots", content: "noindex" },
     ],
@@ -72,10 +72,10 @@ function AuthPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-wash px-6 py-20">
       <div className="w-full max-w-md rounded-sm border border-border/70 bg-background p-10">
-        <Link to="/" aria-label="NeoStrategy home" className="group flex flex-col items-start gap-2">
+        <Link to="/" aria-label="Neostrategy home" className="group flex flex-col items-start gap-2">
           <img
             src={mark}
-            alt="NeoStrategy monogram"
+            alt="Neostrategy monogram"
             width={512}
             height={524}
             className="h-11 w-auto transition-transform duration-500 ease-out group-hover:scale-[1.04]"
@@ -93,7 +93,7 @@ function AuthPage() {
           {mode === "signin" ? "Sign in to the dashboard" : "Create your staff account"}
         </h1>
         <p className="font-ui mt-3 text-sm text-muted-foreground">
-          Private area for the NeoStrategy team.
+          Private area for the Neostrategy team.
         </p>
 
         <form onSubmit={onSubmit} className="mt-8 space-y-4">

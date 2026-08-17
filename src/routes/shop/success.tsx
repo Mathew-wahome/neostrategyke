@@ -14,9 +14,9 @@ export const Route = createFileRoute("/shop/success")({
   }),
   head: () => ({
     meta: [
-      { title: "Your order — NeoStrategy Store" },
-      { name: "description", content: "Your NeoStrategy purchase and download link." },
-      { property: "og:title", content: "Your NeoStrategy order" },
+      { title: "Your order — Neostrategy Products" },
+      { name: "description", content: "Your Neostrategy purchase and download link." },
+      { property: "og:title", content: "Your Neostrategy order" },
       { property: "og:description", content: "Payment confirmation and instant download." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -95,7 +95,7 @@ function Success() {
             </>
           )}
           <Link to="/shop" className="font-ui mt-10 inline-block text-sm text-primary underline">
-            Back to the store
+            Back to the tools
           </Link>
         </Reveal>
       </div>

@@ -52,7 +52,7 @@ function AdminShell() {
         <div className="max-w-md rounded-sm border border-border/70 bg-background p-10 text-center">
           <h1 className="font-display text-2xl">No dashboard access</h1>
           <p className="font-ui mt-3 text-sm text-muted-foreground">
-            This account is signed in but is not on the NeoStrategy staff list. Ask an admin to add
+            This account is signed in but is not on the Neostrategy staff list. Ask an admin to add
             you.
           </p>
           <button
@@ -73,10 +73,10 @@ function AdminShell() {
     <div className="flex min-h-screen bg-wash/50">
       <aside className="hidden w-60 shrink-0 border-r border-border/70 bg-background md:block">
         <div className="flex h-24 items-center px-5">
-          <Link to="/" aria-label="NeoStrategy home" className="group flex flex-col gap-1.5">
+          <Link to="/" aria-label="Neostrategy home" className="group flex flex-col gap-1.5">
             <img
               src={mark}
-              alt="NeoStrategy monogram"
+              alt="Neostrategy monogram"
               width={512}
               height={524}
               className="h-9 w-auto transition-transform duration-500 ease-out group-hover:scale-[1.04]"

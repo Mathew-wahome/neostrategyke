@@ -4,10 +4,10 @@ import { brand } from "@/lib/brand";
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms of Service — NeoStrategy" },
-      { name: "description", content: "The terms that govern the use of the NeoStrategy website, guides, and digital products." },
-      { property: "og:title", content: "Terms of Service — NeoStrategy" },
-      { property: "og:description", content: "Terms governing the use of the NeoStrategy website and digital products." },
+      { title: "Terms of Service — Neostrategy" },
+      { name: "description", content: "The terms that govern the use of the Neostrategy website, guides, and digital products." },
+      { property: "og:title", content: "Terms of Service — Neostrategy" },
+      { property: "og:description", content: "Terms governing the use of the Neostrategy website and digital products." },
     ],
   }),
   component: Terms,

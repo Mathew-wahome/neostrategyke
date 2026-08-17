@@ -12,7 +12,7 @@ import type { ReactNode } from "react";
 const nav = [
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
-  { to: "/shop", label: "Shop" },
+  { to: "/shop", label: "Products" },
   { to: "/blog", label: "Blog" },
   { to: "/newsletter", label: "Free guide" },
   { to: "/contact", label: "Contact" },
@@ -137,7 +137,7 @@ function Footer() {
               The weekly letter
             </p>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-offwhite/85">
-              10 Systems Every Founder Needs, free, plus one letter a week.
+              The Founder&rsquo;s Flow Map, free, plus one letter a week.
             </p>
             <NewsletterForm tone="dark" className="mt-5 max-w-md" source="footer" />
           </div>
@@ -160,14 +160,21 @@ function Footer() {
             <ul className="mt-4 space-y-2 text-offwhite/85">
               <li>{brand.email}</li>
               <li>{brand.location}</li>
+              {brand.linkedinUrl ? (
+                <li>
+                  <a
+                    href={brand.linkedinUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="transition-colors hover:text-offwhite"
+                  >
+                    LinkedIn
+                  </a>
+                </li>
+              ) : null}
               <li>
-                <a
-                  href="https://www.linkedin.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="transition-colors hover:text-offwhite"
-                >
-                  LinkedIn
+                <a href={`https://${brand.domain}`} className="transition-colors hover:text-offwhite">
+                  {brand.domain}
                 </a>
               </li>
             </ul>

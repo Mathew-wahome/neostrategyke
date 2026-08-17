@@ -10,10 +10,12 @@ export function NewsletterForm({
   tone = "light",
   className,
   source = "site",
+  cta = "Send me the guide",
 }: {
   tone?: Tone;
   className?: string;
   source?: string;
+  cta?: string;
 }) {
   const [email, setEmail] = useState("");
   const [pending, setPending] = useState(false);
@@ -77,7 +79,7 @@ export function NewsletterForm({
           disabled={pending}
           variant={tone === "dark" ? "onDark" : "primary"}
         >
-          {pending ? "Sending…" : "Send me the guide"}
+          {pending ? "Sending…" : cta}
         </ActionButton>
 
       </div>
@@ -87,7 +89,7 @@ export function NewsletterForm({
           tone === "dark" ? "text-offwhite/60" : "text-muted-foreground",
         )}
       >
-        Free. Unsubscribe anytime.
+        Free. Leave any time.
       </p>
     </form>
   );
