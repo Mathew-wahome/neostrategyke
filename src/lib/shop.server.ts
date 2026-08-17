@@ -322,9 +322,26 @@ export async function verifyOrder(reference: string): Promise<OrderReceipt> {
     product_name: row.products?.name ?? null,
     amount: Number(row.amount ?? 0),
     currency: row.currency ?? "KES",
-    file_url: paid ? (row.products?.file_url ?? null) : null,
-    video_url: paid ? (row.products?.video_url ?? null) : null,
+    file_url: paid ? await deliverableUrl(row.products?.file_url ?? null) : null,
+    video_url: paid ? await deliverableUrl(row.products?.video_url ?? null) : null,
   };
+}
+
+/**
+ * Product deliverables are either a plain external URL or a file stored in the
+ * private `product-files` bucket, saved as `sb://product-files/<path>`. Private
+ * files are handed out as short-lived signed links, only after payment clears.
+ */
+export async function deliverableUrl(stored: string | null): Promise<string | null> {
+  if (!stored) return null;
+  if (!stored.startsWith(STORAGE_PREFIX)) return stored;
+
+  const path = stored.slice(STORAGE_PREFIX.length);
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  const { data } = await supabaseAdmin.storage
+    .from(PRODUCT_BUCKET)
+    .createSignedUrl(path, 60 * 60 * 24, { download: true });
+  return data?.signedUrl ?? null;
 }
 
 export async function markOrderPaid(reference: string) {
