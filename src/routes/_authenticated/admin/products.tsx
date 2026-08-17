@@ -417,7 +417,7 @@ function FileField({
     const key = objectKey(slug, file.name);
     const { error } = await supabase.storage
       .from(PRODUCT_BUCKET)
-      .upload(key, file, { upsert: true, contentType: file.type || undefined });
+      .upload(key, file, { upsert: true, contentType: file.type || "application/octet-stream" });
     setBusy(false);
     if (error) {
       toast.error("Upload failed — check the file and try again.");
