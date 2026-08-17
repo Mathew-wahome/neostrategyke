@@ -386,3 +386,85 @@ function Field({
     </label>
   );
 }
+
+function FileField({
+  label,
+  slug,
+  value,
+  onChange,
+  accept,
+  className,
+}: {
+  label: string;
+  slug: string;
+  value: string;
+  onChange: (v: string) => void;
+  accept?: string;
+  className?: string;
+}) {
+  const [busy, setBusy] = useState(false);
+  const stored = isStoredFile(value);
+
+  async function upload(file: File) {
+    setBusy(true);
+    const key = objectKey(slug, file.name);
+    const { error } = await supabase.storage
+      .from(PRODUCT_BUCKET)
+      .upload(key, file, { upsert: true, contentType: file.type || undefined });
+    setBusy(false);
+    if (error) {
+      toast.error("Upload failed — check the file and try again.");
+      return;
+    }
+    onChange(`${STORAGE_PREFIX}${key}`);
+    toast.success("File uploaded. Save the product to publish it.");
+  }
+
+  return (
+    <div className={`block ${className ?? ""}`}>
+      <Label>{label}</Label>
+      <div className="mt-2 space-y-3">
+        <div className="font-ui flex flex-wrap items-center gap-3 text-sm">
+          <label className="cursor-pointer rounded-sm border border-border px-4 py-2 text-xs uppercase tracking-[0.16em] hover:border-primary hover:text-primary">
+            {busy ? "Uploading…" : stored ? "Replace file" : "Upload file"}
+            <input
+              type="file"
+              accept={accept}
+              disabled={busy}
+              className="hidden"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) void upload(file);
+                e.target.value = "";
+              }}
+            />
+          </label>
+          {value ? (
+            <span className="text-xs text-muted-foreground">
+              {stored ? `Private file · ${storedFileName(value)}` : "External link"}
+            </span>
+          ) : (
+            <span className="text-xs text-muted-foreground">
+              No file yet — buyers will not see a download link.
+            </span>
+          )}
+          {value && (
+            <button
+              type="button"
+              onClick={() => onChange("")}
+              className="text-xs text-muted-foreground underline underline-offset-4"
+            >
+              Remove
+            </button>
+          )}
+        </div>
+        <input
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder="…or paste an external download URL"
+          className="font-ui h-10 w-full rounded-sm border border-input bg-background px-3 text-sm outline-none focus:border-primary"
+        />
+      </div>
+    </div>
+  );
+}
