@@ -138,7 +138,11 @@ function Products() {
               <p className="font-ui mt-8 text-sm text-muted-foreground">
                 Coming soon. Join the list and we will tell you first.
               </p>
-              <NewsletterForm className="mt-4" source="products_guide" cta="Tell me first" />
+              <NewsletterForm
+                className="mt-4 [&_form]:flex-col [&_button]:w-full"
+                source="products_guide"
+                cta="Tell me first"
+              />
             </article>
           </Reveal>
 
