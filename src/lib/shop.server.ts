@@ -16,6 +16,8 @@ export type StoreProduct = {
   preview_url: string | null;
   featured: boolean;
   sort_order: number;
+  /** Number of paid orders — used for the "most popular" sort in the shop. */
+  purchases?: number;
 };
 
 const COLUMNS =
