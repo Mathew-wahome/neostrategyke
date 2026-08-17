@@ -222,20 +222,89 @@ function Products() {
               <h2 className="font-display text-3xl leading-tight md:text-[2.75rem]">
                 Everything in the shelf
               </h2>
-              <div className="font-ui flex flex-wrap gap-2">
-                {categories.map((c) => (
-                  <button
-                    key={c}
-                    onClick={() => setActive(c)}
-                    className={`relative rounded-full border px-4 py-2 text-xs uppercase tracking-[0.16em] transition-colors duration-300 ${
-                      active === c
-                        ? "border-primary bg-primary text-primary-foreground"
-                        : "border-border text-muted-foreground hover:border-primary/50 hover:text-foreground"
-                    }`}
-                  >
-                    {c}
-                  </button>
-                ))}
+              <p className="font-ui text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                {shown.length} {shown.length === 1 ? "tool" : "tools"}
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.08}>
+              <div className="glass-card mt-10 rounded-2xl p-5 md:p-6">
+                <div className="grid gap-5 lg:grid-cols-[1.4fr_1fr_1fr] lg:items-center">
+                  <label className="block">
+                    <span className="sr-only">Search products</span>
+                    <div className="relative">
+                      <span
+                        aria-hidden
+                        className="font-ui pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-sm text-muted-foreground"
+                      >
+                        ⌕
+                      </span>
+                      <input
+                        type="search"
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        placeholder="Search SOPs, templates, guides…"
+                        className="font-ui h-12 w-full rounded-sm border border-input bg-background/80 pl-10 pr-4 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-primary"
+                      />
+                    </div>
+                  </label>
+
+                  <label className="font-ui block text-[0.62rem] uppercase tracking-[0.22em] text-muted-foreground">
+                    Up to {money(cap)}
+                    <input
+                      type="range"
+                      min={0}
+                      max={priceCeiling}
+                      step={500}
+                      value={cap}
+                      onChange={(e) => setMaxPrice(Number(e.target.value))}
+                      className="mt-3 h-1 w-full cursor-pointer appearance-none rounded-full bg-primary/20 accent-primary"
+                    />
+                  </label>
+
+                  <label className="font-ui block text-[0.62rem] uppercase tracking-[0.22em] text-muted-foreground">
+                    Sort by
+                    <select
+                      value={sort}
+                      onChange={(e) => setSort(e.target.value as SortKey)}
+                      className="font-ui mt-2 h-12 w-full rounded-sm border border-input bg-background/80 px-3 text-sm normal-case tracking-normal text-foreground outline-none transition-colors focus:border-primary"
+                    >
+                      {(Object.keys(sortLabels) as SortKey[]).map((k) => (
+                        <option key={k} value={k}>
+                          {sortLabels[k]}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+
+                <div className="font-ui mt-5 flex flex-wrap items-center gap-2 border-t border-primary/10 pt-5">
+                  {categories.map((c) => (
+                    <button
+                      key={c}
+                      onClick={() => setActive(c)}
+                      className={`relative rounded-full border px-4 py-2 text-xs uppercase tracking-[0.16em] transition-colors duration-300 ${
+                        active === c
+                          ? "border-primary bg-primary text-primary-foreground"
+                          : "border-border text-muted-foreground hover:border-primary/50 hover:text-foreground"
+                      }`}
+                    >
+                      {c}
+                    </button>
+                  ))}
+                  {filtersOn && (
+                    <button
+                      onClick={() => {
+                        setActive("All");
+                        setQuery("");
+                        setMaxPrice(null);
+                      }}
+                      className="link-sweep ml-auto text-xs uppercase tracking-[0.16em] text-primary"
+                    >
+                      Clear filters
+                    </button>
+                  )}
+                </div>
               </div>
             </Reveal>
 
@@ -249,7 +318,9 @@ function Products() {
 
             {shown.length === 0 && (
               <p className="font-ui mt-16 text-center text-sm text-muted-foreground">
-                Nothing in this shelf yet. New tools are added regularly.
+                {filtersOn
+                  ? "Nothing matches those filters yet. Try a wider price or a different search."
+                  : "Nothing in this shelf yet. New tools are added regularly."}
               </p>
             )}
           </div>
