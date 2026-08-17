@@ -95,7 +95,7 @@ function ProductPage() {
           <Reveal delay={0.12}>
             <div className="font-ui flex flex-wrap items-center gap-3 text-[0.65rem] uppercase tracking-[0.22em]">
               <Link to="/shop" className="text-muted-foreground hover:text-primary">
-                Store
+                Products
               </Link>
               <span className="text-border">/</span>
               <span className="text-primary">
