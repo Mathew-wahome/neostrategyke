@@ -38,7 +38,27 @@ export async function listStoreProducts(): Promise<StoreProduct[]> {
     .eq("is_active", true)
     .order("sort_order", { ascending: true })
     .order("created_at", { ascending: true });
-  return (data ?? []) as unknown as StoreProduct[];
+
+  const products = (data ?? []) as unknown as StoreProduct[];
+  if (products.length === 0) return products;
+
+  // Purchase counts drive the "most popular" sort. Orders are admin-only, and we
+  // only ever expose the aggregate count, never any order detail.
+  const counts = new Map<string, number>();
+  try {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: orders } = await supabaseAdmin
+      .from("orders")
+      .select("product_id")
+      .eq("payment_status", "paid");
+    for (const row of (orders ?? []) as { product_id: string | null }[]) {
+      if (row.product_id) counts.set(row.product_id, (counts.get(row.product_id) ?? 0) + 1);
+    }
+  } catch {
+    /* popularity is a nice-to-have; never block the catalogue on it */
+  }
+
+  return products.map((p) => ({ ...p, purchases: counts.get(p.id) ?? 0 }));
 }
 
 export async function getStoreProduct(slug: string): Promise<StoreProduct | null> {
