@@ -5,6 +5,13 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Empty, PageHeader, Panel, Table, useRows } from "@/components/admin/AdminUI";
 import { money, typeLabels, typeOptions } from "@/lib/shop";
+import {
+  PRODUCT_BUCKET,
+  STORAGE_PREFIX,
+  isStoredFile,
+  objectKey,
+  storedFileName,
+} from "@/lib/product-files";
 
 export const Route = createFileRoute("/_authenticated/admin/products")({
   component: Products,
@@ -236,10 +243,13 @@ function Products() {
               value={form.cover_image}
               onChange={(v) => setForm((f) => ({ ...f, cover_image: v }))}
             />
-            <Field
-              label="Download / file URL (delivered after payment)"
+            <FileField
+              label="Download file (delivered after payment)"
+              slug={form.slug || slugify(form.name)}
               value={form.file_url}
               onChange={(v) => setForm((f) => ({ ...f, file_url: v }))}
+              accept=".pdf,.zip,.docx,.xlsx,.pptx,.epub,.csv"
+              className="md:col-span-2"
             />
             <Field
               label="Video URL (for modules)"
@@ -300,7 +310,7 @@ function Products() {
         ) : (rows ?? []).length === 0 ? (
           <Empty label="No products yet." />
         ) : (
-          <Table head={["Product", "Type", "Price", "State", ""]}>
+          <Table head={["Product", "Type", "Price", "Delivery", "State", ""]}>
             {(rows ?? []).map((p) => (
               <tr key={p.id} className="align-top">
                 <td className="px-4 py-4">
@@ -312,6 +322,19 @@ function Products() {
                   {p.category ? ` · ${p.category}` : ""}
                 </td>
                 <td className="px-4 py-4 text-muted-foreground">{money(p.price, p.currency)}</td>
+                <td className="px-4 py-4">
+                  {p.file_url || p.video_url ? (
+                    <span className="font-ui text-xs text-primary">
+                      {p.file_url
+                        ? isStoredFile(p.file_url)
+                          ? storedFileName(p.file_url)
+                          : "External link"
+                        : "Video only"}
+                    </span>
+                  ) : (
+                    <span className="font-ui text-xs text-destructive">No file — add one</span>
+                  )}
+                </td>
                 <td className="px-4 py-4">
                   <div className="font-ui flex flex-col gap-1 text-xs">
                     <button
@@ -381,5 +404,87 @@ function Field({
         className="font-ui mt-2 h-10 w-full rounded-sm border border-input bg-background px-3 text-sm outline-none focus:border-primary"
       />
     </label>
+  );
+}
+
+function FileField({
+  label,
+  slug,
+  value,
+  onChange,
+  accept,
+  className,
+}: {
+  label: string;
+  slug: string;
+  value: string;
+  onChange: (v: string) => void;
+  accept?: string;
+  className?: string;
+}) {
+  const [busy, setBusy] = useState(false);
+  const stored = isStoredFile(value);
+
+  async function upload(file: File) {
+    setBusy(true);
+    const key = objectKey(slug, file.name);
+    const { error } = await supabase.storage
+      .from(PRODUCT_BUCKET)
+      .upload(key, file, { upsert: true, contentType: file.type || "application/octet-stream" });
+    setBusy(false);
+    if (error) {
+      toast.error("Upload failed — check the file and try again.");
+      return;
+    }
+    onChange(`${STORAGE_PREFIX}${key}`);
+    toast.success("File uploaded. Save the product to publish it.");
+  }
+
+  return (
+    <div className={`block ${className ?? ""}`}>
+      <Label>{label}</Label>
+      <div className="mt-2 space-y-3">
+        <div className="font-ui flex flex-wrap items-center gap-3 text-sm">
+          <label className="cursor-pointer rounded-sm border border-border px-4 py-2 text-xs uppercase tracking-[0.16em] hover:border-primary hover:text-primary">
+            {busy ? "Uploading…" : stored ? "Replace file" : "Upload file"}
+            <input
+              type="file"
+              accept={accept}
+              disabled={busy}
+              className="hidden"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) void upload(file);
+                e.target.value = "";
+              }}
+            />
+          </label>
+          {value ? (
+            <span className="text-xs text-muted-foreground">
+              {stored ? `Private file · ${storedFileName(value)}` : "External link"}
+            </span>
+          ) : (
+            <span className="text-xs text-muted-foreground">
+              No file yet — buyers will not see a download link.
+            </span>
+          )}
+          {value && (
+            <button
+              type="button"
+              onClick={() => onChange("")}
+              className="text-xs text-muted-foreground underline underline-offset-4"
+            >
+              Remove
+            </button>
+          )}
+        </div>
+        <input
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder="…or paste an external download URL"
+          className="font-ui h-10 w-full rounded-sm border border-input bg-background px-3 text-sm outline-none focus:border-primary"
+        />
+      </div>
+    </div>
   );
 }
