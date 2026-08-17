@@ -417,9 +417,6 @@ function Index() {
               source="home"
               cta="Send me the guide"
             />
-            <p className="font-ui mt-4 text-xs uppercase tracking-[0.2em] text-offwhite/55">
-              Free. Leave any time.
-            </p>
           </Reveal>
         </div>
       </section>
