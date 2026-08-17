@@ -1,0 +1,3 @@
+insert into public.orders (product_id, customer_name, email, amount, currency, provider, provider_reference, status, payment_status, paid_at)
+select id, 'Delivery Test', 'delivery.test@example.com', price, currency, 'paystack', 'neo_delivery_test_1', 'fulfilled', 'paid', now() from public.products where slug='clarity-attracts-book';
+update public.products set file_url='sb://product-files/clarity-attracts-book/test-deliverable.pdf' where slug='clarity-attracts-book';
