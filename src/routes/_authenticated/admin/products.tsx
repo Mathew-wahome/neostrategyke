@@ -5,6 +5,13 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Empty, PageHeader, Panel, Table, useRows } from "@/components/admin/AdminUI";
 import { money, typeLabels, typeOptions } from "@/lib/shop";
+import {
+  PRODUCT_BUCKET,
+  STORAGE_PREFIX,
+  isStoredFile,
+  objectKey,
+  storedFileName,
+} from "@/lib/product-files";
 
 export const Route = createFileRoute("/_authenticated/admin/products")({
   component: Products,
