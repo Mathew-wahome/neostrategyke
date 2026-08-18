@@ -1,9 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ClosingCTA } from "@/components/ClosingCTA";
-import { ImageFrame } from "@/components/ImageFrame";
+import { Chalkboard, ChalkChecklist, FlowBoard, Whiteboard } from "@/components/Explainers";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { Reveal } from "@/components/Reveal";
-import { photos } from "@/lib/photos";
 
 export const Route = createFileRoute("/newsletter")({
   head: () => ({
@@ -31,13 +30,7 @@ function Newsletter() {
   return (
     <>
       <section className="gradient-deep relative overflow-hidden text-offwhite">
-        <img
-          src={photos.texture.src}
-          alt=""
-          aria-hidden
-          className="drift pointer-events-none absolute inset-0 size-full object-cover opacity-20"
-        />
-        <div className="container-page relative grid items-center gap-14 py-20 md:py-32 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="container-page relative grid items-center gap-14 py-14 md:py-20 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <Reveal>
               <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-offwhite/70">
@@ -69,8 +62,28 @@ function Newsletter() {
               />
             </Reveal>
           </div>
-          <Reveal delay={0.15}>
-            <ImageFrame src={photos.systems.src} alt={photos.systems.alt} ratio="aspect-[4/5]" priority />
+          <Reveal delay={0.15} className="space-y-4">
+            <Whiteboard kicker="Page one" title="How work really moves">
+              <FlowBoard
+                steps={[
+                  { label: "First message" },
+                  { label: "Yes, please" },
+                  { label: "Delivered" },
+                  { label: "Money landed" },
+                ]}
+              />
+            </Whiteboard>
+            <Chalkboard kicker="Page two" title="The five to write down first">
+              <ChalkChecklist
+                items={[
+                  "The one you explain every week",
+                  "The one that breaks when you are away",
+                  "The one that decides whether you get paid",
+                  "The one a new hire needs on day one",
+                  "The one that keeps a client, or loses one",
+                ]}
+              />
+            </Chalkboard>
           </Reveal>
         </div>
       </section>
