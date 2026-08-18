@@ -372,8 +372,8 @@ export function ProductGlyph({
   className,
 }: {
   kind: GlyphKind;
-  label?: string;
-  className?: string;
+  label?: string | undefined;
+  className?: string | undefined;
 }) {
   const stroke = "var(--teal-deep)";
   const accent = "var(--teal)";
