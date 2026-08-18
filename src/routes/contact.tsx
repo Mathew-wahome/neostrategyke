@@ -141,55 +141,8 @@ function Enquiry() {
     }
   }
 
-  if (sent && budget === LOW_BUDGET) {
-    return (
-      <>
-        <section className="gradient-page">
-          <div className="container-read py-24 md:py-32">
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="rounded-2xl border border-primary/15 bg-teal-wash px-6 py-12 md:px-12"
-            >
-              <p className="font-ui text-xs uppercase tracking-[0.2em] text-primary">
-                Where to start
-              </p>
-              <h1 className="font-display mt-4 text-3xl leading-tight md:text-4xl">
-                Thank you for telling us about {form.business || "your business"}.
-              </h1>
-              <div className="mt-6 space-y-5 text-lg leading-relaxed text-foreground/80">
-                <p>
-                  Our engagements start higher than the range you have set aside. Rather than take
-                  an hour of your time to tell you that, here is where we would actually start you.
-                </p>
-                <p>
-                  The Founder&rsquo;s Flow Map, free. It shows how work moves through your business
-                  and which five things to write down first. Most founders find it answers the
-                  question they were actually stuck on.
-                </p>
-                <p>The Starter Kit, if you want the templates to build from.</p>
-                <p>
-                  If the business grows into something bigger later, we would be glad to hear from
-                  you. This is not a no. It is a not yet, and the free map is the right first step
-                  either way.
-                </p>
-              </div>
-              <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-                <ActionLink to="/newsletter" size="lg">
-                  Send me the map
-                </ActionLink>
-                <ActionLink to="/shop" variant="outline" size="lg">
-                  See the tools
-                </ActionLink>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-        <ClosingCTA />
-      </>
-    );
-  }
+
+
 
   return (
     <>
