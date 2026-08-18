@@ -158,8 +158,21 @@ function Footer() {
           <div className="font-ui text-sm">
             <p className="text-xs uppercase tracking-[0.18em] text-offwhite/60">Contact</p>
             <ul className="mt-4 space-y-2 text-offwhite/85">
-              <li>{brand.email}</li>
+              <li>
+                <a
+                  href={`mailto:${brand.email}`}
+                  className="transition-colors hover:text-offwhite"
+                >
+                  {brand.email}
+                </a>
+              </li>
               <li>{brand.location}</li>
+              <li>
+                <Link to="/contact" className="transition-colors hover:text-offwhite">
+                  Book a discovery call
+                </Link>
+              </li>
+
               {brand.linkedinUrl ? (
                 <li>
                   <a
