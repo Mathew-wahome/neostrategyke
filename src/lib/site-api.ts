@@ -68,6 +68,44 @@ export async function createBooking(input: {
   if (error) throw error;
 }
 
+/**
+ * The discovery-call enquiry endpoint. Saves a lead and a matching booking
+ * request so every enquiry lands in the CRM as something to follow up on.
+ */
+export async function requestDiscoveryCall(input: {
+  name: string;
+  email: string;
+  phone?: string | undefined;
+  business_name?: string | undefined;
+  notes?: string | undefined;
+  services_stage_interest?: string | null;
+}) {
+  const lead_id = await createLead({
+    name: input.name,
+    email: input.email,
+    phone: input.phone,
+    business_name: input.business_name,
+    source: "discovery_call",
+    services_stage_interest: input.services_stage_interest ?? null,
+    notes: input.notes,
+  });
+  if (!lead_id) return null;
+
+  // No calendar in the flow: the request is logged now and scheduled by hand.
+  const { error } = await supabase.from("bookings").insert({
+    client_name: input.name,
+    email: input.email,
+    phone: input.phone || null,
+    business_name: input.business_name || null,
+    notes: input.notes || null,
+    scheduled_at: new Date().toISOString(),
+    services_stage_interest: input.services_stage_interest ?? null,
+    lead_id,
+  });
+  if (error) return null;
+  return lead_id;
+}
+
 export async function createOrder(input: {
   customer_name: string;
   email: string;

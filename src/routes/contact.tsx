@@ -6,7 +6,7 @@ import { ClosingCTA } from "@/components/ClosingCTA";
 import { Whiteboard, FlowBoard, StickyWall } from "@/components/Explainers";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { Reveal } from "@/components/Reveal";
-import { createLead } from "@/lib/site-api";
+import { requestDiscoveryCall } from "@/lib/site-api";
 import { toast } from "sonner";
 
 type StageKey = "clarity" | "audit" | "install" | "partnership";
@@ -122,12 +122,11 @@ function Enquiry() {
       .join("\n\n");
 
     try {
-      const id = await createLead({
+      const id = await requestDiscoveryCall({
         name: form.name,
         email: form.email,
         phone: form.phone,
         business_name: form.business,
-        source: "enquiry_form",
         services_stage_interest: interest,
         notes,
       });
