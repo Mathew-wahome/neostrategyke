@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion } from "motion/react";
-import { ActionButton, ActionLink } from "@/components/ActionButton";
+import { ActionButton } from "@/components/ActionButton";
 import { ClosingCTA } from "@/components/ClosingCTA";
 import { Whiteboard, FlowBoard, StickyWall } from "@/components/Explainers";
 import { NewsletterForm } from "@/components/NewsletterForm";
@@ -146,7 +146,7 @@ function Enquiry() {
   return (
     <>
       <section className="gradient-page relative overflow-hidden">
-        <div className="container-page grid items-center gap-12 pt-20 pb-16 md:pt-32 md:pb-20 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="container-page grid items-center gap-12 pt-14 pb-10 md:pt-20 md:pb-14 lg:grid-cols-[1.05fr_0.95fr]">
           <Reveal>
             <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-primary">
               The enquiry form
@@ -195,7 +195,7 @@ function Enquiry() {
       </section>
 
       <section className="border-t border-border/60">
-        <div className="container-read py-16 md:py-24">
+        <div className="container-read py-12 md:py-16">
           {sent ? (
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -304,7 +304,7 @@ function Enquiry() {
       </section>
 
       <section className="border-t border-border/60 bg-teal-wash">
-        <div className="container-read py-20">
+        <div className="container-read py-12 md:py-16">
           <Reveal>
             <p className="text-lg text-foreground/85">
               Not ready to talk? Get the Founder&rsquo;s Flow Map, free, and start there.
