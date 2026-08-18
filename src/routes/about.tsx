@@ -3,13 +3,12 @@ import { motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 import { useRef } from "react";
 import { ActionLink } from "@/components/ActionButton";
 import { ClosingCTA } from "@/components/ClosingCTA";
-import { ImageFrame } from "@/components/ImageFrame";
+import { BeforeAfter, ChalkChecklist, Chalkboard, StickyWall, Whiteboard } from "@/components/Explainers";
 import { Journey } from "@/components/Journey";
 import { Marquee } from "@/components/Marquee";
 import { Reveal } from "@/components/Reveal";
 import { SplitHeading } from "@/components/SplitHeading";
 import { brand } from "@/lib/brand";
-import { photos } from "@/lib/photos";
 import portraitPhoto from "@/assets/mary-njoroge-portrait.png";
 
 export const Route = createFileRoute("/about")({
@@ -151,7 +150,7 @@ function About() {
     <>
       {/* Hero */}
       <section className="gradient-page relative overflow-hidden">
-        <div className="container-page grid items-center gap-16 pt-20 pb-28 md:pt-32 md:pb-36 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="container-page grid items-center gap-16 pt-14 pb-16 md:pt-20 md:pb-20 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <Reveal>
               <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-primary">
@@ -187,7 +186,7 @@ function About() {
 
       {/* What we believe */}
       <section>
-        <div className="container-page section-y grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+        <div className="container-page section-y grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
           <div>
             <Reveal>
               <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-primary">
@@ -205,34 +204,39 @@ function About() {
 
           <div className="lg:sticky lg:top-28 lg:self-start">
             <motion.div
-              initial={reduced ? false : { opacity: 0, y: 26, scale: 0.97 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              initial={reduced ? false : { opacity: 0, y: 26 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-              className="relative"
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-4"
             >
-              <div className="pointer-events-none absolute -inset-6 -z-10 rounded-lg bg-[radial-gradient(60%_60%_at_50%_20%,color-mix(in_oklab,var(--teal)_20%,transparent),transparent_70%)]" />
-              <div className="overflow-hidden rounded-lg shadow-[0_50px_90px_-55px_rgba(10,90,97,0.6)]">
-                <img
-                  src={photos.session.src}
-                  alt={photos.session.alt}
-                  loading="lazy"
-                  width={1200}
-                  height={1200}
-                  className="aspect-square w-full object-cover transition-transform duration-[1400ms] ease-out hover:scale-105"
+              <Whiteboard kicker="The diagnosis" title="Dependency, not effort">
+                <BeforeAfter
+                  before={{
+                    title: "Runs on the founder",
+                    items: [
+                      "Every decision routes through one person",
+                      "Quality changes with who is available",
+                      "Knowledge lives in memory and WhatsApp",
+                    ],
+                  }}
+                  after={{
+                    title: "Runs on a system",
+                    items: [
+                      "Decisions have owners and limits",
+                      "Delivery holds whoever runs it",
+                      "Knowledge lives where the team works",
+                    ],
+                  }}
                 />
-              </div>
-              <div className="glass-card mt-[-2.5rem] ml-4 mr-8 rounded-2xl px-6 py-5">
-                <p className="font-display text-xl leading-snug">A different kind of consultant</p>
-                <p className="font-ui mt-1 text-[0.68rem] uppercase tracking-[0.24em] text-primary">
-                  In the business, not above it
-                </p>
-                <p className="mt-4 text-sm leading-relaxed text-foreground/75">
-                  We work with founder-led service businesses across East Africa to build calm,
-                  systems-led operations that keep their promises without the founder in the middle
-                  of everything.
-                </p>
-              </div>
+              </Whiteboard>
+              <StickyWall
+                columns="grid-cols-2"
+                notes={[
+                  { label: "We build", text: "Systems your team can stand on" },
+                  { label: "Not", text: "A strategy deck nobody opens" },
+                ]}
+              />
             </motion.div>
           </div>
         </div>
@@ -240,7 +244,7 @@ function About() {
 
       {/* A note from Nduta */}
       <section className="gradient-wash border-y border-border/50">
-        <div className="container-page section-y grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+        <div className="container-page section-y grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
           <Reveal>
             <div className="sheen overflow-hidden rounded-2xl border border-primary/12 shadow-[0_60px_110px_-70px_rgba(10,90,97,0.8)] lg:sticky lg:top-28">
               <img
@@ -283,13 +287,6 @@ function About() {
 
       {/* Journey */}
       <section className="gradient-deep grain relative overflow-hidden text-offwhite">
-        <img
-          src={photos.texture.src}
-          alt=""
-          aria-hidden
-          loading="lazy"
-          className="drift pointer-events-none absolute inset-0 size-full object-cover opacity-10"
-        />
         <div className="container-page section-y relative">
           <Reveal className="max-w-2xl">
             <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-offwhite/70">
@@ -300,7 +297,7 @@ function About() {
             text="A practice built from one repeating pattern."
             className="font-display mt-5 max-w-3xl text-[2.1rem] leading-[1.08] md:text-5xl"
           />
-          <div className="mt-16 text-offwhite/90 [&_h3]:text-offwhite [&_p]:text-offwhite/75">
+          <div className="mt-10 text-offwhite/90 [&_h3]:text-offwhite [&_p]:text-offwhite/75">
             <Journey steps={journey} />
           </div>
         </div>
@@ -314,7 +311,7 @@ function About() {
               Three beliefs
             </p>
           </Reveal>
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
             {beliefs.map((b, i) => (
               <Reveal key={b.title} delay={i * 0.1}>
                 <div className="lift group relative h-full overflow-hidden rounded-2xl border border-border/70 bg-card p-7">
@@ -340,9 +337,17 @@ function About() {
             ))}
           </div>
 
-          <Reveal delay={0.2} className="mt-16 grid gap-6 md:grid-cols-2">
-            <ImageFrame src={photos.team.src} alt={photos.team.alt} ratio="aspect-[4/3]" />
-            <ImageFrame src={photos.calm.src} alt={photos.calm.alt} ratio="aspect-[4/3]" />
+          <Reveal delay={0.2} className="mt-10">
+            <Chalkboard kicker="How we measure the work" title="What is still standing on the weeks you are away">
+              <ChalkChecklist
+                items={[
+                  "Clients served to the same standard",
+                  "Invoices raised and followed up",
+                  "New enquiries answered inside a day",
+                  "Decisions made without a phone call to you",
+                ]}
+              />
+            </Chalkboard>
           </Reveal>
         </div>
       </section>
