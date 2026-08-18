@@ -168,13 +168,30 @@ function Enquiry() {
             </div>
           </Reveal>
           <Reveal delay={0.15}>
-            <ImageFrame
-              src={photos.coaching.src}
-              alt={photos.coaching.alt}
-              ratio="aspect-[4/3]"
-              priority
-            />
+            <Whiteboard
+              kicker="Before the call"
+              title="What we do with your answers"
+              caption="No pitch deck. A read of your operation."
+            >
+              <FlowBoard
+                steps={[
+                  { label: "You write it down", note: "Three minutes, plain language." },
+                  { label: "We read it properly", note: "We look for the dependency, not the symptom." },
+                  { label: "We reply with a next step", note: "Within two working days." },
+                ]}
+              />
+              <div className="mt-5">
+                <StickyWall
+                  columns="grid-cols-2"
+                  notes={[
+                    { label: "We ask", text: "Where does work stop and wait for you?" },
+                    { label: "We ask", text: "Which promise breaks first when it is busy?" },
+                  ]}
+                />
+              </div>
+            </Whiteboard>
           </Reveal>
+
         </div>
       </section>
 
@@ -189,11 +206,10 @@ function Enquiry() {
             >
               <p className="font-ui text-xs uppercase tracking-[0.2em] text-primary">Received</p>
               <h2 className="font-display mt-4 text-3xl leading-tight">
-                Thank you, {form.name}.
+                Thank you for reaching out{form.name ? `, ${form.name}` : ""}.
               </h2>
               <p className="mt-5 text-lg text-foreground/80">
-                We reply within two working days with the next step and the fee for the stage that
-                fits.
+                We will respond as soon as possible.
               </p>
               <p className="mt-5 text-foreground/75">
                 While you wait, the Founder&rsquo;s Flow Map is the fastest useful thing you can
@@ -203,6 +219,7 @@ function Enquiry() {
                 </Link>
                 .
               </p>
+
             </motion.div>
           ) : (
             <form onSubmit={submit} className="space-y-10">
@@ -273,37 +290,15 @@ function Enquiry() {
                 </div>
               </div>
 
-              <div>
-                <p className="font-ui text-sm text-muted-foreground">
-                  What have you set aside to solve this?
-                </p>
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  {budgets.map((o) => (
-                    <button
-                      key={o}
-                      type="button"
-                      onClick={() => setBudget(o)}
-                      className={`font-ui rounded-sm border px-5 py-4 text-left text-sm transition-all duration-300 ${
-                        budget === o
-                          ? "border-primary bg-teal-wash text-primary shadow-[0_18px_40px_-30px_var(--primary)]"
-                          : "border-input hover:-translate-y-0.5 hover:border-primary/60 hover:bg-teal-wash/50"
-                      }`}
-                    >
-                      {o}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
               <div className="flex flex-wrap items-center gap-4">
                 <ActionButton type="submit" size="lg" disabled={pending || !ready}>
-                  {pending ? "Sending…" : "Send my enquiry"}
+                  {pending ? "Sending…" : "Book a discovery call"}
                 </ActionButton>
                 <p className="font-ui text-xs text-muted-foreground">
-                  We reply within two working days with the next step and the fee for the stage that
-                  fits.
+                  We will respond as soon as possible with a time for your discovery call.
                 </p>
               </div>
+
             </form>
           )}
         </div>
