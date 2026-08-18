@@ -1,12 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion } from "motion/react";
-import { ActionButton, ActionLink } from "@/components/ActionButton";
+import { ActionButton } from "@/components/ActionButton";
 import { ClosingCTA } from "@/components/ClosingCTA";
-import { ImageFrame } from "@/components/ImageFrame";
+import { Whiteboard, FlowBoard, StickyWall } from "@/components/Explainers";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { Reveal } from "@/components/Reveal";
-import { photos } from "@/lib/photos";
 import { createLead } from "@/lib/site-api";
 import { toast } from "sonner";
 
@@ -26,16 +25,6 @@ const interests = [
   "Partnership",
   "Not sure yet",
 ] as const;
-
-const budgets = [
-  "Under KES 50,000",
-  "KES 50,000 to 150,000",
-  "KES 150,000 to 300,000",
-  "Above KES 300,000",
-  "Not sure yet",
-] as const;
-
-const LOW_BUDGET = budgets[0];
 
 export const Route = createFileRoute("/contact")({
   validateSearch: (search: Record<string, unknown>): { stage?: StageKey } => {
@@ -106,7 +95,6 @@ function Enquiry() {
   const [interest, setInterest] = useState<string>(
     stage ? stageToInterest[stage] : "",
   );
-  const [budget, setBudget] = useState<string>("");
   const [pending, setPending] = useState(false);
   const [sent, setSent] = useState(false);
 
@@ -118,8 +106,7 @@ function Enquiry() {
     form.email.trim() &&
     form.doing.trim() &&
     form.breaking.trim() &&
-    interest &&
-    budget;
+    interest;
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -130,7 +117,6 @@ function Enquiry() {
       `What is breaking right now: ${form.breaking}`,
       form.tried ? `What they have already tried: ${form.tried}` : "",
       `Interested in: ${interest}`,
-      `Budget set aside: ${budget}`,
     ]
       .filter(Boolean)
       .join("\n\n");
@@ -154,60 +140,13 @@ function Enquiry() {
     }
   }
 
-  if (sent && budget === LOW_BUDGET) {
-    return (
-      <>
-        <section className="gradient-page">
-          <div className="container-read py-24 md:py-32">
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="rounded-2xl border border-primary/15 bg-teal-wash px-6 py-12 md:px-12"
-            >
-              <p className="font-ui text-xs uppercase tracking-[0.2em] text-primary">
-                Where to start
-              </p>
-              <h1 className="font-display mt-4 text-3xl leading-tight md:text-4xl">
-                Thank you for telling us about {form.business || "your business"}.
-              </h1>
-              <div className="mt-6 space-y-5 text-lg leading-relaxed text-foreground/80">
-                <p>
-                  Our engagements start higher than the range you have set aside. Rather than take
-                  an hour of your time to tell you that, here is where we would actually start you.
-                </p>
-                <p>
-                  The Founder&rsquo;s Flow Map, free. It shows how work moves through your business
-                  and which five things to write down first. Most founders find it answers the
-                  question they were actually stuck on.
-                </p>
-                <p>The Starter Kit, if you want the templates to build from.</p>
-                <p>
-                  If the business grows into something bigger later, we would be glad to hear from
-                  you. This is not a no. It is a not yet, and the free map is the right first step
-                  either way.
-                </p>
-              </div>
-              <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-                <ActionLink to="/newsletter" size="lg">
-                  Send me the map
-                </ActionLink>
-                <ActionLink to="/shop" variant="outline" size="lg">
-                  See the tools
-                </ActionLink>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-        <ClosingCTA />
-      </>
-    );
-  }
+
+
 
   return (
     <>
       <section className="gradient-page relative overflow-hidden">
-        <div className="container-page grid items-center gap-12 pt-20 pb-16 md:pt-32 md:pb-20 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="container-page grid items-center gap-12 pt-14 pb-10 md:pt-20 md:pb-14 lg:grid-cols-[1.05fr_0.95fr]">
           <Reveal>
             <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-primary">
               The enquiry form
@@ -228,18 +167,35 @@ function Enquiry() {
             </div>
           </Reveal>
           <Reveal delay={0.15}>
-            <ImageFrame
-              src={photos.coaching.src}
-              alt={photos.coaching.alt}
-              ratio="aspect-[4/3]"
-              priority
-            />
+            <Whiteboard
+              kicker="Before the call"
+              title="What we do with your answers"
+              caption="No pitch deck. A read of your operation."
+            >
+              <FlowBoard
+                steps={[
+                  { label: "You write it down", note: "Three minutes, plain language." },
+                  { label: "We read it properly", note: "We look for the dependency, not the symptom." },
+                  { label: "We reply with a next step", note: "Within two working days." },
+                ]}
+              />
+              <div className="mt-5">
+                <StickyWall
+                  columns="grid-cols-2"
+                  notes={[
+                    { label: "We ask", text: "Where does work stop and wait for you?" },
+                    { label: "We ask", text: "Which promise breaks first when it is busy?" },
+                  ]}
+                />
+              </div>
+            </Whiteboard>
           </Reveal>
+
         </div>
       </section>
 
       <section className="border-t border-border/60">
-        <div className="container-read py-16 md:py-24">
+        <div className="container-read py-12 md:py-16">
           {sent ? (
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -249,11 +205,10 @@ function Enquiry() {
             >
               <p className="font-ui text-xs uppercase tracking-[0.2em] text-primary">Received</p>
               <h2 className="font-display mt-4 text-3xl leading-tight">
-                Thank you, {form.name}.
+                Thank you for reaching out{form.name ? `, ${form.name}` : ""}.
               </h2>
               <p className="mt-5 text-lg text-foreground/80">
-                We reply within two working days with the next step and the fee for the stage that
-                fits.
+                We will respond as soon as possible.
               </p>
               <p className="mt-5 text-foreground/75">
                 While you wait, the Founder&rsquo;s Flow Map is the fastest useful thing you can
@@ -263,6 +218,7 @@ function Enquiry() {
                 </Link>
                 .
               </p>
+
             </motion.div>
           ) : (
             <form onSubmit={submit} className="space-y-10">
@@ -333,44 +289,22 @@ function Enquiry() {
                 </div>
               </div>
 
-              <div>
-                <p className="font-ui text-sm text-muted-foreground">
-                  What have you set aside to solve this?
-                </p>
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  {budgets.map((o) => (
-                    <button
-                      key={o}
-                      type="button"
-                      onClick={() => setBudget(o)}
-                      className={`font-ui rounded-sm border px-5 py-4 text-left text-sm transition-all duration-300 ${
-                        budget === o
-                          ? "border-primary bg-teal-wash text-primary shadow-[0_18px_40px_-30px_var(--primary)]"
-                          : "border-input hover:-translate-y-0.5 hover:border-primary/60 hover:bg-teal-wash/50"
-                      }`}
-                    >
-                      {o}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
               <div className="flex flex-wrap items-center gap-4">
                 <ActionButton type="submit" size="lg" disabled={pending || !ready}>
-                  {pending ? "Sending…" : "Send my enquiry"}
+                  {pending ? "Sending…" : "Book a discovery call"}
                 </ActionButton>
                 <p className="font-ui text-xs text-muted-foreground">
-                  We reply within two working days with the next step and the fee for the stage that
-                  fits.
+                  We will respond as soon as possible with a time for your discovery call.
                 </p>
               </div>
+
             </form>
           )}
         </div>
       </section>
 
       <section className="border-t border-border/60 bg-teal-wash">
-        <div className="container-read py-20">
+        <div className="container-read py-12 md:py-16">
           <Reveal>
             <p className="text-lg text-foreground/85">
               Not ready to talk? Get the Founder&rsquo;s Flow Map, free, and start there.

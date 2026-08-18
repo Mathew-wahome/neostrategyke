@@ -1,12 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { GuideBox } from "@/components/GuideBox";
-import { ImageFrame } from "@/components/ImageFrame";
+import { ProductGlyph, glyphFor } from "@/components/Explainers";
 import { Reveal } from "@/components/Reveal";
-import { photos } from "@/lib/photos";
 import { fetchPosts } from "@/lib/posts.functions";
 import type { PublicPost } from "@/lib/posts.server";
 
-const covers = [photos.systems, photos.calm, photos.workshop, photos.session, photos.team, photos.texture];
 
 
 export const Route = createFileRoute("/blog/")({
@@ -46,7 +44,7 @@ function Blog() {
   return (
     <>
       <section className="gradient-page relative overflow-hidden">
-        <div className="container-page pt-20 pb-16 md:pt-32 md:pb-20">
+        <div className="container-page pt-14 pb-10 md:pt-20 md:pb-14">
           <Reveal>
             <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-primary">
               The journal
@@ -65,15 +63,16 @@ function Blog() {
       </section>
 
       <section className="border-t border-border/60">
-        <div className="container-page py-16 md:py-24">
-          <div className="grid gap-x-10 gap-y-16 md:grid-cols-2">
+        <div className="container-page py-12 md:py-16">
+          <div className="grid gap-x-8 gap-y-10 md:grid-cols-2">
             {posts.map((post: PublicPost, i: number) => {
-              const cover = covers[i % covers.length]!;
               return (
                 <Reveal key={post.slug} delay={i * 0.08}>
                   <article className="group">
                     <Link to="/blog/$slug" params={{ slug: post.slug }} className="block">
-                      <ImageFrame src={cover.src} alt={cover.alt} ratio="aspect-[16/10]" />
+                      <div className="aspect-[16/10] overflow-hidden rounded-lg">
+                        <ProductGlyph kind={glyphFor(post.slug)} label={post.category} />
+                      </div>
                     </Link>
                     <p className="font-ui mt-6 text-[0.65rem] uppercase tracking-[0.26em] text-primary">
                       {post.category}

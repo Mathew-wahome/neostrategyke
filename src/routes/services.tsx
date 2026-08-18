@@ -1,12 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ActionLink } from "@/components/ActionButton";
 import { ClosingCTA } from "@/components/ClosingCTA";
-import { ImageFrame } from "@/components/ImageFrame";
+import {
+  ChalkChecklist,
+  Chalkboard,
+  DependencyDial,
+  FlowBoard,
+  LayerDiagram,
+  StickyWall,
+  Whiteboard,
+} from "@/components/Explainers";
 import { LayerStack } from "@/components/LayerStack";
 import { Marquee } from "@/components/Marquee";
 import { ProcessLadder } from "@/components/ProcessLadder";
 import { Reveal } from "@/components/Reveal";
-import { photos } from "@/lib/photos";
 
 const layers = [
   {
@@ -102,7 +109,6 @@ const stages = [
     slug: "clarity",
     title: "The Clarity Session",
     heading: "One hour. One problem. A straight answer.",
-    photo: photos.coaching,
     body: [
       "Not everyone needs an audit, and not every problem needs one. This is one focused hour on whatever is stuck right now. A process that keeps breaking. A team that waits on you for everything. A decision you have been going round in circles on for a month.",
       "You leave knowing what is actually happening and what to do next. If you go on to book the Audit or the Install, this fee comes off the price.",
@@ -115,7 +121,6 @@ const stages = [
     slug: "audit",
     title: "The Founder Operating Systems Audit",
     heading: "Before we build anything, we find where the business depends on you.",
-    photo: photos.session,
     body: [
       "Before we build anything, we find out where your business depends on you and where it leaks. No guessing. No generic checklist.",
       "We map your client journey from first contact to money in the bank. Then we follow three of your recent clients through what actually happened, rather than what was supposed to happen. Then we show you the difference.",
@@ -131,7 +136,6 @@ const stages = [
     slug: "install",
     title: "The Calm Execution Install",
     heading: "Thirty days to build the systems the Audit found.",
-    photo: photos.team,
     body: [
       "Thirty days to build the systems the Audit found. The shape is the same for every founder. What gets built is yours alone.",
       "Map, days 1 to 5. Where your time, money and decisions leak.",
@@ -149,7 +153,6 @@ const stages = [
     slug: "partnership",
     title: "The Founder Operations Partnership",
     heading: "Keeping the systems alive as the business grows.",
-    photo: photos.systems,
     body: [
       "Building systems is one thing. Keeping them alive as the business grows is another. This is a monthly relationship. We stay close to your operations so the systems change as the business changes, instead of quietly falling apart.",
       "You get: a working session every week, access between sessions during business hours with a reply inside 48 hours, ongoing maintenance as things change, and a planning session every quarter.",
@@ -161,11 +164,89 @@ const stages = [
   },
 ];
 
+function stageVisual(slug: string) {
+  if (slug === "clarity") {
+    return (
+      <Whiteboard kicker="One hour" title="What gets unstuck">
+        <StickyWall
+          columns="grid-cols-2"
+          notes={[
+            { label: "Bring", text: "The process that keeps breaking" },
+            { label: "Bring", text: "The decision going in circles" },
+            { label: "Leave with", text: "What is actually happening" },
+            { label: "Leave with", text: "The next move, in writing" },
+          ]}
+        />
+      </Whiteboard>
+    );
+  }
+  if (slug === "audit") {
+    return (
+      <Whiteboard kicker="The audit" title="Supposed to happen vs what happened">
+        <FlowBoard
+          steps={[
+            { label: "First contact", leak: "3 day reply" },
+            { label: "Proposal", leak: "founder writes it" },
+            { label: "Delivery", leak: "no handover" },
+            { label: "Money in", leak: "invoice sent late" },
+          ]}
+        />
+        <div className="mt-5 border-t border-dashed border-primary/25 pt-4">
+          <DependencyDial value={64} label="of the journey ran differently to how it was designed." />
+        </div>
+      </Whiteboard>
+    );
+  }
+  if (slug === "install") {
+    return (
+      <Chalkboard kicker="Thirty days" title="Map · Define · Install · Embed">
+        <LayerDiagram
+          layers={[
+            { title: "Days 1–5 · Map", note: "Where time, money and decisions leak." },
+            { title: "Days 6–10 · Define", note: "What good looks like, and what gets fixed first." },
+            { title: "Days 11–25 · Install", note: "SOPs, delegation, onboarding, delivery, dashboards." },
+            { title: "Days 26–30 · Embed", note: "Train the team until it is simply how things are done." },
+          ]}
+        />
+      </Chalkboard>
+    );
+  }
+  return (
+    <Chalkboard kicker="Monthly" title="What the partnership is, and is not">
+      <div className="grid gap-6 sm:grid-cols-2">
+        <div>
+          <p className="font-ui text-[0.58rem] uppercase tracking-[0.24em] text-offwhite/50">
+            You get
+          </p>
+          <ChalkChecklist
+            className="mt-3"
+            items={[
+              "A working session every week",
+              "Replies inside 48 hours",
+              "Maintenance as things change",
+              "A planning session each quarter",
+            ]}
+          />
+        </div>
+        <div>
+          <p className="font-ui text-[0.58rem] uppercase tracking-[0.24em] text-offwhite/50">
+            You do not get
+          </p>
+          <ChalkChecklist className="mt-3 opacity-55" items={["Us on demand", "A dependency swap"]} />
+          <p className="font-chalk mt-4 text-lg text-offwhite/80">
+            Designed so your business needs you less. Not so it needs us more.
+          </p>
+        </div>
+      </div>
+    </Chalkboard>
+  );
+}
+
 function Services() {
   return (
     <>
       <section className="gradient-page relative overflow-hidden">
-        <div className="container-page grid items-end gap-12 pt-20 pb-16 md:pt-32 md:pb-24 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="container-page grid items-end gap-12 pt-14 pb-10 md:pt-20 md:pb-14 lg:grid-cols-[1.05fr_0.95fr]">
           <Reveal>
             <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-primary">
               Services
@@ -183,12 +264,32 @@ function Services() {
           </Reveal>
 
           <Reveal delay={0.15}>
-            <ImageFrame
-              src={photos.workshop.src}
-              alt={photos.workshop.alt}
-              ratio="aspect-[4/3]"
-              priority
-            />
+            <Whiteboard
+              kicker="Whiteboard · the operating system"
+              title="Four layers, built in order"
+              caption="Skip a layer and the one above it collapses."
+            >
+              <div className="space-y-2">
+                {[
+                  ["Clarity", "What we sell, promise and refuse"],
+                  ["Delivery", "The same result whoever runs it"],
+                  ["Delegation", "Decisions that do not need you"],
+                  ["Visibility", "You can see the week without living it"],
+                ].map(([t, n], i) => (
+                  <div
+                    key={t}
+                    className="flex items-center gap-3 rounded-md border-2 border-charcoal/70 bg-offwhite px-4 py-3"
+                    style={{ marginInline: `${(3 - i) * 12}px 0` }}
+                  >
+                    <span className="font-hand text-lg text-primary">0{i + 1}</span>
+                    <div>
+                      <p className="font-hand text-xl leading-tight text-charcoal">{t}</p>
+                      <p className="font-ui text-xs text-muted-foreground">{n}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Whiteboard>
           </Reveal>
         </div>
       </section>
@@ -197,13 +298,6 @@ function Services() {
 
       {/* The method — four layers, built in order */}
       <section className="gradient-deep relative overflow-hidden text-offwhite">
-        <img
-          src={photos.texture.src}
-          alt=""
-          aria-hidden
-          loading="lazy"
-          className="drift pointer-events-none absolute inset-0 size-full object-cover opacity-10"
-        />
         <div className="container-page section-y relative">
           <Reveal className="max-w-2xl">
             <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-primary">
@@ -216,12 +310,12 @@ function Services() {
               Each one holds up the next. Building them out of order is why most systems work fails.
             </p>
           </Reveal>
-          <LayerStack layers={layers} className="mt-16 md:mt-20" />
+          <LayerStack layers={layers} className="mt-10 md:mt-14" />
         </div>
       </section>
 
       <section>
-        <div className="container-page section-y space-y-24 md:space-y-32">
+        <div className="container-page section-y space-y-14 md:space-y-20">
           {stages.map((stage, i) => (
             <Reveal key={stage.slug} delay={0.05}>
               <div
@@ -229,7 +323,7 @@ function Services() {
                   i % 2 === 1 ? "lg:[&>figure]:order-2" : ""
                 }`}
               >
-                <ImageFrame src={stage.photo.src} alt={stage.photo.alt} ratio="aspect-[4/3]" />
+                <figure>{stageVisual(stage.slug)}</figure>
                 <div>
                   <p className="font-ui text-[0.65rem] uppercase tracking-[0.28em] text-primary">
                     {stage.label}

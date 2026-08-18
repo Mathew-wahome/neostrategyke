@@ -1,4 +1,3 @@
-import { photos } from "@/lib/photos";
 import type { StoreProduct } from "@/lib/shop.server";
 
 export type { StoreProduct };
@@ -14,13 +13,12 @@ export const typeLabels: Record<string, string> = {
 
 export const typeOptions = ["ebook", "template", "course", "video", "bundle", "other"] as const;
 
-const fallbackCovers = [photos.kit, photos.systems, photos.workshop, photos.session, photos.calm];
-
+/**
+ * Returns the uploaded cover when there is one. Otherwise null, and the UI
+ * draws a unique hand-made infographic for that product instead of a photo.
+ */
 export function productCover(product: { cover_image: string | null; slug: string }) {
-  if (product.cover_image) return { src: product.cover_image, alt: "" };
-  let sum = 0;
-  for (const ch of product.slug) sum += ch.charCodeAt(0);
-  return fallbackCovers[sum % fallbackCovers.length]!;
+  return product.cover_image ? { src: product.cover_image, alt: "" } : null;
 }
 
 export function money(amount: number, currency = "KES") {

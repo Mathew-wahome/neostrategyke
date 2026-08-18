@@ -2,7 +2,7 @@ export const brand = {
   name: "Neostrategy",
   tagline: "Clarity attracts. Systems scale. Freedom lasts.",
   founder: "Nduta Njoroge",
-  email: "mary@theneostrategy.com",
+  email: "support@theneostrategy.com",
   domain: "theneostrategy.com",
   location: "Nairobi, Kenya",
   // Neostrategy WhatsApp Business number (digits only, incl. country code)

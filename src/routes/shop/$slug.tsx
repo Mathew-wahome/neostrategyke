@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
 import { ActionAnchor, ActionButton } from "@/components/ActionButton";
 import { ImageFrame } from "@/components/ImageFrame";
+import { ProductGlyph, glyphFor } from "@/components/Explainers";
 import { Reveal } from "@/components/Reveal";
 import { fetchProduct, fetchProducts } from "@/lib/shop.functions";
 import { CheckoutPanel } from "@/components/CheckoutPanel";
@@ -72,14 +73,20 @@ function ProductPage() {
     <>
       <section className="gradient-page relative overflow-hidden">
         <div className="grain pointer-events-none absolute inset-0 opacity-50" />
-        <div className="container-page relative grid gap-14 pt-20 pb-16 md:pt-32 md:pb-24 lg:grid-cols-[1fr_1fr]">
+        <div className="container-page relative grid gap-14 pt-14 pb-10 md:pt-20 md:pb-14 lg:grid-cols-[1fr_1fr]">
           <Reveal>
-            <ImageFrame
-              src={cover.src}
-              alt={cover.alt || product.name}
-              ratio="aspect-[4/3]"
-              priority
-            />
+            {cover ? (
+              <ImageFrame
+                src={cover.src}
+                alt={cover.alt || product.name}
+                ratio="aspect-[4/3]"
+                priority
+              />
+            ) : (
+              <div className="aspect-[4/3] overflow-hidden rounded-lg">
+                <ProductGlyph kind={glyphFor(product.slug)} label={product.category ?? undefined} />
+              </div>
+            )}
             {product.preview_url && (
               <a
                 href={product.preview_url}
@@ -187,12 +194,16 @@ function ProductPage() {
                       className="group lift block overflow-hidden rounded-lg border border-border/70 bg-background"
                     >
                       <div className="aspect-[4/3] overflow-hidden bg-teal-wash">
-                        <img
-                          src={c.src}
-                          alt={c.alt || p.name}
-                          loading="lazy"
-                          className="size-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                        />
+                        {c ? (
+                          <img
+                            src={c.src}
+                            alt={c.alt || p.name}
+                            loading="lazy"
+                            className="size-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                          />
+                        ) : (
+                          <ProductGlyph kind={glyphFor(p.slug)} />
+                        )}
                       </div>
                       <div className="p-5">
                         <h3 className="font-display text-lg leading-snug">{p.name}</h3>

@@ -182,9 +182,7 @@ function Footer() {
         </div>
 
         <div className="font-ui mt-16 flex flex-col justify-between gap-4 border-t border-offwhite/15 pt-8 text-xs text-offwhite/60 sm:flex-row">
-          <p>
-            © {new Date().getFullYear()} {brand.name}. Founded by {brand.founder}.
-          </p>
+          <p>© 2026 {brand.name}. Built so the business can run without you.</p>
           <div className="flex gap-6">
             <Link to="/terms" className="transition-colors hover:text-offwhite">
               Terms

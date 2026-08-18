@@ -2,11 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ClosingCTA } from "@/components/ClosingCTA";
-import { ImageFrame } from "@/components/ImageFrame";
+import { ProductGlyph, StickyWall, Whiteboard, glyphFor } from "@/components/Explainers";
 import { Marquee } from "@/components/Marquee";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { Reveal } from "@/components/Reveal";
-import { photos } from "@/lib/photos";
 import { fetchProducts } from "@/lib/shop.functions";
 import { categoriesOf, money, productCover, typeLabels, type StoreProduct } from "@/lib/shop";
 
@@ -106,7 +105,7 @@ function Products() {
     <>
       <section className="gradient-page relative overflow-hidden">
         <div className="grain pointer-events-none absolute inset-0 opacity-[0.5]" />
-        <div className="container-page relative grid items-center gap-14 pt-20 pb-16 md:pt-32 md:pb-24 lg:grid-cols-[1.05fr_1fr]">
+        <div className="container-page relative grid items-center gap-14 pt-14 pb-10 md:pt-20 md:pb-14 lg:grid-cols-[1.05fr_1fr]">
           <Reveal>
             <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-primary">Tools</p>
             <h1 className="font-display mt-6 text-[2.6rem] leading-[1.04] md:text-[4.2rem]">
@@ -124,7 +123,17 @@ function Products() {
             </div>
           </Reveal>
           <Reveal delay={0.15}>
-            <ImageFrame src={photos.kit.src} alt={photos.kit.alt} ratio="aspect-[4/3]" priority />
+            <Whiteboard kicker="The shelf" title="What you are actually buying">
+              <StickyWall
+                columns="grid-cols-2"
+                notes={[
+                  { label: "Not", text: "A 200-page theory PDF" },
+                  { label: "Yes", text: "SOP templates you can fill in today" },
+                  { label: "Yes", text: "Delegation and onboarding maps" },
+                  { label: "Yes", text: "A KPI tracker your team will use" },
+                ]}
+              />
+            </Whiteboard>
           </Reveal>
         </div>
       </section>
@@ -145,6 +154,9 @@ function Products() {
         <div className="container-page section-y grid gap-8 lg:grid-cols-3">
           <Reveal>
             <article className="lift flex h-full flex-col rounded-2xl border border-primary/15 bg-teal-wash p-8">
+              <div className="mb-5 h-28 overflow-hidden rounded-md">
+                <ProductGlyph kind="map" />
+              </div>
               <p className="font-ui text-[0.62rem] uppercase tracking-[0.28em] text-primary">Free</p>
               <h2 className="font-display mt-4 text-2xl leading-snug">
                 The Founder&rsquo;s Flow Map
@@ -166,7 +178,10 @@ function Products() {
 
           <Reveal delay={0.1}>
             <article className="lift flex h-full flex-col rounded-2xl border border-border/70 bg-card p-8">
-              <p className="font-ui text-[0.62rem] uppercase tracking-[0.28em] text-muted-foreground">
+              <div className="mb-5 h-28 overflow-hidden rounded-md">
+                <ProductGlyph kind="book" />
+              </div>
+              <p className="font-ui inline-flex w-fit rounded-full bg-note-yellow px-3 py-1 text-[0.62rem] uppercase tracking-[0.28em] text-charcoal">
                 Coming soon
               </p>
               <h2 className="font-display mt-4 text-2xl leading-snug">
@@ -191,6 +206,9 @@ function Products() {
           {starterKit && (
             <Reveal delay={0.2}>
               <article className="lift flex h-full flex-col rounded-2xl border border-border/70 bg-card p-8">
+                <div className="mb-5 h-28 overflow-hidden rounded-md">
+                  <ProductGlyph kind="grid" />
+                </div>
                 <p className="font-ui text-[0.62rem] uppercase tracking-[0.28em] text-primary">
                   Templates
                 </p>
@@ -217,7 +235,7 @@ function Products() {
 
       {products.length > 0 && (
         <section id="catalogue" className="border-t border-border/60">
-          <div className="container-page py-16 md:py-24">
+          <div className="container-page py-12 md:py-16">
             <Reveal className="flex flex-wrap items-end justify-between gap-6">
               <h2 className="font-display text-3xl leading-tight md:text-[2.75rem]">
                 Everything in the shelf
@@ -329,7 +347,7 @@ function Products() {
 
       <section className="gradient-deep relative overflow-hidden text-offwhite">
         <div className="grain pointer-events-none absolute inset-0 opacity-40" />
-        <div className="container-read relative py-20 md:py-28">
+        <div className="container-read relative py-12 md:py-16">
           <Reveal>
             <h2 className="font-display text-3xl leading-tight md:text-[2.6rem]">
               Not ready to buy?
@@ -369,13 +387,18 @@ function ProductCard({ product, index }: { product: StoreProduct; index: number 
         className="group lift block h-full overflow-hidden rounded-lg border border-border/70 bg-background"
       >
         <div className="relative aspect-[4/3] overflow-hidden bg-teal-wash">
-          <img
-            src={cover.src}
-            alt={cover.alt || product.name}
-            loading="lazy"
-            className="size-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.08]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/5 to-transparent opacity-70" />
+          {cover ? (
+            <img
+              src={cover.src}
+              alt={cover.alt || product.name}
+              loading="lazy"
+              className="size-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.08]"
+            />
+          ) : (
+            <div className="size-full transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]">
+              <ProductGlyph kind={glyphFor(product.slug)} label={product.category ?? undefined} />
+            </div>
+          )}
           <span className="font-ui absolute left-4 top-4 rounded-full bg-offwhite/90 px-3 py-1 text-[0.62rem] uppercase tracking-[0.18em] text-teal-deep">
             {typeLabels[product.product_type] ?? "Resource"}
           </span>
