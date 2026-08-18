@@ -27,16 +27,6 @@ const interests = [
   "Not sure yet",
 ] as const;
 
-const budgets = [
-  "Under KES 50,000",
-  "KES 50,000 to 150,000",
-  "KES 150,000 to 300,000",
-  "Above KES 300,000",
-  "Not sure yet",
-] as const;
-
-const LOW_BUDGET = budgets[0];
-
 export const Route = createFileRoute("/contact")({
   validateSearch: (search: Record<string, unknown>): { stage?: StageKey } => {
     const stage = search["stage"] as StageKey | undefined;
@@ -106,7 +96,6 @@ function Enquiry() {
   const [interest, setInterest] = useState<string>(
     stage ? stageToInterest[stage] : "",
   );
-  const [budget, setBudget] = useState<string>("");
   const [pending, setPending] = useState(false);
   const [sent, setSent] = useState(false);
 
@@ -118,8 +107,7 @@ function Enquiry() {
     form.email.trim() &&
     form.doing.trim() &&
     form.breaking.trim() &&
-    interest &&
-    budget;
+    interest;
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -130,7 +118,6 @@ function Enquiry() {
       `What is breaking right now: ${form.breaking}`,
       form.tried ? `What they have already tried: ${form.tried}` : "",
       `Interested in: ${interest}`,
-      `Budget set aside: ${budget}`,
     ]
       .filter(Boolean)
       .join("\n\n");
