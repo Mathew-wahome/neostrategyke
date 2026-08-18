@@ -20,6 +20,8 @@
   --font-display: "Playfair Display", Georgia, serif;
   --font-body: "Lora", Georgia, serif;
   --font-ui: "Inter", system-ui, sans-serif;
+  --font-hand: "Caveat", "Segoe Script", cursive;
+  --font-chalk: "Architects Daughter", "Comic Sans MS", cursive;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -48,6 +50,11 @@
   --color-teal-wash: var(--teal-wash);
   --color-charcoal: var(--charcoal);
   --color-offwhite: var(--offwhite);
+  --color-note-yellow: var(--note-yellow);
+  --color-note-teal: var(--note-teal);
+  --color-note-clay: var(--note-clay);
+  --color-note-sky: var(--note-sky);
+  --color-board: var(--board);
 
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
@@ -87,6 +94,12 @@
   --border: oklch(0.9 0.008 200);
   --input: oklch(0.88 0.008 200);
   --ring: var(--teal);
+
+  --note-yellow: oklch(0.93 0.09 96);
+  --note-teal: oklch(0.9 0.06 190);
+  --note-clay: oklch(0.87 0.07 45);
+  --note-sky: oklch(0.9 0.05 240);
+  --board: oklch(0.27 0.028 190);
 
   --sidebar: var(--teal-deep);
   --sidebar-foreground: oklch(0.9847 0.005 95);
@@ -265,9 +278,16 @@
 
 /* Editorial rhythm helpers */
 @utility section-y {
-  padding-block: 4.5rem;
+  padding-block: 2.75rem;
   @media (min-width: 768px) {
-    padding-block: 8.5rem;
+    padding-block: 4.25rem;
+  }
+}
+
+@utility section-tight {
+  padding-block: 2rem;
+  @media (min-width: 768px) {
+    padding-block: 3rem;
   }
 }
 
@@ -399,5 +419,58 @@
   &:hover::after {
     transform: scaleX(1);
     transform-origin: left;
+  }
+}
+
+
+/* ---------- Hand-drawn explainer surfaces ---------- */
+
+@utility font-hand {
+  font-family: var(--font-hand);
+}
+
+@utility font-chalk {
+  font-family: var(--font-chalk);
+}
+
+/* Dry-erase whiteboard: faint grid, soft inner shadow, aluminium edge */
+@utility board-white {
+  background-color: oklch(0.995 0.002 95);
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--teal) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--teal) 7%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+  box-shadow:
+    inset 0 1px 0 #fff,
+    inset 0 0 60px color-mix(in oklab, var(--teal) 6%, transparent),
+    0 24px 60px -40px color-mix(in oklab, var(--teal-deep) 60%, transparent);
+  border: 1px solid color-mix(in oklab, var(--teal) 16%, transparent);
+}
+
+/* Chalkboard: dark slate with dusty bloom */
+@utility board-chalk {
+  background-color: var(--board);
+  background-image:
+    radial-gradient(70% 50% at 20% 10%, rgb(255 255 255 / 0.06), transparent 60%),
+    radial-gradient(60% 60% at 85% 90%, rgb(255 255 255 / 0.05), transparent 60%);
+  border: 1px solid rgb(255 255 255 / 0.12);
+  box-shadow:
+    inset 0 0 90px rgb(0 0 0 / 0.45),
+    0 30px 70px -45px rgb(0 0 0 / 0.8);
+}
+
+/* Sticky note paper */
+@utility note-paper {
+  box-shadow:
+    0 1px 1px rgb(0 0 0 / 0.06),
+    0 10px 24px -14px rgb(0 0 0 / 0.4);
+}
+
+@keyframes draw-line {
+  from {
+    stroke-dashoffset: var(--dash, 600);
+  }
+  to {
+    stroke-dashoffset: 0;
   }
 }
