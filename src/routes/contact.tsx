@@ -3,10 +3,9 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { ActionButton, ActionLink } from "@/components/ActionButton";
 import { ClosingCTA } from "@/components/ClosingCTA";
-import { ImageFrame } from "@/components/ImageFrame";
+import { Whiteboard, FlowBoard, StickyWall } from "@/components/Explainers";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { Reveal } from "@/components/Reveal";
-import { photos } from "@/lib/photos";
 import { createLead } from "@/lib/site-api";
 import { toast } from "sonner";
 
