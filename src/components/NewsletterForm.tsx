@@ -78,7 +78,9 @@ export function NewsletterForm({
           type="submit"
           disabled={pending}
           variant={tone === "dark" ? "onDark" : "primary"}
+          className="shrink-0 whitespace-nowrap"
         >
+
           {pending ? "Sending…" : cta}
         </ActionButton>
 
