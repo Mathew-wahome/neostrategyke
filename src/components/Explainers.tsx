@@ -484,7 +484,7 @@ export function ProductGlyph({
         <text x="90" y="78" textAnchor="middle" {...txt} opacity="0.75">
           {w[0]}
         </text>
-        <text x="90" y="124" textAnchor="middle" {...txt} opacity="0.7">
+        <text x="90" y="118" textAnchor="middle" {...txt} opacity="0.7">
           decisions still waiting on you
         </text>
       </g>
