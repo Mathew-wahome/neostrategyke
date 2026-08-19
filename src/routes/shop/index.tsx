@@ -196,7 +196,7 @@ function Products() {
                 Coming soon. Join the list and we will tell you first.
               </p>
               <NewsletterForm
-                className="mt-4 [&_form]:flex-col [&_button]:w-full [&_input]:w-full [&_label]:w-full"
+                className="mt-4 [&>div]:flex-col [&_button]:w-full"
                 source="products_guide"
                 cta="Tell me first"
               />
