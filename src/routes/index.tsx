@@ -189,7 +189,7 @@ function Hero() {
           transition={{ duration: 1, delay: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
         >
           <Whiteboard
-            kicker="Whiteboard · the founder bottleneck"
+            kicker="The founder bottleneck"
             title="Where does the work stop?"
             caption="Every arrow that passes through you is a queue."
           >
@@ -261,7 +261,7 @@ function Index() {
           />
 
           <div className="mt-9 grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-            <Chalkboard kicker="Chalkboard" title="The books assume a market you are not in.">
+            <Chalkboard kicker="The playbook problem" title="The books assume a market you are not in.">
               <div className="grid gap-6 sm:grid-cols-2">
                 <div>
                   <p className="font-ui text-[0.58rem] uppercase tracking-[0.24em] text-offwhite/50">

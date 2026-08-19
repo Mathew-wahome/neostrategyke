@@ -248,7 +248,7 @@ function Services() {
 
           <Reveal delay={0.15}>
             <Whiteboard
-              kicker="Whiteboard · the operating system"
+              kicker="The operating system"
               title="Four layers, built in order"
               caption="Skip a layer and the one above it collapses."
             >
