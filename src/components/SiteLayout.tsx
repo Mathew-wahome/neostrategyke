@@ -110,7 +110,7 @@ function Header() {
 function Footer() {
   return (
     <footer className="bg-teal-deep text-offwhite">
-      <div className="container-page py-20 md:py-28">
+      <div className="container-page py-14 md:py-28">
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:gap-16">
           <Link to="/" aria-label={`${brand.name} home`} className="group flex flex-col items-start gap-3">
             <img
