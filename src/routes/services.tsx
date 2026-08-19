@@ -208,35 +208,22 @@ function stageVisual(slug: string) {
     );
   }
   return (
-    <Chalkboard kicker="Monthly" title="What the partnership is, and is not">
-      <div className="grid gap-6 sm:grid-cols-2">
-        <div>
-          <p className="font-ui text-[0.58rem] uppercase tracking-[0.24em] text-offwhite/50">
-            You get
-          </p>
-          <ChalkChecklist
-            className="mt-3"
-            items={[
-              "A working session every week",
-              "Replies inside 48 hours",
-              "Maintenance as things change",
-              "A planning session each quarter",
-            ]}
-          />
-        </div>
-        <div>
-          <p className="font-ui text-[0.58rem] uppercase tracking-[0.24em] text-offwhite/50">
-            You do not get
-          </p>
-          <ChalkChecklist className="mt-3 opacity-55" items={["Us on demand", "A dependency swap"]} />
-          <p className="font-chalk mt-4 text-lg text-offwhite/80">
-            Designed so your business needs you less. Not so it needs us more.
-          </p>
-        </div>
-      </div>
+    <Chalkboard kicker="Monthly" title="What the partnership gives you">
+      <ChalkChecklist
+        items={[
+          "A working session every week",
+          "Access between sessions, replies inside 48 hours",
+          "Maintenance as the business changes",
+          "A planning session each quarter",
+        ]}
+      />
+      <p className="font-chalk mt-6 text-lg leading-snug text-offwhite/80">
+        Designed so your business needs you less. Not so it needs us more.
+      </p>
     </Chalkboard>
   );
 }
+
 
 function Services() {
   return (
