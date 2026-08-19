@@ -138,16 +138,13 @@ const stages = [
     heading: "Thirty days to build the systems the Audit found.",
     body: [
       "Thirty days to build the systems the Audit found. The shape is the same for every founder. What gets built is yours alone.",
-      "Map, days 1 to 5. Where your time, money and decisions leak.",
-      "Define, days 6 to 10. What the business should look like when it works, and what gets fixed first.",
-      "Install, days 11 to 25. SOPs, delegation, onboarding, delivery, meeting rhythms, dashboards. Built with your people, in your words.",
-      "Embed, days 26 to 30. We train your team until the system is simply how things are done. You get a handover pack and a plan for the next thirty days.",
       "You end up with a business that no longer runs out of your head.",
     ],
     timeline:
       "Thirty days. We agree the scope and the fee in writing before anything starts, so nothing drifts and no invoice surprises you. The Audit fee comes off the price.",
     cta: "Book a call about the Install",
   },
+
   {
     label: "Then keep it alive",
     slug: "partnership",
@@ -155,9 +152,8 @@ const stages = [
     heading: "Keeping the systems alive as the business grows.",
     body: [
       "Building systems is one thing. Keeping them alive as the business grows is another. This is a monthly relationship. We stay close to your operations so the systems change as the business changes, instead of quietly falling apart.",
-      "You get: a working session every week, access between sessions during business hours with a reply inside 48 hours, ongoing maintenance as things change, and a planning session every quarter.",
-      "You do not get: us on demand. This is designed so your business needs you less. Not so it needs us more.",
     ],
+
     timeline:
       "Monthly, with a three month minimum. Three months because that is roughly how long it takes for a new way of working to become the normal way of working.",
     cta: "Book a call about the Partnership",
@@ -212,35 +208,22 @@ function stageVisual(slug: string) {
     );
   }
   return (
-    <Chalkboard kicker="Monthly" title="What the partnership is, and is not">
-      <div className="grid gap-6 sm:grid-cols-2">
-        <div>
-          <p className="font-ui text-[0.58rem] uppercase tracking-[0.24em] text-offwhite/50">
-            You get
-          </p>
-          <ChalkChecklist
-            className="mt-3"
-            items={[
-              "A working session every week",
-              "Replies inside 48 hours",
-              "Maintenance as things change",
-              "A planning session each quarter",
-            ]}
-          />
-        </div>
-        <div>
-          <p className="font-ui text-[0.58rem] uppercase tracking-[0.24em] text-offwhite/50">
-            You do not get
-          </p>
-          <ChalkChecklist className="mt-3 opacity-55" items={["Us on demand", "A dependency swap"]} />
-          <p className="font-chalk mt-4 text-lg text-offwhite/80">
-            Designed so your business needs you less. Not so it needs us more.
-          </p>
-        </div>
-      </div>
+    <Chalkboard kicker="Monthly" title="What the partnership gives you">
+      <ChalkChecklist
+        items={[
+          "A working session every week",
+          "Access between sessions, replies inside 48 hours",
+          "Maintenance as the business changes",
+          "A planning session each quarter",
+        ]}
+      />
+      <p className="font-chalk mt-6 text-lg leading-snug text-offwhite/80">
+        Designed so your business needs you less. Not so it needs us more.
+      </p>
     </Chalkboard>
   );
 }
+
 
 function Services() {
   return (
@@ -265,7 +248,7 @@ function Services() {
 
           <Reveal delay={0.15}>
             <Whiteboard
-              kicker="Whiteboard · the operating system"
+              kicker="The operating system"
               title="Four layers, built in order"
               caption="Skip a layer and the one above it collapses."
             >

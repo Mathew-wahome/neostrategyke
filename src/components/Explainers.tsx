@@ -365,6 +365,16 @@ export function glyphFor(seed: string): GlyphKind {
   return glyphKinds[h % glyphKinds.length]!;
 }
 
+const glyphWords: Record<GlyphKind, readonly string[]> = {
+  flow: ["Enquire", "Deliver", "Get paid"],
+  grid: ["Sell", "Promise", "Refuse", "Price", "Deliver", "Handover", "Review", "Report"],
+  stack: ["Clarity", "Delivery", "Delegation", "Visibility"],
+  checklist: ["Map the leaks", "Write the SOP", "Hand it over", "Check the week"],
+  dial: ["Founder load"],
+  book: ["Diagnose", "Decide", "Install"],
+  map: ["First message", "Scope", "Delivery", "Money in"],
+};
+
 /** A flat, board-style infographic used in place of product photography. */
 export function ProductGlyph({
   kind,
@@ -377,6 +387,12 @@ export function ProductGlyph({
 }) {
   const stroke = "var(--teal-deep)";
   const accent = "var(--teal)";
+  const w = glyphWords[kind];
+  const txt = {
+    fill: "var(--charcoal)",
+    fontSize: 8,
+    fontFamily: "var(--font-ui, ui-sans-serif)",
+  } as const;
 
   const art: Record<GlyphKind, ReactNode> = {
     flow: (
@@ -384,48 +400,64 @@ export function ProductGlyph({
         {[0, 1, 2].map((i) => (
           <g key={i}>
             <rect x={14 + i * 62} y={54} width={48} height={34} rx="4" fill="none" stroke={stroke} strokeWidth="2.5" />
-            {i < 2 && <path d={`M${66 + i * 62} 71 h10`} stroke={accent} strokeWidth="2.5" markerEnd="" />}
+            <text x={38 + i * 62} y={74} textAnchor="middle" {...txt}>
+              {w[i]}
+            </text>
+            {i < 2 && <path d={`M${66 + i * 62} 71 h10`} stroke={accent} strokeWidth="2.5" />}
           </g>
         ))}
         <path d="M38 88 v18 h100 v-18" fill="none" stroke={accent} strokeWidth="2.5" strokeDasharray="6 5" />
-        <circle cx="138" cy="71" r="9" fill={accent} />
+        <text x="88" y="118" textAnchor="middle" {...txt} fill={stroke} opacity="0.8">
+          repeatable loop
+        </text>
       </g>
     ),
     grid: (
       <g>
-        {[0, 1, 2].map((r) =>
-          [0, 1, 2, 3].map((c) => (
-            <rect
-              key={`${r}-${c}`}
-              x={16 + c * 42}
-              y={30 + r * 32}
-              width={34}
-              height={24}
-              rx="3"
-              fill={(r + c) % 3 === 0 ? accent : "none"}
-              opacity={(r + c) % 3 === 0 ? 0.25 : 1}
-              stroke={stroke}
-              strokeWidth="2"
-            />
-          )),
+        {[0, 1].map((r) =>
+          [0, 1, 2, 3].map((c) => {
+            const i = r * 4 + c;
+            return (
+              <g key={`${r}-${c}`}>
+                <rect
+                  x={12 + c * 42}
+                  y={38 + r * 38}
+                  width={38}
+                  height={28}
+                  rx="3"
+                  fill={i % 3 === 0 ? accent : "none"}
+                  opacity={i % 3 === 0 ? 0.18 : 1}
+                  stroke={stroke}
+                  strokeWidth="2"
+                />
+                <text x={31 + c * 42} y={56 + r * 38} textAnchor="middle" {...txt}>
+                  {w[i]}
+                </text>
+              </g>
+            );
+          }),
         )}
       </g>
     ),
     stack: (
       <g>
         {[0, 1, 2, 3].map((i) => (
-          <rect
-            key={i}
-            x={22 + i * 8}
-            y={30 + i * 22}
-            width={130 - i * 16}
-            height={18}
-            rx="3"
-            fill={accent}
-            opacity={0.15 + i * 0.2}
-            stroke={stroke}
-            strokeWidth="2"
-          />
+          <g key={i}>
+            <rect
+              x={22 + i * 8}
+              y={26 + i * 26}
+              width={136 - i * 16}
+              height={22}
+              rx="3"
+              fill={accent}
+              opacity={0.12 + i * 0.12}
+              stroke={stroke}
+              strokeWidth="2"
+            />
+            <text x={32 + i * 8} y={41 + i * 26} {...txt}>
+              {w[i]}
+            </text>
+          </g>
         ))}
       </g>
     ),
@@ -433,40 +465,64 @@ export function ProductGlyph({
       <g>
         {[0, 1, 2, 3].map((i) => (
           <g key={i}>
-            <rect x={26} y={30 + i * 26} width={16} height={16} rx="3" fill="none" stroke={stroke} strokeWidth="2.4" />
-            <path d={`M29 ${38 + i * 26} l4 4 l7 -9`} fill="none" stroke={accent} strokeWidth="2.6" strokeLinecap="round" />
-            <rect x={52} y={34 + i * 26} width={92 - i * 12} height={7} rx="3.5" fill={stroke} opacity="0.25" />
+            <rect x={20} y={26 + i * 27} width={16} height={16} rx="3" fill="none" stroke={stroke} strokeWidth="2.4" />
+            <path d={`M23 ${34 + i * 27} l4 4 l7 -9`} fill="none" stroke={accent} strokeWidth="2.6" strokeLinecap="round" />
+            <text x={46} y={39 + i * 27} {...txt}>
+              {w[i]}
+            </text>
           </g>
         ))}
       </g>
     ),
     dial: (
       <g>
-        <circle cx="90" cy="70" r="42" fill="none" stroke={stroke} strokeWidth="3" opacity="0.3" />
-        <path d="M90 28 a42 42 0 0 1 32 68" fill="none" stroke={accent} strokeWidth="7" strokeLinecap="round" />
-        <path d="M90 70 l24 -18" stroke={stroke} strokeWidth="3" strokeLinecap="round" />
-        <circle cx="90" cy="70" r="5" fill={stroke} />
+        <circle cx="90" cy="66" r="40" fill="none" stroke={stroke} strokeWidth="3" opacity="0.3" />
+        <path d="M90 26 a40 40 0 0 1 30 65" fill="none" stroke={accent} strokeWidth="7" strokeLinecap="round" />
+        <text x="90" y="64" textAnchor="middle" {...txt} fontSize="16">
+          64%
+        </text>
+        <text x="90" y="78" textAnchor="middle" {...txt} opacity="0.75">
+          {w[0]}
+        </text>
+        <text x="90" y="118" textAnchor="middle" {...txt} opacity="0.7">
+          decisions still waiting on you
+        </text>
       </g>
     ),
     book: (
       <g>
         <path d="M30 32 h52 a8 8 0 0 1 8 8 v72 h-52 a8 8 0 0 1 -8 -8 z" fill="none" stroke={stroke} strokeWidth="2.6" />
-        <path d="M150 32 h-52 a8 8 0 0 0 -8 8 v72 h52 a8 8 0 0 0 8 -8 z" fill={accent} opacity="0.18" stroke={stroke} strokeWidth="2.6" />
-        {[0, 1, 2].map((i) => (
-          <rect key={i} x={100} y={48 + i * 14} width={40 - i * 8} height={5} rx="2.5" fill={stroke} opacity="0.35" />
+        <path d="M150 32 h-52 a8 8 0 0 0 -8 8 v72 h52 a8 8 0 0 0 8 -8 z" fill={accent} opacity="0.14" stroke={stroke} strokeWidth="2.6" />
+        {w.map((t, i) => (
+          <text key={t} x={100} y={54 + i * 18} {...txt}>
+            {t}
+          </text>
         ))}
+        <text x={40} y={54} {...txt} opacity="0.7">
+          Read
+        </text>
+        <text x={40} y={72} {...txt} opacity="0.7">
+          Apply
+        </text>
       </g>
     ),
     map: (
       <g>
         <path d="M20 100 C60 40, 110 130, 160 46" fill="none" stroke={accent} strokeWidth="3" strokeDasharray="7 6" />
-        {[
-          [20, 100],
-          [72, 74],
-          [118, 92],
-          [160, 46],
-        ].map(([x, y], i) => (
-          <circle key={i} cx={x} cy={y} r={i === 3 ? 8 : 5} fill={i === 3 ? accent : "none"} stroke={stroke} strokeWidth="2.5" />
+        {(
+          [
+            [20, 100],
+            [72, 74],
+            [118, 92],
+            [160, 46],
+          ] as const
+        ).map(([x, y], i) => (
+          <g key={i}>
+            <circle cx={x} cy={y} r={i === 3 ? 8 : 5} fill={i === 3 ? accent : "none"} stroke={stroke} strokeWidth="2.5" />
+            <text x={x} y={y - 12} textAnchor="middle" {...txt}>
+              {w[i]}
+            </text>
+          </g>
         ))}
       </g>
     ),
@@ -483,3 +539,4 @@ export function ProductGlyph({
     </div>
   );
 }
+
