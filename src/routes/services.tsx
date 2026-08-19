@@ -138,16 +138,13 @@ const stages = [
     heading: "Thirty days to build the systems the Audit found.",
     body: [
       "Thirty days to build the systems the Audit found. The shape is the same for every founder. What gets built is yours alone.",
-      "Map, days 1 to 5. Where your time, money and decisions leak.",
-      "Define, days 6 to 10. What the business should look like when it works, and what gets fixed first.",
-      "Install, days 11 to 25. SOPs, delegation, onboarding, delivery, meeting rhythms, dashboards. Built with your people, in your words.",
-      "Embed, days 26 to 30. We train your team until the system is simply how things are done. You get a handover pack and a plan for the next thirty days.",
       "You end up with a business that no longer runs out of your head.",
     ],
     timeline:
       "Thirty days. We agree the scope and the fee in writing before anything starts, so nothing drifts and no invoice surprises you. The Audit fee comes off the price.",
     cta: "Book a call about the Install",
   },
+
   {
     label: "Then keep it alive",
     slug: "partnership",
