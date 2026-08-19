@@ -201,17 +201,17 @@ function Footer() {
           </div>
         </div>
 
-
-        <div className="font-ui mt-16 flex flex-col justify-between gap-4 border-t border-offwhite/15 pt-8 text-xs text-offwhite/60 sm:flex-row">
+        <div className="font-ui mt-12 flex flex-col justify-between gap-2 border-t border-offwhite/15 pt-8 text-xs text-offwhite/60 sm:flex-row sm:items-center sm:gap-4 md:mt-16">
           <p>© 2026 {brand.name}. Built so the business can run without you.</p>
           <div className="flex gap-6">
-            <Link to="/terms" className="transition-colors hover:text-offwhite">
+            <Link to="/terms" className="inline-block py-1.5 transition-colors hover:text-offwhite">
               Terms
             </Link>
-            <Link to="/privacy" className="transition-colors hover:text-offwhite">
+            <Link to="/privacy" className="inline-block py-1.5 transition-colors hover:text-offwhite">
               Privacy
             </Link>
           </div>
+
         </div>
       </div>
     </footer>
