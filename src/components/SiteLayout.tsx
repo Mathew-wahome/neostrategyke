@@ -145,10 +145,13 @@ function Footer() {
 
           <div className="font-ui text-sm">
             <p className="text-xs uppercase tracking-[0.18em] text-offwhite/60">Explore</p>
-            <ul className="mt-4 space-y-2">
+            <ul className="mt-3 space-y-1">
               {nav.map((item) => (
                 <li key={item.to}>
-                  <Link to={item.to} className="text-offwhite/85 transition-colors hover:text-offwhite">
+                  <Link
+                    to={item.to}
+                    className="inline-block py-1.5 text-offwhite/85 transition-colors hover:text-offwhite"
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -158,18 +161,18 @@ function Footer() {
 
           <div className="font-ui text-sm">
             <p className="text-xs uppercase tracking-[0.18em] text-offwhite/60">Contact</p>
-            <ul className="mt-4 space-y-2 text-offwhite/85">
+            <ul className="mt-3 space-y-1 text-offwhite/85">
               <li>
                 <a
                   href={`mailto:${brand.email}`}
-                  className="transition-colors hover:text-offwhite"
+                  className="inline-block break-all py-1.5 transition-colors hover:text-offwhite"
                 >
                   {brand.email}
                 </a>
               </li>
-              <li>{brand.location}</li>
+              <li className="py-1.5">{brand.location}</li>
               <li>
-                <Link to="/contact" className="transition-colors hover:text-offwhite">
+                <Link to="/contact" className="inline-block py-1.5 transition-colors hover:text-offwhite">
                   Book a discovery call
                 </Link>
               </li>
@@ -180,20 +183,24 @@ function Footer() {
                     href={brand.linkedinUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="transition-colors hover:text-offwhite"
+                    className="inline-block py-1.5 transition-colors hover:text-offwhite"
                   >
                     LinkedIn
                   </a>
                 </li>
               ) : null}
               <li>
-                <a href={`https://${brand.domain}`} className="transition-colors hover:text-offwhite">
+                <a
+                  href={`https://${brand.domain}`}
+                  className="inline-block py-1.5 transition-colors hover:text-offwhite"
+                >
                   {brand.domain}
                 </a>
               </li>
             </ul>
           </div>
         </div>
+
 
         <div className="font-ui mt-16 flex flex-col justify-between gap-4 border-t border-offwhite/15 pt-8 text-xs text-offwhite/60 sm:flex-row">
           <p>© 2026 {brand.name}. Built so the business can run without you.</p>
