@@ -152,9 +152,8 @@ const stages = [
     heading: "Keeping the systems alive as the business grows.",
     body: [
       "Building systems is one thing. Keeping them alive as the business grows is another. This is a monthly relationship. We stay close to your operations so the systems change as the business changes, instead of quietly falling apart.",
-      "You get: a working session every week, access between sessions during business hours with a reply inside 48 hours, ongoing maintenance as things change, and a planning session every quarter.",
-      "You do not get: us on demand. This is designed so your business needs you less. Not so it needs us more.",
     ],
+
     timeline:
       "Monthly, with a three month minimum. Three months because that is roughly how long it takes for a new way of working to become the normal way of working.",
     cta: "Book a call about the Partnership",
