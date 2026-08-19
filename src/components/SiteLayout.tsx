@@ -23,25 +23,25 @@ function Wordmark({ dark = false }: { dark?: boolean }) {
     <Link
       to="/"
       aria-label={`${brand.name} home`}
-      className="group flex items-center gap-3"
+      className="group flex min-w-0 items-center gap-2.5 sm:gap-3"
     >
       <img
         src={dark ? markLight : mark}
         alt={`${brand.name} monogram`}
         width={512}
         height={524}
-        className="h-10 w-auto transition-transform duration-500 ease-out group-hover:scale-[1.04] md:h-11"
+        className="h-9 w-auto shrink-0 transition-transform duration-500 ease-out group-hover:scale-[1.04] sm:h-10 md:h-11"
       />
-      <div className="flex flex-col">
+      <div className="flex min-w-0 flex-col">
         <span
-          className={`font-display text-lg leading-none tracking-tight transition-colors md:text-xl ${
+          className={`font-display truncate text-base leading-none tracking-tight transition-colors sm:text-lg md:text-xl ${
             dark ? "text-offwhite" : "text-foreground"
           }`}
         >
           {brand.name}
         </span>
         <span
-          className={`font-ui mt-0.5 text-[10px] uppercase tracking-[0.22em] transition-colors ${
+          className={`font-ui mt-0.5 truncate text-[9px] uppercase tracking-[0.16em] transition-colors sm:text-[10px] sm:tracking-[0.22em] ${
             dark ? "text-offwhite/70" : "text-muted-foreground"
           }`}
         >
@@ -52,12 +52,13 @@ function Wordmark({ dark = false }: { dark?: boolean }) {
   );
 }
 
+
 function Header() {
   const [open, setOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-sm">
-      <div className="container-page flex h-20 items-center justify-between">
+      <div className="container-page grid h-16 grid-cols-[minmax(0,1fr)_auto] items-center gap-3 md:flex md:h-20 md:justify-between">
         <Wordmark />
         <nav className="font-ui hidden items-center gap-8 text-sm md:flex">
           {nav.map((item) => (
@@ -76,7 +77,7 @@ function Header() {
           </ActionLink>
         </div>
         <button
-          className="md:hidden"
+          className="-mr-1 shrink-0 justify-self-end p-1 md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((v) => !v)}
         >

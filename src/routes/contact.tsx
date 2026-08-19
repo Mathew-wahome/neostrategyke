@@ -180,7 +180,7 @@ function Enquiry() {
               />
               <div className="mt-5">
                 <StickyWall
-                  columns="grid-cols-2"
+                  columns="grid-cols-1 xs:grid-cols-2"
                   notes={[
                     { label: "We ask", text: "Where does work stop and wait for you?" },
                     { label: "We ask", text: "Which promise breaks first when it is busy?" },
