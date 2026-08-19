@@ -23,25 +23,25 @@ function Wordmark({ dark = false }: { dark?: boolean }) {
     <Link
       to="/"
       aria-label={`${brand.name} home`}
-      className="group flex items-center gap-3"
+      className="group flex min-w-0 items-center gap-2.5 sm:gap-3"
     >
       <img
         src={dark ? markLight : mark}
         alt={`${brand.name} monogram`}
         width={512}
         height={524}
-        className="h-10 w-auto transition-transform duration-500 ease-out group-hover:scale-[1.04] md:h-11"
+        className="h-9 w-auto shrink-0 transition-transform duration-500 ease-out group-hover:scale-[1.04] sm:h-10 md:h-11"
       />
-      <div className="flex flex-col">
+      <div className="flex min-w-0 flex-col">
         <span
-          className={`font-display text-lg leading-none tracking-tight transition-colors md:text-xl ${
+          className={`font-display truncate text-base leading-none tracking-tight transition-colors sm:text-lg md:text-xl ${
             dark ? "text-offwhite" : "text-foreground"
           }`}
         >
           {brand.name}
         </span>
         <span
-          className={`font-ui mt-0.5 text-[10px] uppercase tracking-[0.22em] transition-colors ${
+          className={`font-ui mt-0.5 truncate text-[9px] uppercase tracking-[0.16em] transition-colors sm:text-[10px] sm:tracking-[0.22em] ${
             dark ? "text-offwhite/70" : "text-muted-foreground"
           }`}
         >
@@ -52,12 +52,13 @@ function Wordmark({ dark = false }: { dark?: boolean }) {
   );
 }
 
+
 function Header() {
   const [open, setOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-sm">
-      <div className="container-page flex h-20 items-center justify-between">
+      <div className="container-page grid h-16 grid-cols-[minmax(0,1fr)_auto] items-center gap-3 md:flex md:h-20 md:justify-between">
         <Wordmark />
         <nav className="font-ui hidden items-center gap-8 text-sm md:flex">
           {nav.map((item) => (
@@ -76,7 +77,7 @@ function Header() {
           </ActionLink>
         </div>
         <button
-          className="md:hidden"
+          className="-mr-1 shrink-0 justify-self-end p-1 md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((v) => !v)}
         >
@@ -109,7 +110,7 @@ function Header() {
 function Footer() {
   return (
     <footer className="bg-teal-deep text-offwhite">
-      <div className="container-page py-20 md:py-28">
+      <div className="container-page py-14 md:py-28">
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:gap-16">
           <Link to="/" aria-label={`${brand.name} home`} className="group flex flex-col items-start gap-3">
             <img
@@ -144,10 +145,13 @@ function Footer() {
 
           <div className="font-ui text-sm">
             <p className="text-xs uppercase tracking-[0.18em] text-offwhite/60">Explore</p>
-            <ul className="mt-4 space-y-2">
+            <ul className="mt-3 space-y-1">
               {nav.map((item) => (
                 <li key={item.to}>
-                  <Link to={item.to} className="text-offwhite/85 transition-colors hover:text-offwhite">
+                  <Link
+                    to={item.to}
+                    className="inline-block py-1.5 text-offwhite/85 transition-colors hover:text-offwhite"
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -157,18 +161,18 @@ function Footer() {
 
           <div className="font-ui text-sm">
             <p className="text-xs uppercase tracking-[0.18em] text-offwhite/60">Contact</p>
-            <ul className="mt-4 space-y-2 text-offwhite/85">
+            <ul className="mt-3 space-y-1 text-offwhite/85">
               <li>
                 <a
                   href={`mailto:${brand.email}`}
-                  className="transition-colors hover:text-offwhite"
+                  className="inline-block break-all py-1.5 transition-colors hover:text-offwhite"
                 >
                   {brand.email}
                 </a>
               </li>
-              <li>{brand.location}</li>
+              <li className="py-1.5">{brand.location}</li>
               <li>
-                <Link to="/contact" className="transition-colors hover:text-offwhite">
+                <Link to="/contact" className="inline-block py-1.5 transition-colors hover:text-offwhite">
                   Book a discovery call
                 </Link>
               </li>
@@ -179,14 +183,17 @@ function Footer() {
                     href={brand.linkedinUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="transition-colors hover:text-offwhite"
+                    className="inline-block py-1.5 transition-colors hover:text-offwhite"
                   >
                     LinkedIn
                   </a>
                 </li>
               ) : null}
               <li>
-                <a href={`https://${brand.domain}`} className="transition-colors hover:text-offwhite">
+                <a
+                  href={`https://${brand.domain}`}
+                  className="inline-block py-1.5 transition-colors hover:text-offwhite"
+                >
                   {brand.domain}
                 </a>
               </li>
@@ -194,16 +201,17 @@ function Footer() {
           </div>
         </div>
 
-        <div className="font-ui mt-16 flex flex-col justify-between gap-4 border-t border-offwhite/15 pt-8 text-xs text-offwhite/60 sm:flex-row">
+        <div className="font-ui mt-12 flex flex-col justify-between gap-2 border-t border-offwhite/15 pt-8 text-xs text-offwhite/60 sm:flex-row sm:items-center sm:gap-4 md:mt-16">
           <p>© 2026 {brand.name}. Built so the business can run without you.</p>
           <div className="flex gap-6">
-            <Link to="/terms" className="transition-colors hover:text-offwhite">
+            <Link to="/terms" className="inline-block py-1.5 transition-colors hover:text-offwhite">
               Terms
             </Link>
-            <Link to="/privacy" className="transition-colors hover:text-offwhite">
+            <Link to="/privacy" className="inline-block py-1.5 transition-colors hover:text-offwhite">
               Privacy
             </Link>
           </div>
+
         </div>
       </div>
     </footer>

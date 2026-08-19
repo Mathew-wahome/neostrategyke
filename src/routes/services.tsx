@@ -165,7 +165,7 @@ function stageVisual(slug: string) {
     return (
       <Whiteboard kicker="One hour" title="What gets unstuck">
         <StickyWall
-          columns="grid-cols-2"
+          columns="grid-cols-1 xs:grid-cols-2"
           notes={[
             { label: "Bring", text: "The process that keeps breaking" },
             { label: "Bring", text: "The decision going in circles" },

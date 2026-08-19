@@ -436,7 +436,7 @@ function Index() {
           </Reveal>
           <Reveal delay={0.1}>
             <StickyWall
-              columns="grid-cols-2"
+              columns="grid-cols-1 xs:grid-cols-2"
               notes={[
                 { label: "Seat 01", text: "In the business weekly, not on a monthly call." },
                 { label: "Seat 02", text: "Built with your team, in your language." },

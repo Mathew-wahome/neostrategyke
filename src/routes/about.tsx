@@ -231,7 +231,7 @@ function About() {
                 />
               </Whiteboard>
               <StickyWall
-                columns="grid-cols-2"
+                columns="grid-cols-1 xs:grid-cols-2"
                 notes={[
                   { label: "We build", text: "Systems your team can stand on" },
                   { label: "Not", text: "A strategy deck nobody opens" },

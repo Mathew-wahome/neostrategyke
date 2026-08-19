@@ -399,17 +399,18 @@ export function ProductGlyph({
       <g>
         {[0, 1, 2].map((i) => (
           <g key={i}>
-            <rect x={14 + i * 62} y={54} width={48} height={34} rx="4" fill="none" stroke={stroke} strokeWidth="2.5" />
-            <text x={38 + i * 62} y={74} textAnchor="middle" {...txt}>
+            <rect x={8 + i * 58} y={54} width={46} height={34} rx="4" fill="none" stroke={stroke} strokeWidth="2.5" />
+            <text x={31 + i * 58} y={74} textAnchor="middle" {...txt}>
               {w[i]}
             </text>
-            {i < 2 && <path d={`M${66 + i * 62} 71 h10`} stroke={accent} strokeWidth="2.5" />}
+            {i < 2 && <path d={`M${56 + i * 58} 71 h8`} stroke={accent} strokeWidth="2.5" />}
           </g>
         ))}
-        <path d="M38 88 v18 h100 v-18" fill="none" stroke={accent} strokeWidth="2.5" strokeDasharray="6 5" />
-        <text x="88" y="118" textAnchor="middle" {...txt} fill={stroke} opacity="0.8">
+        <path d="M31 88 v18 h116 v-18" fill="none" stroke={accent} strokeWidth="2.5" strokeDasharray="6 5" />
+        <text x="89" y="118" textAnchor="middle" {...txt} fill={stroke} opacity="0.8">
           repeatable loop
         </text>
+
       </g>
     ),
     grid: (

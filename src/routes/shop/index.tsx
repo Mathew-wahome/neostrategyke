@@ -125,7 +125,7 @@ function Products() {
           <Reveal delay={0.15}>
             <Whiteboard kicker="The shelf" title="What you are actually buying">
               <StickyWall
-                columns="grid-cols-2"
+                columns="grid-cols-1 xs:grid-cols-2"
                 notes={[
                   { label: "Not", text: "A 200-page theory PDF" },
                   { label: "Yes", text: "SOP templates you can fill in today" },
