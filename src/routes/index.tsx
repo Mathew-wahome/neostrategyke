@@ -34,18 +34,19 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Neostrategy — Clarity attracts. Systems scale. Freedom lasts." },
+      { title: "Neostrategy — Build a business that does not depend on you" },
       {
         name: "description",
         content:
-          "An operations consultancy in Nairobi, working across East Africa. We help founder-led service businesses build a business that runs without the founder in the middle of everything.",
+          "Systems and Operations Strategy for founder-led service businesses in Nairobi and across East Africa. We find where your business depends on you, then build what lets the work move without you.",
       },
-      { property: "og:title", content: "Neostrategy — Clarity attracts. Systems scale. Freedom lasts." },
+      { property: "og:title", content: "Neostrategy — Build a business that does not depend on you" },
       {
         property: "og:description",
         content:
-          "Your business runs on you. We help you build one that runs without you in the middle of everything.",
+          "You do not have a motivation problem. You have a founder dependency problem. We build the systems that fix it.",
       },
+
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
