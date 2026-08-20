@@ -124,7 +124,7 @@ function AuthPage() {
         <button
           type="button"
           onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
-          className="font-ui mt-6 text-sm text-primary underline underline-offset-4"
+          className="font-ui mt-6 inline-block py-2 text-sm text-primary underline underline-offset-4"
         >
           {mode === "signin" ? "Need an account? Create one" : "Already have an account? Sign in"}
         </button>
