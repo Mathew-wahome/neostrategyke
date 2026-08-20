@@ -135,9 +135,11 @@ const installBoards = [
   },
 ];
 
+const heroHeadline = "Your business is growing but everything still comes back to you.";
+
 function Hero() {
   const reduced = useReducedMotion();
-  const words = brand.tagline.split(" ");
+  const words = heroHeadline.split(" ");
 
   return (
     <section className="gradient-page relative overflow-hidden">
@@ -152,14 +154,14 @@ function Hero() {
             Operations consultancy · Nairobi, working across East Africa
           </motion.p>
 
-          <h1 className="font-display mt-5 text-[2.6rem] leading-[1.05] md:text-6xl lg:text-[4rem]">
+          <h1 className="font-display mt-5 text-[2.4rem] leading-[1.05] md:text-[3.4rem] lg:text-[3.9rem]">
             {words.map((word, i) => (
               <motion.span
                 key={`${word}-${i}`}
-                className={`inline-block ${i >= words.length - 2 ? "text-gradient-teal" : ""}`}
+                className={`inline-block ${i >= words.length - 4 ? "text-gradient-teal" : ""}`}
                 initial={reduced ? false : { opacity: 0, y: 22, filter: "blur(6px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ duration: 0.9, delay: 0.08 * i, ease: [0.22, 0.61, 0.36, 1] }}
+                transition={{ duration: 0.9, delay: 0.05 * i, ease: [0.22, 0.61, 0.36, 1] }}
               >
                 {word}&nbsp;
               </motion.span>
@@ -167,21 +169,34 @@ function Hero() {
           </h1>
 
           <Reveal delay={0.4} className="mt-6 max-w-xl">
-            <p className="text-lg leading-relaxed text-foreground/80 md:text-xl">
-              Your business runs on you. We help you build one that runs without you in the middle
-              of everything.
+            <p className="text-lg leading-relaxed text-foreground/80">
+              Your team waits for your decisions. Clients still need you personally. The same
+              questions land in your inbox every week. The more revenue you make, the harder it gets
+              to step away.
+            </p>
+            <p className="font-display mt-4 text-xl leading-snug md:text-2xl">
+              You do not have a motivation problem. You have a founder dependency problem.
+            </p>
+            <p className="mt-4 text-lg leading-relaxed text-foreground/80">
+              We find where your business depends on you. Then we build what lets the work move
+              without you holding every piece.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <ActionLink to="/newsletter" size="lg" className="group">
-                Send me the free guide
+              <ActionLink to="/contact" size="lg" className="group">
+                Find out where your business depends on you
                 <ArrowRight className="ml-2 size-4 transition-transform duration-300 group-hover:translate-x-1" />
               </ActionLink>
-              <ActionLink to="/contact" variant="outline" size="lg">
-                Book a call
+              <ActionLink to="/newsletter" variant="outline" size="lg">
+                Send me the free Flow Map
               </ActionLink>
             </div>
+            <p className="font-ui mt-4 text-sm text-muted-foreground">
+              Book a strategic call. We will identify what is keeping you in the middle, and what
+              needs to change first.
+            </p>
           </Reveal>
         </div>
+
 
         <motion.div
           initial={reduced ? false : { opacity: 0, y: 26 }}
