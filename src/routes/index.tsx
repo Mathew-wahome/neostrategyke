@@ -190,12 +190,17 @@ function Hero() {
               We find where your business depends on you. Then we build what lets the work move
               without you holding every piece.
             </p>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <ActionLink to="/contact" size="lg" className="group">
-                Find out where your business depends on you
-                <ArrowRight className="ml-2 size-4 transition-transform duration-300 group-hover:translate-x-1" />
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <ActionLink to="/contact" size="lg" className="group sm:whitespace-nowrap">
+                Find out where you are the bottleneck
+                <ArrowRight className="size-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
               </ActionLink>
-              <ActionLink to="/newsletter" variant="outline" size="lg">
+              <ActionLink
+                to="/newsletter"
+                variant="outline"
+                size="lg"
+                className="sm:whitespace-nowrap"
+              >
                 Send me the free Flow Map
               </ActionLink>
             </div>
