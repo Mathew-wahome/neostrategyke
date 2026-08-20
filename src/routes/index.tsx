@@ -29,7 +29,7 @@ import {
   SymptomGrid,
   Whiteboard,
 } from "@/components/Explainers";
-import { brand } from "@/lib/brand";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -484,7 +484,38 @@ function Index() {
         </div>
       </section>
 
+      {/* Why Neostrategy */}
+      <section className="border-t border-border/60 bg-teal-wash">
+        <div className="container-page section-y grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
+          <Reveal>
+            <p className="font-ui text-[0.66rem] uppercase tracking-[0.28em] text-primary">
+              Why Neostrategy
+            </p>
+            <h2 className="font-display mt-4 text-3xl leading-tight md:text-[2.4rem]">
+              We do not advise from the sidelines. We build inside the business.
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-foreground/80">
+              Most consultants hand you recommendations. We build the systems with you, using the
+              real work, the real clients, the real team and the real bottlenecks.
+            </p>
+            <p className="font-display mt-4 text-xl">We build the thing.</p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <StickyWall
+              columns="grid-cols-1 xs:grid-cols-2"
+              notes={[
+                { label: "Worthless", text: "A process document nobody follows" },
+                { label: "Worthless", text: "A dashboard nobody looks at" },
+                { label: "Worthless", text: "A system that only works when you are there" },
+                { label: "Worth building", text: "Operations that hold on the hard days" },
+              ]}
+            />
+          </Reveal>
+        </div>
+      </section>
+
       {/* Products */}
+
       <section className="border-t border-border/60">
         <div className="container-page section-y grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <Reveal>
