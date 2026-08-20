@@ -68,9 +68,11 @@ function Newsletter() {
               <FlowBoard
                 steps={[
                   { label: "First message" },
-                  { label: "Yes, please" },
-                  { label: "Delivered" },
-                  { label: "Money landed" },
+                  { label: "Sale" },
+                  { label: "Onboarding" },
+                  { label: "Delivery" },
+                  { label: "Completion" },
+                  { label: "Payment" },
                 ]}
               />
             </Whiteboard>

@@ -155,7 +155,7 @@ function Enquiry() {
               The enquiry form
             </p>
             <h1 className="font-display mt-6 text-[2.5rem] leading-[1.06] md:text-6xl">
-              Tell us about <span className="text-gradient-teal">your business.</span>
+              Tell us what is <span className="text-gradient-teal">breaking.</span>
             </h1>
             <div className="mt-9 max-w-xl space-y-5">
               <p className="text-lg leading-relaxed text-foreground/85">
