@@ -9,22 +9,25 @@ import { Reveal } from "@/components/Reveal";
 import { requestDiscoveryCall } from "@/lib/site-api";
 import { toast } from "sonner";
 
-type StageKey = "clarity" | "audit" | "install" | "partnership";
+type StageKey = "clarity" | "audit" | "install" | "partnership" | "wealth";
 
 const stageLabels: Record<StageKey, string> = {
   clarity: "The Clarity Session",
   audit: "The Founder Operating Systems Audit",
   install: "The Calm Execution Install",
   partnership: "The Founder Operations Partnership",
+  wealth: "The Wealth Arc",
 };
 
 const interests = [
   "Clarity Session",
-  "Audit",
-  "Install",
-  "Partnership",
+  "Founder Operating Systems Audit",
+  "Calm Execution Install",
+  "Founder Operations Partnership",
+  "The Wealth Arc",
   "Not sure yet",
 ] as const;
+
 
 export const Route = createFileRoute("/contact")({
   validateSearch: (search: Record<string, unknown>): { stage?: StageKey } => {
