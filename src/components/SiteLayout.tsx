@@ -121,7 +121,7 @@ function Footer() {
               className="h-20 w-auto opacity-90 transition-transform duration-500 ease-out group-hover:scale-[1.04] md:h-24"
             />
             <div className="flex flex-col">
-              <span className="font-display text-2xl leading-none tracking-tight text-offwhite md:text-3xl">
+              <span className="font-display pb-[0.06em] text-2xl leading-tight tracking-tight text-offwhite md:text-3xl">
                 {brand.name}
               </span>
               <span className="font-ui mt-1 text-[10px] uppercase tracking-[0.22em] text-offwhite/70">
