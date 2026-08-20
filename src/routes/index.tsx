@@ -201,7 +201,7 @@ function Hero() {
                 size="lg"
                 className="sm:whitespace-nowrap"
               >
-                Send me the free Flow Map
+                Get the free Flow Map
               </ActionLink>
             </div>
             <p className="font-ui mt-4 text-sm text-muted-foreground">
