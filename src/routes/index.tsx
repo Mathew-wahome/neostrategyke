@@ -552,18 +552,24 @@ function Index() {
         <div className="container-page section-y relative grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <Reveal>
             <h2 className="font-display text-3xl leading-tight md:text-5xl">
-              The Founder&rsquo;s Flow Map. Free.
+              Before you write another SOP, work out which ones you actually need.
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-offwhite/85">
-              One page. It shows how work really moves through your business, from first message to
-              money landing, then which five things to write down first.
+              Most founders know they need systems. They just do not know which ones to build first.
+              So they start documenting everything, get overwhelmed, then stop.
+            </p>
+            <p className="mt-4 text-lg leading-relaxed text-offwhite/85">
+              The Founder&rsquo;s Flow Map is the one page we use to see how work really moves
+              through a business. It shows you the five things worth documenting first. Free. No
+              funnel. No endless emails.
             </p>
             <NewsletterForm
               tone="dark"
               className="mt-7 max-w-xl"
               source="home"
-              cta="Send me the guide"
+              cta="Send me the free Flow Map"
             />
+
           </Reveal>
           <Reveal delay={0.1}>
             <Chalkboard kicker="Inside the map" title="First message → money landed">
