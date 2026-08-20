@@ -36,29 +36,30 @@ function Newsletter() {
               <p className="font-ui text-[0.68rem] uppercase tracking-[0.28em] text-offwhite/70">
                 Free guide
               </p>
-              <h1 className="font-display mt-6 text-[2.6rem] leading-[1.06] md:text-6xl">
-                The Founder&rsquo;s Flow Map. Free.
+              <h1 className="font-display mt-6 text-[2.4rem] leading-[1.06] md:text-[3.4rem]">
+                Before you write another SOP, work out which ones you actually need.
               </h1>
               <div className="mt-9 max-w-xl space-y-5">
                 <p className="text-lg leading-relaxed text-offwhite/85">
-                  Most founders do not know which processes to write down. So they write nothing, or
-                  they write the wrong things and give up halfway.
+                  Most founders know they need systems. They just do not know which ones to build
+                  first. So they start documenting everything. Then they get overwhelmed. Then they
+                  stop.
                 </p>
                 <p className="text-lg leading-relaxed text-offwhite/85">
-                  This is the one page we start every engagement with. It shows you how work really
-                  moves through your business, from the first message to the money landing. Then it
-                  shows you which five things to write down first.
+                  The Founder&rsquo;s Flow Map is the one page we use to see how work really moves
+                  through a business, from the first message to the payment landing. It shows you the
+                  five things worth documenting first.
                 </p>
                 <p className="text-lg leading-relaxed text-offwhite/85">
-                  You get it straight away. After that, one letter a week. No hustle, no noise. Just
-                  the thinking that helps a business run without you holding every piece of it.
+                  Get it free. No funnel. No endless emails. One useful tool that shows you where
+                  your business depends on you.
                 </p>
               </div>
               <NewsletterForm
                 tone="dark"
                 className="mt-10 max-w-xl"
                 source="newsletter"
-                cta="Send me the guide"
+                cta="Send me the free Flow Map"
               />
             </Reveal>
           </div>

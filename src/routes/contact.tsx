@@ -58,9 +58,10 @@ export const Route = createFileRoute("/contact")({
 
 const stageToInterest: Record<StageKey, string> = {
   clarity: "Clarity Session",
-  audit: "Audit",
-  install: "Install",
-  partnership: "Partnership",
+  audit: "Founder Operating Systems Audit",
+  install: "Calm Execution Install",
+  partnership: "Founder Operations Partnership",
+  wealth: "The Wealth Arc",
 };
 
 function Field({
