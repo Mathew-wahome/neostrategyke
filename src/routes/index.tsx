@@ -78,11 +78,19 @@ const stages = [
   {
     label: "Then keep it alive",
     title: "The Founder Operations Partnership",
-    body: "Monthly support so the systems grow with the business instead of quietly falling apart.",
+    body: "Ongoing operational support so the systems change as the business changes, without creating a new dependency.",
     glyph: "checklist",
     icon: GaugeCircle,
   },
+  {
+    label: "Then earn beyond your time",
+    title: "The Wealth Arc",
+    body: "Once the business runs without you, we turn what you know into assets that earn beyond your calendar.",
+    glyph: "book",
+    icon: Compass,
+  },
 ] as const;
+
 
 const symptoms = [
   { icon: Inbox, text: "Your inbox decides your day before you do." },
