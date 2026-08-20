@@ -9,22 +9,25 @@ import { Reveal } from "@/components/Reveal";
 import { requestDiscoveryCall } from "@/lib/site-api";
 import { toast } from "sonner";
 
-type StageKey = "clarity" | "audit" | "install" | "partnership";
+type StageKey = "clarity" | "audit" | "install" | "partnership" | "wealth";
 
 const stageLabels: Record<StageKey, string> = {
   clarity: "The Clarity Session",
   audit: "The Founder Operating Systems Audit",
   install: "The Calm Execution Install",
   partnership: "The Founder Operations Partnership",
+  wealth: "The Wealth Arc",
 };
 
 const interests = [
   "Clarity Session",
-  "Audit",
-  "Install",
-  "Partnership",
+  "Founder Operating Systems Audit",
+  "Calm Execution Install",
+  "Founder Operations Partnership",
+  "The Wealth Arc",
   "Not sure yet",
 ] as const;
+
 
 export const Route = createFileRoute("/contact")({
   validateSearch: (search: Record<string, unknown>): { stage?: StageKey } => {
@@ -55,9 +58,10 @@ export const Route = createFileRoute("/contact")({
 
 const stageToInterest: Record<StageKey, string> = {
   clarity: "Clarity Session",
-  audit: "Audit",
-  install: "Install",
-  partnership: "Partnership",
+  audit: "Founder Operating Systems Audit",
+  install: "Calm Execution Install",
+  partnership: "Founder Operations Partnership",
+  wealth: "The Wealth Arc",
 };
 
 function Field({
@@ -151,7 +155,7 @@ function Enquiry() {
               The enquiry form
             </p>
             <h1 className="font-display mt-6 text-[2.5rem] leading-[1.06] md:text-6xl">
-              Tell us about <span className="text-gradient-teal">your business.</span>
+              Tell us what is <span className="text-gradient-teal">breaking.</span>
             </h1>
             <div className="mt-9 max-w-xl space-y-5">
               <p className="text-lg leading-relaxed text-foreground/85">
@@ -207,7 +211,8 @@ function Enquiry() {
                 Thank you for reaching out{form.name ? `, ${form.name}` : ""}.
               </h2>
               <p className="mt-5 text-lg text-foreground/80">
-                We will respond as soon as possible.
+                We reply within two working days with the next step and the fee for the stage that
+                fits.
               </p>
               <p className="mt-5 text-foreground/75">
                 While you wait, the Founder&rsquo;s Flow Map is the fastest useful thing you can
@@ -268,7 +273,7 @@ function Enquiry() {
 
               <div>
                 <p className="font-ui text-sm text-muted-foreground">
-                  Which of these are you interested in?
+                  What are you interested in?
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {interests.map((o) => (
@@ -290,11 +295,13 @@ function Enquiry() {
 
               <div className="flex flex-wrap items-center gap-4">
                 <ActionButton type="submit" size="lg" disabled={pending || !ready}>
-                  {pending ? "Sending…" : "Book a discovery call"}
+                  {pending ? "Sending…" : "Submit my enquiry"}
                 </ActionButton>
                 <p className="font-ui text-xs text-muted-foreground">
-                  We will respond as soon as possible with a time for your discovery call.
+                  We reply within two working days with the next step and the fee for the stage that
+                  fits.
                 </p>
+
               </div>
 
             </form>

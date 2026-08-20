@@ -34,24 +34,26 @@ export const Route = createFileRoute("/about")({
 });
 
 const paragraphs = [
-  "You probably do not have a business problem. You have a dependency problem. The business runs on you. Your memory, your decisions, your presence. It cannot move without you.",
-  "We think a business should hold up your life, not eat it.",
-  "We think the answer to being overwhelmed is not working harder. It is a better design.",
-  "And we think the difference between a business that traps its founder and one that frees them is not effort. It is a system.",
-  "Anyone can push harder. Building something that keeps working when you are tired, distracted or away is a different skill. That is the one we teach.",
-  "We work with founder-led service businesses. Coaches, consultants, agencies, professional firms. We build the systems that let you step back. Systems your team can stand on. Delivery that stays the same whoever does it. Operations that hold on the hard days.",
-  "Not advice. Not a strategy deck. We build the thing.",
+  "You do not have a business problem. You have a dependency problem. The business was built around your memory, your decisions and your presence, and it cannot move without you.",
+  "Most founders try to solve this by hiring another person. Then buying another tool. Then adding another meeting. Then writing another SOP.",
+  "But if the architecture underneath is broken, all you have done is add more moving parts around the same dependency.",
+  "We look at it differently. We find where work, decisions, information and money get stuck. Then we build the systems, the ownership and the operating rhythms that let the business move without everything passing through you.",
+  "The goal is not a tidier business. The goal is a business that does not need you in the middle of it.",
+  "We do not advise from the sidelines. Most consultants hand you recommendations. We build the systems with you, using the real work, the real clients, the real team and the real bottlenecks.",
+  "Because a process document is worthless if nobody follows it, a dashboard is worthless if nobody looks at it, and a system is worthless if it only works when you are there. We build the thing.",
 ];
 
 const note = [
-  "For years I was the person holding everything together.",
-  "Not in theory. In practice, in other people's businesses and in my own. Doing the work that keeps a business standing while nobody notices it is happening.",
-  "That is why this practice exists.",
-  "It is also why I am careful about how many businesses I take on. Doing this properly means being inside a business, not advising it from a distance. That takes real attention. Four at a time is what I can give it.",
-  "Here is what I have learned. Being overwhelmed is almost never about discipline. It is about design. And design can be changed.",
-  "Every business produces exactly what it is built to produce. If you do not like what yours is producing, the design is the place to look.",
-  "If you are the person your business cannot run without, I would like to talk to you.",
+  "I know what it is like to be the person holding everything together.",
+  "For years I did the work that keeps a business standing while nobody notices it is happening. In other people's businesses, and in my own.",
+  "That shaped how I think about operations.",
+  "Being overwhelmed is almost never a discipline problem. It is a design problem.",
+  "Your business produces exactly what it was built to produce. If you do not like what it is producing, the design is where you look.",
+  "I built Neostrategy for founders who have made something real and are now paying for its growth with their time, their attention and their freedom.",
+  "I work with founder-led service businesses. Coaches, consultants, agencies and professional firms. We build the systems that let you step back. Systems your team can stand on. Delivery that stays the same whoever does it. Operations that hold on the hard days.",
+  "If you are the person your business cannot run without, let us fix that.",
 ];
+
 
 const beliefs = [
   {
@@ -122,7 +124,7 @@ function FounderPortrait() {
         <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
           <p className="font-display text-2xl text-offwhite md:text-3xl">{brand.founder}</p>
           <p className="font-ui mt-1 text-[0.62rem] uppercase tracking-[0.3em] text-offwhite/75">
-            Founder · Operations strategist
+            Founder · Systems and Operations Strategist
           </p>
         </div>
       </motion.div>
@@ -278,7 +280,7 @@ function About() {
             </div>
             <Reveal delay={0.3}>
               <p className="font-ui mt-8 text-sm uppercase tracking-[0.22em] text-primary">
-                {brand.founder} · Founder
+                {brand.founder} · Founder · Systems and Operations Strategist
               </p>
             </Reveal>
           </div>

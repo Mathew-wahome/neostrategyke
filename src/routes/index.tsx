@@ -29,23 +29,24 @@ import {
   SymptomGrid,
   Whiteboard,
 } from "@/components/Explainers";
-import { brand } from "@/lib/brand";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Neostrategy — Clarity attracts. Systems scale. Freedom lasts." },
+      { title: "Neostrategy — Build a business that does not depend on you" },
       {
         name: "description",
         content:
-          "An operations consultancy in Nairobi, working across East Africa. We help founder-led service businesses build a business that runs without the founder in the middle of everything.",
+          "Systems and Operations Strategy for founder-led service businesses in Nairobi and across East Africa. We find where your business depends on you, then build what lets the work move without you.",
       },
-      { property: "og:title", content: "Neostrategy — Clarity attracts. Systems scale. Freedom lasts." },
+      { property: "og:title", content: "Neostrategy — Build a business that does not depend on you" },
       {
         property: "og:description",
         content:
-          "Your business runs on you. We help you build one that runs without you in the middle of everything.",
+          "You do not have a motivation problem. You have a founder dependency problem. We build the systems that fix it.",
       },
+
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -78,11 +79,19 @@ const stages = [
   {
     label: "Then keep it alive",
     title: "The Founder Operations Partnership",
-    body: "Monthly support so the systems grow with the business instead of quietly falling apart.",
+    body: "Ongoing operational support so the systems change as the business changes, without creating a new dependency.",
     glyph: "checklist",
     icon: GaugeCircle,
   },
+  {
+    label: "Then earn beyond your time",
+    title: "The Wealth Arc",
+    body: "Once the business runs without you, we turn what you know into assets that earn beyond your calendar.",
+    glyph: "book",
+    icon: Compass,
+  },
 ] as const;
+
 
 const symptoms = [
   { icon: Inbox, text: "Your inbox decides your day before you do." },
@@ -135,9 +144,11 @@ const installBoards = [
   },
 ];
 
+const heroHeadline = "Your business is growing but everything still comes back to you.";
+
 function Hero() {
   const reduced = useReducedMotion();
-  const words = brand.tagline.split(" ");
+  const words = heroHeadline.split(" ");
 
   return (
     <section className="gradient-page relative overflow-hidden">
@@ -152,14 +163,14 @@ function Hero() {
             Operations consultancy · Nairobi, working across East Africa
           </motion.p>
 
-          <h1 className="font-display mt-5 text-[2.6rem] leading-[1.05] md:text-6xl lg:text-[4rem]">
+          <h1 className="font-display mt-5 text-[2.4rem] leading-[1.05] md:text-[3.4rem] lg:text-[3.9rem]">
             {words.map((word, i) => (
               <motion.span
                 key={`${word}-${i}`}
-                className={`inline-block ${i >= words.length - 2 ? "text-gradient-teal" : ""}`}
+                className={`inline-block ${i >= words.length - 4 ? "text-gradient-teal" : ""}`}
                 initial={reduced ? false : { opacity: 0, y: 22, filter: "blur(6px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ duration: 0.9, delay: 0.08 * i, ease: [0.22, 0.61, 0.36, 1] }}
+                transition={{ duration: 0.9, delay: 0.05 * i, ease: [0.22, 0.61, 0.36, 1] }}
               >
                 {word}&nbsp;
               </motion.span>
@@ -167,21 +178,34 @@ function Hero() {
           </h1>
 
           <Reveal delay={0.4} className="mt-6 max-w-xl">
-            <p className="text-lg leading-relaxed text-foreground/80 md:text-xl">
-              Your business runs on you. We help you build one that runs without you in the middle
-              of everything.
+            <p className="text-lg leading-relaxed text-foreground/80">
+              Your team waits for your decisions. Clients still need you personally. The same
+              questions land in your inbox every week. The more revenue you make, the harder it gets
+              to step away.
+            </p>
+            <p className="font-display mt-4 text-xl leading-snug md:text-2xl">
+              You do not have a motivation problem. You have a founder dependency problem.
+            </p>
+            <p className="mt-4 text-lg leading-relaxed text-foreground/80">
+              We find where your business depends on you. Then we build what lets the work move
+              without you holding every piece.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <ActionLink to="/newsletter" size="lg" className="group">
-                Send me the free guide
+              <ActionLink to="/contact" size="lg" className="group">
+                Find out where your business depends on you
                 <ArrowRight className="ml-2 size-4 transition-transform duration-300 group-hover:translate-x-1" />
               </ActionLink>
-              <ActionLink to="/contact" variant="outline" size="lg">
-                Book a call
+              <ActionLink to="/newsletter" variant="outline" size="lg">
+                Send me the free Flow Map
               </ActionLink>
             </div>
+            <p className="font-ui mt-4 text-sm text-muted-foreground">
+              Book a strategic call. We will identify what is keeping you in the middle, and what
+              needs to change first.
+            </p>
           </Reveal>
         </div>
+
 
         <motion.div
           initial={reduced ? false : { opacity: 0, y: 26 }}
@@ -228,16 +252,24 @@ function Index() {
               The problem
             </p>
             <p className="font-display mt-4 text-2xl leading-snug md:text-[2.05rem]">
-              You already know something is wrong. You just have not had time to name it.
+              You built a successful business. Somewhere along the way, you became its operating
+              system.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-foreground/80">
-              None of this means you are disorganised. It means the business was built around you
-              and never redesigned.
+              Your knowledge lives in your head. Your processes live in scattered documents,
+              WhatsApp messages and people&rsquo;s memories. Your team has responsibilities, but not
+              clear ownership. Your tools exist, but they do not talk to each other. And the
+              decisions only you can make keep multiplying.
+            </p>
+            <p className="mt-4 text-lg leading-relaxed text-foreground/80">
+              This is not because you are disorganised. It is because the business was built around
+              you.
             </p>
             <p className="font-hand mt-5 inline-block -rotate-1 rounded-sm bg-note-yellow px-3 py-1.5 text-2xl text-charcoal">
-              A design problem, not a discipline problem.
+              That is a design problem. Design problems can be fixed.
             </p>
           </Reveal>
+
 
           <Reveal delay={0.1}>
             <Whiteboard kicker="Six signals" title="Tick the ones you recognise">
@@ -388,11 +420,16 @@ function Index() {
               How we work together
             </p>
             <h2 className="font-display mt-4 text-3xl leading-tight md:text-4xl">
-              Four ways in. Start wherever makes sense and stop whenever it does.
+              First we free you from the business. Then we help you earn more from what you know.
             </h2>
+            <p className="mt-4 text-lg leading-relaxed text-foreground/80">
+              You do not have to commit to a giant transformation. We start with the problem that
+              matters most.
+            </p>
           </Reveal>
 
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+
             {stages.map((stage, i) => (
               <Reveal key={stage.title} delay={i * 0.08}>
                 <article className="lift group flex h-full flex-col rounded-lg border border-border/70 bg-background/60 p-4">
@@ -448,7 +485,38 @@ function Index() {
         </div>
       </section>
 
+      {/* Why Neostrategy */}
+      <section className="border-t border-border/60 bg-teal-wash">
+        <div className="container-page section-y grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
+          <Reveal>
+            <p className="font-ui text-[0.66rem] uppercase tracking-[0.28em] text-primary">
+              Why Neostrategy
+            </p>
+            <h2 className="font-display mt-4 text-3xl leading-tight md:text-[2.4rem]">
+              We do not advise from the sidelines. We build inside the business.
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-foreground/80">
+              Most consultants hand you recommendations. We build the systems with you, using the
+              real work, the real clients, the real team and the real bottlenecks.
+            </p>
+            <p className="font-display mt-4 text-xl">We build the thing.</p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <StickyWall
+              columns="grid-cols-1 xs:grid-cols-2"
+              notes={[
+                { label: "Worthless", text: "A process document nobody follows" },
+                { label: "Worthless", text: "A dashboard nobody looks at" },
+                { label: "Worthless", text: "A system that only works when you are there" },
+                { label: "Worth building", text: "Operations that hold on the hard days" },
+              ]}
+            />
+          </Reveal>
+        </div>
+      </section>
+
       {/* Products */}
+
       <section className="border-t border-border/60">
         <div className="container-page section-y grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <Reveal>
@@ -484,18 +552,24 @@ function Index() {
         <div className="container-page section-y relative grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <Reveal>
             <h2 className="font-display text-3xl leading-tight md:text-5xl">
-              The Founder&rsquo;s Flow Map. Free.
+              Before you write another SOP, work out which ones you actually need.
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-offwhite/85">
-              One page. It shows how work really moves through your business, from first message to
-              money landing, then which five things to write down first.
+              Most founders know they need systems. They just do not know which ones to build first.
+              So they start documenting everything, get overwhelmed, then stop.
+            </p>
+            <p className="mt-4 text-lg leading-relaxed text-offwhite/85">
+              The Founder&rsquo;s Flow Map is the one page we use to see how work really moves
+              through a business. It shows you the five things worth documenting first. Free. No
+              funnel. No endless emails.
             </p>
             <NewsletterForm
               tone="dark"
               className="mt-7 max-w-xl"
               source="home"
-              cta="Send me the guide"
+              cta="Send me the free Flow Map"
             />
+
           </Reveal>
           <Reveal delay={0.1}>
             <Chalkboard kicker="Inside the map" title="First message → money landed">

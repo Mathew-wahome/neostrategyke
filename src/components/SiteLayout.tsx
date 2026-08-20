@@ -129,7 +129,14 @@ function Footer() {
               </span>
             </div>
           </Link>
-          <p className="font-display max-w-2xl text-2xl leading-tight md:text-3xl">{brand.tagline}</p>
+          <div className="max-w-2xl">
+            <p className="font-display text-2xl leading-tight md:text-3xl">{brand.tagline}</p>
+            <p className="font-ui mt-3 text-sm leading-relaxed text-offwhite/70">
+              Systems and Operations Strategy for founder-led service businesses.
+              <br />
+              Nairobi · Working across East Africa
+            </p>
+          </div>
         </div>
 
         <div className="mt-16 grid gap-12 md:grid-cols-[1.2fr_1fr_1fr]">

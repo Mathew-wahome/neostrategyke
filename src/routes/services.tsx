@@ -88,13 +88,13 @@ export const Route = createFileRoute("/services")({
       {
         name: "description",
         content:
-          "Four ways in: the Clarity Session, the Founder Operating Systems Audit, the Calm Execution Install and the Founder Operations Partnership.",
+          "Five ways in: the Clarity Session, the Founder Operating Systems Audit, the Calm Execution Install, the Founder Operations Partnership and the Wealth Arc.",
       },
       { property: "og:title", content: "The Founder Operating System" },
       {
         property: "og:description",
         content:
-          "You probably do not have a business problem. You have a dependency problem. This is how that changes.",
+          "You do not have a business problem. You have a dependency problem. This is how that changes.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -110,72 +110,88 @@ const stages = [
     title: "The Clarity Session",
     heading: "One hour. One problem. A straight answer.",
     body: [
-      "Not everyone needs an audit, and not every problem needs one. This is one focused hour on whatever is stuck right now. A process that keeps breaking. A team that waits on you for everything. A decision you have been going round in circles on for a month.",
-      "You leave knowing what is actually happening and what to do next. If you go on to book the Audit or the Install, this fee comes off the price.",
+      "Sometimes you do not need a full overhaul. You need someone experienced to look at the thing that keeps breaking and tell you what is actually wrong.",
+      "We spend one focused hour working out what is happening. You leave knowing what is wrong and what to do next.",
     ],
-    timeline: "One hour. We share the fee when you enquire.",
-    cta: "Book the Clarity Session",
+    timeline: "One hour. If you move into an Audit or an Install, this fee comes off the price.",
+    cta: "Book a Clarity Session",
   },
   {
     label: "Start here",
     slug: "audit",
     title: "The Founder Operating Systems Audit",
-    heading: "Before we build anything, we find where the business depends on you.",
+    heading: "Find out exactly where your business depends on you.",
     body: [
-      "Before we build anything, we find out where your business depends on you and where it leaks. No guessing. No generic checklist.",
-      "We map your client journey from first contact to money in the bank. Then we follow three of your recent clients through what actually happened, rather than what was supposed to happen. Then we show you the difference.",
-      "That difference is usually the most useful thing you will see all year.",
-      "You keep the diagnosis and a clear 30 to 90 day plan, whether we work together after that or not.",
+      "Before we build anything, we diagnose. No generic checklist. No assumptions. No strategy deck that sits in a folder.",
+      "We map your client journey from first contact to money in the bank. Then we follow real recent clients through what actually happened, and show you the gap between how the business is supposed to work and how it actually works.",
+      "That gap is where the work is. You leave with a clear diagnosis, the systems that need to change, and a prioritised 30 to 90 day plan. You keep all of it, whether we work together afterwards or not.",
     ],
-    timeline:
-      "About a week. Same fee for every business, because it is the same work. We share it when you enquire.",
-    cta: "Book a call about the Audit",
+    timeline: "About a week. Same fee for every business, because it is the same work.",
+    cta: "Find out where your business depends on you",
   },
   {
     label: "Then build",
     slug: "install",
     title: "The Calm Execution Install",
-    heading: "Thirty days to build the systems the Audit found.",
+    heading: "We found the problem. Now we build the fix.",
     body: [
-      "Thirty days to build the systems the Audit found. The shape is the same for every founder. What gets built is yours alone.",
-      "You end up with a business that no longer runs out of your head.",
+      "The Audit tells us what is broken. The Install fixes it. Over thirty days we build the systems your business actually needs, with your team, in your language.",
+      "This can include SOPs, client onboarding, delivery systems, delegation structures, team accountability, meeting rhythms, dashboards, knowledge management and handover systems.",
+      "The result: your business no longer runs out of your head.",
     ],
     timeline:
-      "Thirty days. We agree the scope and the fee in writing before anything starts, so nothing drifts and no invoice surprises you. The Audit fee comes off the price.",
-    cta: "Book a call about the Install",
+      "Thirty days. Scope and fee agreed in writing before anything starts. The Audit fee comes off the price.",
+    cta: "Talk to us about the Install",
   },
 
   {
     label: "Then keep it alive",
     slug: "partnership",
     title: "The Founder Operations Partnership",
-    heading: "Keeping the systems alive as the business grows.",
+    heading: "Build the systems. Then keep them alive.",
     body: [
-      "Building systems is one thing. Keeping them alive as the business grows is another. This is a monthly relationship. We stay close to your operations so the systems change as the business changes, instead of quietly falling apart.",
+      "A business does not stop changing because you installed a few SOPs. Your team changes. Your offers change. Your clients change. Your revenue changes. Your systems have to change with them.",
+      "The Partnership gives you ongoing operational support without creating a new dependency. The goal is for your business to need us less over time, not more.",
     ],
 
     timeline:
-      "Monthly, with a three month minimum. Three months because that is roughly how long it takes for a new way of working to become the normal way of working.",
-    cta: "Book a call about the Partnership",
+      "Monthly, with a three month minimum. Three months because that is roughly how long a new way of working takes to become the normal way of working.",
+    cta: "Talk to us about the Partnership",
+  },
+  {
+    label: "Then earn beyond your time",
+    slug: "wealth",
+    title: "The Wealth Arc",
+    heading:
+      "Once the business runs without you, your knowledge can start working without you too.",
+    body: [
+      "You have spent years learning how to do what you do. That knowledge lives in client conversations, proposals, voice notes, workshops, documents and your head. Right now it only earns when you are in the room.",
+      "The Wealth Arc turns that expertise into assets that earn beyond your time. This is not a marketing exercise. It is the same systems thinking, pointed at your expertise instead of your operations.",
+      "First free yourself from the business. Then make your knowledge work harder than your calendar.",
+    ],
+    timeline: "Scoped to what you know and what you want it to become.",
+    cta: "Talk to us about the Wealth Arc",
   },
 ];
+
 
 function stageVisual(slug: string) {
   if (slug === "clarity") {
     return (
-      <Whiteboard kicker="One hour" title="What gets unstuck">
+      <Whiteboard kicker="One hour" title="Bring us the thing that keeps breaking">
         <StickyWall
           columns="grid-cols-1 xs:grid-cols-2"
           notes={[
-            { label: "Bring", text: "The process that keeps breaking" },
-            { label: "Bring", text: "The decision going in circles" },
-            { label: "Leave with", text: "What is actually happening" },
-            { label: "Leave with", text: "The next move, in writing" },
+            { label: "Bring", text: "A process that keeps breaking" },
+            { label: "Bring", text: "A team that waits on you for everything" },
+            { label: "Bring", text: "A decision you have circled for weeks" },
+            { label: "Leave with", text: "What is wrong, and what to do next" },
           ]}
         />
       </Whiteboard>
     );
   }
+
   if (slug === "audit") {
     return (
       <Whiteboard kicker="The audit" title="Supposed to happen vs what happened">
@@ -207,22 +223,39 @@ function stageVisual(slug: string) {
       </Chalkboard>
     );
   }
+  if (slug === "wealth") {
+    return (
+      <Whiteboard kicker="Beyond your calendar" title="What your expertise can become">
+        <StickyWall
+          columns="grid-cols-1 xs:grid-cols-2"
+          notes={[
+            { label: "Becomes", text: "A course people can buy without you" },
+            { label: "Becomes", text: "A workshop you run once, sell often" },
+            { label: "Becomes", text: "A digital product with a price" },
+            { label: "Becomes", text: "A book, and the content that leads to it" },
+          ]}
+        />
+      </Whiteboard>
+    );
+  }
   return (
     <Chalkboard kicker="Monthly" title="What the partnership gives you">
       <ChalkChecklist
         items={[
-          "A working session every week",
-          "Access between sessions, replies inside 48 hours",
-          "Maintenance as the business changes",
-          "A planning session each quarter",
+          "A weekly working session",
+          "Support between sessions during business hours",
+          "Ongoing system maintenance",
+          "Quarterly planning",
+          "Help as the business grows and changes",
         ]}
       />
       <p className="font-chalk mt-6 text-lg leading-snug text-offwhite/80">
-        Designed so your business needs you less. Not so it needs us more.
+        Designed so your business needs us less over time. Not more.
       </p>
     </Chalkboard>
   );
 }
+
 
 
 function Services() {
@@ -239,11 +272,15 @@ function Services() {
             </h1>
             <div className="mt-9 max-w-xl space-y-6">
               <p className="text-lg leading-relaxed text-foreground/85">
-                You probably do not have a business problem. You have a dependency problem. The
-                business runs on you, and it cannot move without you.
+                Your business needs more than SOPs. It needs a system that connects how work comes
+                in, how it gets delivered, who owns it, how decisions get made, and how you know it
+                is all working.
               </p>
-              <p className="text-lg leading-relaxed text-foreground/85">This is how that changes.</p>
+              <p className="text-lg leading-relaxed text-foreground/85">
+                First we free you from the business. Then we help you earn more from what you know.
+              </p>
             </div>
+
           </Reveal>
 
           <Reveal delay={0.15}>
