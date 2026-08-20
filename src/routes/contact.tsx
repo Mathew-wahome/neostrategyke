@@ -211,7 +211,8 @@ function Enquiry() {
                 Thank you for reaching out{form.name ? `, ${form.name}` : ""}.
               </h2>
               <p className="mt-5 text-lg text-foreground/80">
-                We will respond as soon as possible.
+                We reply within two working days with the next step and the fee for the stage that
+                fits.
               </p>
               <p className="mt-5 text-foreground/75">
                 While you wait, the Founder&rsquo;s Flow Map is the fastest useful thing you can
