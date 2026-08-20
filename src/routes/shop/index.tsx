@@ -169,7 +169,7 @@ function Products() {
               </p>
               <Link
                 to="/newsletter"
-                className="font-ui mt-8 inline-flex h-11 items-center justify-center rounded-sm bg-primary px-6 text-sm text-primary-foreground transition-colors hover:bg-teal-deep"
+                className="font-ui mt-8 inline-flex min-h-11 items-center justify-center rounded-sm bg-primary px-6 py-2.5 text-center text-sm leading-snug text-primary-foreground transition-colors hover:bg-teal-deep"
               >
                 Send me the map
               </Link>
@@ -223,7 +223,7 @@ function Products() {
                 <Link
                   to="/shop/$slug"
                   params={{ slug: starterKit.slug }}
-                  className="font-ui mt-8 inline-flex h-11 items-center justify-center rounded-sm bg-primary px-6 text-sm text-primary-foreground transition-colors hover:bg-teal-deep"
+                  className="font-ui mt-8 inline-flex min-h-11 items-center justify-center rounded-sm bg-primary px-6 py-2.5 text-center text-sm leading-snug text-primary-foreground transition-colors hover:bg-teal-deep"
                 >
                   Get the Starter Kit
                 </Link>
