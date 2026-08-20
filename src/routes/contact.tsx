@@ -272,7 +272,7 @@ function Enquiry() {
 
               <div>
                 <p className="font-ui text-sm text-muted-foreground">
-                  Which of these are you interested in?
+                  What are you interested in?
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {interests.map((o) => (
@@ -294,11 +294,13 @@ function Enquiry() {
 
               <div className="flex flex-wrap items-center gap-4">
                 <ActionButton type="submit" size="lg" disabled={pending || !ready}>
-                  {pending ? "Sending…" : "Book a discovery call"}
+                  {pending ? "Sending…" : "Submit my enquiry"}
                 </ActionButton>
                 <p className="font-ui text-xs text-muted-foreground">
-                  We will respond as soon as possible with a time for your discovery call.
+                  We reply within two working days with the next step and the fee for the stage that
+                  fits.
                 </p>
+
               </div>
 
             </form>
