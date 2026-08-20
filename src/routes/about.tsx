@@ -124,7 +124,7 @@ function FounderPortrait() {
         <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
           <p className="font-display text-2xl text-offwhite md:text-3xl">{brand.founder}</p>
           <p className="font-ui mt-1 text-[0.62rem] uppercase tracking-[0.3em] text-offwhite/75">
-            Founder · Operations strategist
+            Founder · Systems and Operations Strategist
           </p>
         </div>
       </motion.div>
@@ -280,7 +280,7 @@ function About() {
             </div>
             <Reveal delay={0.3}>
               <p className="font-ui mt-8 text-sm uppercase tracking-[0.22em] text-primary">
-                {brand.founder} · Founder
+                {brand.founder} · Founder · Systems and Operations Strategist
               </p>
             </Reveal>
           </div>
