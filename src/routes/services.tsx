@@ -272,11 +272,15 @@ function Services() {
             </h1>
             <div className="mt-9 max-w-xl space-y-6">
               <p className="text-lg leading-relaxed text-foreground/85">
-                You probably do not have a business problem. You have a dependency problem. The
-                business runs on you, and it cannot move without you.
+                Your business needs more than SOPs. It needs a system that connects how work comes
+                in, how it gets delivered, who owns it, how decisions get made, and how you know it
+                is all working.
               </p>
-              <p className="text-lg leading-relaxed text-foreground/85">This is how that changes.</p>
+              <p className="text-lg leading-relaxed text-foreground/85">
+                First we free you from the business. Then we help you earn more from what you know.
+              </p>
             </div>
+
           </Reveal>
 
           <Reveal delay={0.15}>
