@@ -178,19 +178,20 @@ const stages = [
 function stageVisual(slug: string) {
   if (slug === "clarity") {
     return (
-      <Whiteboard kicker="One hour" title="What gets unstuck">
+      <Whiteboard kicker="One hour" title="Bring us the thing that keeps breaking">
         <StickyWall
           columns="grid-cols-1 xs:grid-cols-2"
           notes={[
-            { label: "Bring", text: "The process that keeps breaking" },
-            { label: "Bring", text: "The decision going in circles" },
-            { label: "Leave with", text: "What is actually happening" },
-            { label: "Leave with", text: "The next move, in writing" },
+            { label: "Bring", text: "A process that keeps breaking" },
+            { label: "Bring", text: "A team that waits on you for everything" },
+            { label: "Bring", text: "A decision you have circled for weeks" },
+            { label: "Leave with", text: "What is wrong, and what to do next" },
           ]}
         />
       </Whiteboard>
     );
   }
+
   if (slug === "audit") {
     return (
       <Whiteboard kicker="The audit" title="Supposed to happen vs what happened">
@@ -222,22 +223,39 @@ function stageVisual(slug: string) {
       </Chalkboard>
     );
   }
+  if (slug === "wealth") {
+    return (
+      <Whiteboard kicker="Beyond your calendar" title="What your expertise can become">
+        <StickyWall
+          columns="grid-cols-1 xs:grid-cols-2"
+          notes={[
+            { label: "Becomes", text: "A course people can buy without you" },
+            { label: "Becomes", text: "A workshop you run once, sell often" },
+            { label: "Becomes", text: "A digital product with a price" },
+            { label: "Becomes", text: "A book, and the content that leads to it" },
+          ]}
+        />
+      </Whiteboard>
+    );
+  }
   return (
     <Chalkboard kicker="Monthly" title="What the partnership gives you">
       <ChalkChecklist
         items={[
-          "A working session every week",
-          "Access between sessions, replies inside 48 hours",
-          "Maintenance as the business changes",
-          "A planning session each quarter",
+          "A weekly working session",
+          "Support between sessions during business hours",
+          "Ongoing system maintenance",
+          "Quarterly planning",
+          "Help as the business grows and changes",
         ]}
       />
       <p className="font-chalk mt-6 text-lg leading-snug text-offwhite/80">
-        Designed so your business needs you less. Not so it needs us more.
+        Designed so your business needs us less over time. Not more.
       </p>
     </Chalkboard>
   );
 }
+
 
 
 function Services() {
