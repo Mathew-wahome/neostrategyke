@@ -16,9 +16,9 @@ export const actionVariants = cva(
         quiet: "text-primary hover:text-teal-deep underline underline-offset-4 decoration-1",
       },
       size: {
-        md: "h-11 px-6",
-        lg: "h-12 px-8",
-        sm: "h-9 px-4 text-xs",
+        md: "min-h-11 px-5 py-2.5 sm:px-6",
+        lg: "min-h-12 px-6 py-3 sm:px-8",
+        sm: "min-h-9 px-4 py-2 text-xs",
       },
     },
     defaultVariants: { variant: "primary", size: "md" },
