@@ -4,7 +4,7 @@ import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
 export const actionVariants = cva(
-  "font-ui inline-flex items-center justify-center rounded-sm text-sm tracking-wide transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-60",
+  "font-ui inline-flex max-w-full items-center justify-center gap-2 rounded-sm text-center text-sm leading-snug tracking-wide transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-60",
   {
     variants: {
       variant: {
@@ -16,9 +16,9 @@ export const actionVariants = cva(
         quiet: "text-primary hover:text-teal-deep underline underline-offset-4 decoration-1",
       },
       size: {
-        md: "h-11 px-6",
-        lg: "h-12 px-8",
-        sm: "h-9 px-4 text-xs",
+        md: "min-h-11 px-5 py-2.5 sm:px-6",
+        lg: "min-h-12 px-6 py-3 sm:px-8",
+        sm: "min-h-9 px-4 py-2 text-xs",
       },
     },
     defaultVariants: { variant: "primary", size: "md" },
