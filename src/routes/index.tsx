@@ -455,7 +455,7 @@ function Index() {
           <Reveal delay={0.15} className="mt-8">
             <ActionLink to="/services" variant="outline" className="group">
               See how we work
-              <ArrowRight className="ml-2 size-4 transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight className="size-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
             </ActionLink>
           </Reveal>
         </div>
