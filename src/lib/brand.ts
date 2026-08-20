@@ -1,6 +1,6 @@
 export const brand = {
   name: "Neostrategy",
-  tagline: "Clarity attracts. Systems scale. Freedom lasts.",
+  tagline: "Build a business that does not depend on you.",
   founder: "Nduta Njoroge",
   email: "support@theneostrategy.com",
   domain: "theneostrategy.com",
