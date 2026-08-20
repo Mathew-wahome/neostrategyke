@@ -88,13 +88,13 @@ export const Route = createFileRoute("/services")({
       {
         name: "description",
         content:
-          "Four ways in: the Clarity Session, the Founder Operating Systems Audit, the Calm Execution Install and the Founder Operations Partnership.",
+          "Five ways in: the Clarity Session, the Founder Operating Systems Audit, the Calm Execution Install, the Founder Operations Partnership and the Wealth Arc.",
       },
       { property: "og:title", content: "The Founder Operating System" },
       {
         property: "og:description",
         content:
-          "You probably do not have a business problem. You have a dependency problem. This is how that changes.",
+          "You do not have a business problem. You have a dependency problem. This is how that changes.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
