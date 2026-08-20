@@ -243,16 +243,24 @@ function Index() {
               The problem
             </p>
             <p className="font-display mt-4 text-2xl leading-snug md:text-[2.05rem]">
-              You already know something is wrong. You just have not had time to name it.
+              You built a successful business. Somewhere along the way, you became its operating
+              system.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-foreground/80">
-              None of this means you are disorganised. It means the business was built around you
-              and never redesigned.
+              Your knowledge lives in your head. Your processes live in scattered documents,
+              WhatsApp messages and people&rsquo;s memories. Your team has responsibilities, but not
+              clear ownership. Your tools exist, but they do not talk to each other. And the
+              decisions only you can make keep multiplying.
+            </p>
+            <p className="mt-4 text-lg leading-relaxed text-foreground/80">
+              This is not because you are disorganised. It is because the business was built around
+              you.
             </p>
             <p className="font-hand mt-5 inline-block -rotate-1 rounded-sm bg-note-yellow px-3 py-1.5 text-2xl text-charcoal">
-              A design problem, not a discipline problem.
+              That is a design problem. Design problems can be fixed.
             </p>
           </Reveal>
+
 
           <Reveal delay={0.1}>
             <Whiteboard kicker="Six signals" title="Tick the ones you recognise">
@@ -403,11 +411,16 @@ function Index() {
               How we work together
             </p>
             <h2 className="font-display mt-4 text-3xl leading-tight md:text-4xl">
-              Four ways in. Start wherever makes sense and stop whenever it does.
+              First we free you from the business. Then we help you earn more from what you know.
             </h2>
+            <p className="mt-4 text-lg leading-relaxed text-foreground/80">
+              You do not have to commit to a giant transformation. We start with the problem that
+              matters most.
+            </p>
           </Reveal>
 
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+
             {stages.map((stage, i) => (
               <Reveal key={stage.title} delay={i * 0.08}>
                 <article className="lift group flex h-full flex-col rounded-lg border border-border/70 bg-background/60 p-4">
